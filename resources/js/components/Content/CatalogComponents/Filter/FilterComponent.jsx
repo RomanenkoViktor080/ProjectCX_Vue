@@ -2,7 +2,7 @@ import React, {memo, useCallback, useEffect, useMemo, useState} from 'react';
 import classes from "./FilterComponent.module.scss";
 import FilterChooseBlock from "./FilterChooseBlock";
 import FilterRangeComponent from "./FilterRangeComponent";
-import ButtonComponent from "../../../UI/Buttons/ButtonComponent";
+import ButtonComponent from "../../../UI/Buttons/ButtonComponent.vue";
 import {useParams, useSearchParams} from "react-router-dom";
 import axios from "axios";
 import {debounce, isEmpty} from "lodash";

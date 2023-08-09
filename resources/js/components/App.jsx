@@ -3,7 +3,7 @@ import HeaderComponent from "./Header/HeaderComponent.vue";
 import FooterComponent from "./Footer/FooterComponent";
 import classes from "./App.module.scss";
 import {Route, Routes} from "react-router";
-import NotFoundPageComponent from "../Pages/NotFoundPageComponent";
+import NotFoundPageComponent from "../Pages/NotFoundPageComponent.vue";
 import HomePageComponent from "../Pages/HomePageComponent.vue";
 import ProductPageComponent from "../Pages/ProductPageComponent";
 import CatalogPageComponent from "../Pages/CatalogPageComponent";
@@ -12,7 +12,7 @@ import BasketPage from "../Pages/BasketPage";
 import MobileNavigationComponent from "./Content/Mobile/MobileNavigationComponent";
 import ProductPreviewPopupComponent from "./Content/Product/ProductPreviewPopupComponent";
 import {useSelector} from "react-redux";
-import ButtonComponent from "./UI/Buttons/ButtonComponent";
+import ButtonComponent from "./UI/Buttons/ButtonComponent.vue";
 
 
 const App = () => {

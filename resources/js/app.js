@@ -12,6 +12,6 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 library.add(faPhone, faUser, faBars, faMagnifyingGlass, faUsers, faCartShopping);
 const Vue = createApp(AppVueComponent);
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-Vue.use(store);
 Vue.use(router);
+Vue.use(store);
 Vue.mount('.wrapper');

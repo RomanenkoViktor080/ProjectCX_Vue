@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from "./BasketPage.module.scss";
-import ButtonComponent from "../components/UI/Buttons/ButtonComponent";
+import ButtonComponent from "../components/UI/Buttons/ButtonComponent.vue";
 import LikeComponent from "../components/UI/LikeComponent/LikeComponent";
 import CounterComponent from "../components/UI/Counter/CounterComponent";
 import {FiTrash} from "react-icons/fi";

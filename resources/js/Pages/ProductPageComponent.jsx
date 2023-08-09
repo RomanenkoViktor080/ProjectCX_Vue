@@ -6,7 +6,7 @@ import ShowMoreOrLessProductDescriptionComponent
     from "../components/UI/ShowMoreOrLess/ShowMoreOrLessProductDescriptionComponent";
 import ShowMoreOrLessProductCharacteristicsComponent
     from "../components/UI/ShowMoreOrLess/ShowMoreOrLessProductCharacteristicsComponent";
-import ButtonComponent from "../components/UI/Buttons/ButtonComponent";
+import ButtonComponent from "../components/UI/Buttons/ButtonComponent.vue";
 import SwiperAdvertisementProductsComponent from "../components/Sliders/SwiperAdvertisementProductsComponent";
 import SwiperProductPageComponent from "../components/Sliders/SwiperProductPageComponent";
 import ProductRatingComponent from "../components/Content/Product/ProductRatingComponent";

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import classes from "./ProfileSettingsComponent.module.scss";
 import ProfileWrapperComponent from "./ProfileWrapperComponent";
-import ButtonComponent from "../../UI/Buttons/ButtonComponent";
+import ButtonComponent from "../../UI/Buttons/ButtonComponent.vue";
 import InputTextFormComponent from "../../UI/Inputs/InputTextFormComponent";
 
 const ProfileSettingsComponent = ({setProfileState}) => {

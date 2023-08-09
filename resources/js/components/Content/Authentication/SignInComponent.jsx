@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import classes from "./AuthentificationForm.module.scss";
 import InputTextFormComponent from "../../UI/Inputs/InputTextFormComponent";
 import InputPasswordFormComponent from "../../UI/Inputs/InputPasswordFormComponent";
-import ButtonComponent from "../../UI/Buttons/ButtonComponent";
+import ButtonComponent from "../../UI/Buttons/ButtonComponent.vue";
 import CheckboxComponent from "../../UI/Checkboxes/CheckboxComponent";
 import useSignIn from "../../../hooks/AuthHooks/useSignIn";
 

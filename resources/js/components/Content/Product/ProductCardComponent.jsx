@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import classes from "./ProductCardComponent.module.scss";
 import StarsRatingComponent from "../../UI/Raiting/StarsRatingComponent";
-import ButtonComponent from "../../UI/Buttons/ButtonComponent";
+import ButtonComponent from "../../UI/Buttons/ButtonComponent.vue";
 import {Link} from "react-router-dom";
 import LikeComponent from "../../UI/LikeComponent/LikeComponent";
 import {useDispatch, useSelector} from "react-redux";

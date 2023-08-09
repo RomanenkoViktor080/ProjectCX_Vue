@@ -1,12 +1,17 @@
 import {createRouter, createWebHistory} from 'vue-router';
-import HomePageComponent from "./Pages/HomePageComponent.vue";
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
             path: '/',
-            component: () => HomePageComponent,
+            component: () => import('./Pages/HomePageComponent.vue'),
             name: 'home'
+        },
+        {
+            path: '/:catchAll(.*)',
+            component: () => import('./Pages/NotFoundPageComponent.vue'),
+            name: '404'
         }
     ]
 });
