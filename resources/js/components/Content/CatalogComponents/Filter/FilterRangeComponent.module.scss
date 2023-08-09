@@ -1,0 +1,81 @@
+.range {
+    width: 100%;
+}
+
+.title {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    height: 40px;
+}
+
+.titleBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.titleText {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.titleItemText + * {
+    margin-left: 10px;
+}
+
+.resetButton {
+    color: var(--main-dark-grey-color);
+    border-bottom: 1px dotted var(--main-dark-grey-color);
+    margin-left: 10px;
+    font-size: 16px;
+}
+.descriptionText {
+    color: var(--main-grey-color);
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.inputBlock {
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    column-gap: 5px;
+    border: 1px solid #bbbbbb;
+    flex: 0 0 48%;
+
+    & .hText {
+        color: #bbbbbb;
+    }
+
+    &.right {
+        border-radius: 10px 0 0 10px;
+    }
+
+    &.left {
+        border-radius: 0 10px 10px 0;
+    }
+
+    & input {
+        background-color: transparent;
+        width: 100%;
+        border: none;
+
+        &::placeholder {
+            color: #bbbbbb;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

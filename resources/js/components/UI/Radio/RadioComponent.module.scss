@@ -1,0 +1,64 @@
+.filterRadio {
+    position: relative;
+}
+
+.input {
+    display: none;
+
+    &:checked + .label:after {
+        opacity: 1;
+    }
+
+    &:checked + .label:before {
+        border: 2px solid var(--main-blue-color);
+        @media screen and (min-width: 1980px) {
+            border: 3px solid var(--main-blue-color);
+
+        }
+    }
+}
+
+.label {
+    display: inline-block;
+    word-wrap: anywhere;
+    padding-left: 30px;
+    cursor: pointer;
+
+    &:after {
+        transition: 150ms;
+        opacity: 0;
+        border: 1px solid var(--main-blue-color);
+        background-color: var(--main-blue-color);
+        height: 8px;
+        width: 8px;
+        left: 7px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 100%;
+    }
+
+    &:before {
+        border: 1px solid var(--main-grey-color);
+        height: 20px;
+        width: 20px;
+        left: 0;
+        top: 50%;
+        transform: translate(0, -50%);
+        border-radius: 100%;
+
+        &:active {
+            border: 1px solid var(--main-blue-color);
+        }
+    }
+
+    &:before, &:after {
+        content: "";
+        display: inline-block;
+        position: absolute;
+
+    }
+
+    &:hover:before {
+        border: 1px solid var(--main-blue-color);
+    }
+}

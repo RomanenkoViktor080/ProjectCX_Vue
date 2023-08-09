@@ -1,0 +1,49 @@
+.mobileNavigation {
+    z-index: 10;
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--mobile-navigation-height);
+    background-color: #ffffff;
+    border-top: 1px solid var(--main-light-grey-color);
+    @media screen and (max-width: 768px) {
+        display: flex;
+    }
+
+    & .navLink {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        color: black;
+        opacity: 0.5;
+
+        .basketQuantity {
+            font-size: 10px;
+            padding: 2px 5px;
+            border-radius: 10px;
+            top: calc(50% - 10px);
+            left: calc(50% + 10px);
+            transform: translate(-50%, -50%);
+            position: absolute;
+            display: inline-block;
+            background-color: #FF2B2B;
+            content: "";
+            z-index: 5;
+        }
+
+        & .navLinkIcon {
+            transform: translate(-50%, -50%);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 30px;
+        }
+    }
+
+    & .navLinkActive {
+        opacity: 1;
+    }
+}

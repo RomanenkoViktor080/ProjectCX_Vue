@@ -1,0 +1,193 @@
+@mixin adaptiveValue($property, $startSise, $minSize, $maxWidth, $minWidth) {
+    $addSize: $startSise - $minSize;
+    @media screen and (max-width: #{$minWidth + px}) {
+        #{$property}: calc(#{$minSize + px});
+    }
+    @media screen and (max-width: #{$maxWidth + px}) and (min-width: #{$minWidth + px}) {
+        #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - #{$minWidth + px}) / #{$maxWidth - $minWidth}));
+    }
+    @media screen and (min-width: #{$maxWidth + px}) {
+        #{$property}: calc(#{$startSise + px});
+    }
+}
+
+.container {
+    padding: 10px 30px;
+    height: var(--header-desctop-height);
+    @media screen and (max-width: 768px) {
+        padding: 10px 15px;
+        height: 55px;
+    }
+
+    display: flex;
+
+    flex-direction: column;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+
+.header {
+    z-index: 12;
+    position: sticky;
+    top: 0;
+    @media screen and (max-width: 768px) {
+        position: static;
+    }
+    background: var(--main-gradient);
+
+    &__body {
+
+    }
+}
+
+//===================================================================================================
+
+.topHeader {
+    display: none;
+}
+
+//===================================================================================================
+
+.bodyHeader {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    @include adaptiveValue("column-gap", 125, 20, 1600, 768);
+}
+
+//===================================================================================================
+
+.headerNavMenu {
+    display: flex;
+    align-items: center;
+    @include adaptiveValue("column-gap", 20, 10, 1600, 768);
+    @media screen and (max-width: 768px) {
+        justify-content: space-between;
+        align-items: center;
+        flex: 1 1 auto;
+    }
+
+    &Logo {
+        display: flex;
+        background-color: transparent;
+        color: black;
+        height: 100%;
+        max-width: 150px;
+        justify-content: center;
+        align-items: center;
+        @media screen and (max-width: 768px) {
+            height: 40px;
+
+        }
+
+        & img {
+            object-position: center center;
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    & .headerActionsMobile {
+        display: none;
+        @media screen and (max-width: 768px) {
+            display: flex;
+            @include adaptiveValue("column-gap", 30, 5, 768, 320)
+        }
+
+        & .actionMobileItem {
+            display: flex;
+            color: black;
+            opacity: var(--hover-low-opacity);
+            text-decoration: none;
+
+            .actionMobileIcon {
+                font-size: 22px;
+                justify-self: start;
+            }
+
+            &:hover {
+                opacity: var(--hover-no-opacity);
+            }
+        }
+    }
+}
+
+
+//===================================================================================================
+
+.burger {
+    font-size: 35px;
+    opacity: var(--hover-low-opacity);
+    cursor: pointer;
+    @media screen and (max-width: 768px) {
+        font-size: 27px;
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+//===================================================================================================
+
+.headerSearch {
+    flex: 1 1 auto;
+    height: 100%;
+    @media screen and (max-width: 768px) {
+        display: none !important;
+    }
+}
+
+//===================================================================================================
+
+.headerActions {
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+    display: flex;
+    flex-wrap: wrap;
+    @include adaptiveValue("column-gap", 30, 20, 1600, 768);
+}
+
+.headerActionItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+
+    &:hover &Text {
+        opacity: 1;
+    }
+
+    &Icon {
+        font-size: 25px;
+        flex: 1 1 auto;
+    }
+
+    &Text {
+        font-size: 16px;
+        opacity: var(--hover-low-opacity);
+
+    }
+
+    .basketQuantity {
+        font-size: 10px;
+        padding: 2px 5px;
+        border-radius: 10px;
+        top: -7px;
+        right: -10px;
+        position: absolute;
+        display: inline-block;
+        background-color: #FF2B2B;
+        content: "";
+    }
+
+    .basketIconContainer {
+        position: relative;
+    }
+}

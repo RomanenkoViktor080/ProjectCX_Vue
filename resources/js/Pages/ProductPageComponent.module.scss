@@ -1,0 +1,395 @@
+@use "sass:math";
+
+.productPage {
+    row-gap: 10px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.productHeader {
+    grid-area: title;
+
+    & .productTitle {
+        font-size: 28px;
+        font-weight: bold;
+        @media screen and (max-width: 1300px) {
+            font-size: 24px;
+        }
+        @media screen and (max-width: 1024px) {
+            font-size: 20px;
+        }
+        @media screen and (max-width: 768px) {
+            font-size: 18px;
+        }
+    }
+
+    & .productActions {
+        & .list {
+            display: flex;
+            column-gap: 10px;
+            list-style: none;
+            padding: 0;
+
+            & .item {
+                & .link {
+                    transition: 150ms;
+                    color: black;
+                    text-decoration: none;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: var(--main-blue-color);
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.productContent {
+    display: grid;
+    column-gap: 20px;
+    grid-template-columns: 600px auto auto;
+    grid-template-areas:
+    "title title title"
+    "slider productShortInfo aside"
+    "slider productShortInfo aside";
+    justify-content: start;
+    height: 100%;
+    width: 100%;
+    max-width: 100vw;
+    @media screen and (max-width: 1300px) {
+        grid-template-columns: 650px 1fr;
+        grid-template-areas:
+    "title title"
+    "slider aside"
+    "slider aside";
+    }
+    @media screen and (max-width: 1024px) {
+        grid-template-columns: 400px 1fr;
+        grid-template-areas:
+    "title title"
+    "slider aside"
+    "slider aside";
+    }
+    @media screen and (max-width: 768px) {
+        grid-template-columns: 100% 0;
+        grid-template-areas:
+    "slider"
+    "title";
+    }
+}
+
+.characteristicsTitle {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.characteristicsShort {
+    .characteristicsShortTitle {
+        font-weight: bold;
+    }
+}
+
+.descriptionTitle {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.descriptionShort {
+    .descriptionShortTitle {
+        font-weight: bold;
+    }
+}
+
+.productShortInfo {
+    @media screen and (max-width: 1300px) {
+        display: none;
+    }
+    grid-area: productShortInfo;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content: flex-start;
+}
+
+.aSideBlock {
+    height: 100%;
+    grid-area: aside;
+
+    & .productASide {
+        border: 1px solid #bbbbbb;
+        border-radius: 10px;
+        max-width: 300px;
+        position: sticky;
+        top: calc(var(--header-desctop-height) + 20px);
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        padding: 20px;
+        justify-self: left;
+
+        & .productPrices {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-items: flex-end;
+            column-gap: 10px;
+        }
+
+        @media screen and (max-width: 1300px) {
+            justify-self: start;
+        }
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+
+        & .productPriceLower {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+
+        & .productPriceOld {
+            font-size: 14px;
+            opacity: 0.75;
+            text-decoration: line-through;
+        }
+    }
+}
+
+
+.productMain {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+    .productInfo {
+        gap: 10px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        @media screen and (max-width: 1024px) {
+            grid-template-columns: 100%;
+        }
+    }
+
+}
+
+
+.mobileOrderBlock {
+    transition: 150ms;
+    display: none;
+    @media screen and (max-width: 768px) {
+        position: fixed;
+        min-width: 100%;
+        box-shadow: 0 0 15px rgb(220, 220, 220);
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 10px;
+        background-color: #ffffff;
+        padding: 10px 16px;
+        margin-bottom: var(--mobile-navigation-height);
+
+
+        .productPrices {
+            white-space: nowrap;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            column-gap: 10px;
+
+            & .productPriceLower {
+                font-weight: bold;
+                font-size: 16px;
+            }
+
+            & .productPriceOld {
+                font-size: 14px;
+                opacity: 0.75;
+                text-decoration: line-through;
+            }
+        }
+    }
+
+    & .button {
+        white-space: nowrap;
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+
+.swiperWrapper {
+    width: 100%;
+    grid-area: slider;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    aspect-ratio: 15/16;
+    @media screen and (max-width: 768px) {
+        aspect-ratio: 9/4;
+    }
+}
+
+.navSlider {
+    margin: 0;
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+
+    & .slide {
+        aspect-ratio: 3/4;
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+        border-radius: 10px;
+
+        & img {
+            position: absolute;
+            object-fit: contain;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.mainSlider {
+    margin: 0;
+    min-width: 270px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    & .slide {
+        aspect-ratio: 3/4;
+
+        & img {
+            object-fit: contain;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.prevSlideButton {
+    transform: translate(-50%) rotate(180deg);
+    top: 30px;
+}
+
+.nextSlideButton {
+    transform: translate(-50%);
+    bottom: 30px;
+}
+
+.nextSlideButton, .prevSlideButton {
+    cursor: pointer;
+    transition-property: opacity, background-color;
+    transition: 150ms;
+    opacity: 0;
+    position: absolute;
+    background: grey;
+    left: 50%;
+    z-index: 2;
+    border-radius: 50%;
+    padding: 10px;
+    color: #bbbbbb;
+
+    &:hover {
+        background-color: black;
+    }
+}
+
+.navSlider:hover {
+    & .nextSlideButton, .prevSlideButton {
+        opacity: 1;
+    }
+}
+
+.userActivityAndRating {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    @media screen and (max-width: 768px) {
+        flex-direction: column-reverse;
+    }
+
+    .userActivityBlock {
+        width: 100%;
+
+        & .userActivityHeader {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            margin-bottom: 20px;
+
+            & .headerTitle {
+                font-size: 20px;
+                position: relative;
+                padding: 0 10px;
+                cursor: pointer;
+            }
+
+            & .headerTitle:before {
+                border-radius: 10px;
+                transition-property: width, opacity;
+                transition: 150ms;
+                content: " ";
+                position: absolute;
+                background-color: var(--main-blue-color);
+                left: 50%;
+                transform: translateX(-50%);
+                width: 50%;
+                top: 100%;
+                height: 4px;
+                opacity: 0;
+            }
+
+            & .headerTitle:not(.headerTitleActive):hover:before {
+                width: 100%;
+                height: 4px;
+                opacity: 0.3;
+            }
+
+
+            & .headerTitleActive.headerTitle:before {
+                width: 100%;
+                height: 4px;
+                opacity: 1;
+            }
+
+        }
+
+        & .userActivityBody {
+            display: flex;
+            flex-direction: column;
+            row-gap: 20px;
+
+        }
+
+    }
+
+    & .rating {
+        max-width: 320px;
+        @media screen and (max-width: 768px) {
+            max-width: 100%;
+        }
+    }
+
+}
+
+
+

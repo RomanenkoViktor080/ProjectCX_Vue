@@ -1,0 +1,48 @@
+@mixin adaptiveValue($property, $startSise, $minSize, $maxWidth, $minWidth) {
+    $addSize: $startSise - $minSize;
+    @media screen and (max-width: #{$minWidth + px}) {
+        #{$property}: calc(#{$minSize + px});
+    }
+    @media screen and (max-width: #{$maxWidth + px}) and (min-width: #{$minWidth + px}) {
+        #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - #{$minWidth + px}) / #{$maxWidth - $minWidth}));
+    }
+    @media screen and (min-width: #{$maxWidth + px}) {
+        #{$property}: calc(#{$startSise + px});
+    }
+}
+
+.catalogSorter {
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.catalogSelect {
+    padding: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+    }
+
+    & select::-ms-expand {
+        display: none;
+    }
+
+    @include adaptiveValue("margin-left", 35, 0, 1600, 600);
+
+
+}
+
+.catalogBurgerMobile {
+    cursor: pointer;
+    font-size: 25px;
+    visibility: hidden;
+    @include adaptiveValue("margin-right", 35, 0, 1600, 600);
+    @media screen and (max-width: 768px) {
+        visibility: visible;
+    }
+}

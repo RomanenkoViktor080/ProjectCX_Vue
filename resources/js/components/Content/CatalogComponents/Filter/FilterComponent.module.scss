@@ -1,0 +1,12 @@
+.filter {
+    flex: 0 0 250px;
+    overflow: auto;
+    @media screen and (max-width: 1024px){
+        flex: 0 0 200px;
+    }
+}
+
+.closeMobileCatalogButton {
+    margin-top: 10px;
+    width: 100%;
+}

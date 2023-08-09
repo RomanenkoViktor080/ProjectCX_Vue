@@ -1,0 +1,60 @@
+@use "sass:math";
+
+.categoryPopup {
+    top: 0;
+    visibility: hidden;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    opacity: 0;
+    transition: opacity 150ms;
+    @media screen and (max-width: 768px) {
+        background-color: rgba(0, 0, 0, 0.20);
+    }
+
+    &.popupaAtive {
+        opacity: 1;
+        visibility: visible;
+
+        & .body {
+            opacity: 1;
+        }
+    }
+
+    & .body {
+        opacity: 0;
+        background-color: #ffffff;
+        position: relative;
+        padding: 10px 15px;
+        height: 100%;
+        @media screen and (max-width: 768px) {
+            top: 0;
+            border-radius: 0;
+            height: calc(100% - var(--mobile-navigation-height));
+        }
+        .backButton{
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--main-blue-color);
+            margin-bottom: 10px;
+        }
+        .searchContainer{
+        height: 40px;
+            border: 1px solid var(--main-grey-color);
+        }
+    }
+}
+
+.hiddenOnMobile {
+    @media screen and (max-width: 768px) {
+        display: none !important;
+    }
+}
+
+.mobileBackButton {
+    display: none;
+    @media screen and (max-width: 768px) {
+        display: block;
+    }
+}

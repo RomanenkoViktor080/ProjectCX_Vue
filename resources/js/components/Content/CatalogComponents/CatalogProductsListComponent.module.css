@@ -1,0 +1,27 @@
+.productList {
+    flex: 1 1 auto;
+    align-content: start;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 270px);
+    gap: 10px;
+    justify-content: space-around;
+    overflow: auto;
+}
+
+@media screen and (max-width: 1024px) {
+    .productList {
+        grid-template-columns: repeat(auto-fill, 150px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .productList {
+        grid-template-columns: repeat(auto-fill, 32%);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .productList {
+        grid-template-columns: repeat(auto-fill, 48%);
+    }
+}

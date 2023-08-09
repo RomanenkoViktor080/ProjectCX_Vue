@@ -1,0 +1,87 @@
+@import "../../webfonts/Heebo/stylesheet.css";
+@import "../../webfonts/Rubic/stylesheet.css";
+@import "../../webfonts/OpenSans/stylesheet.css";
+
+
+:root {
+    --mobile-navigation-height: 60px;
+    --header-desctop-height: 70px;
+    --max-width: 1600px;
+    --main-dark-grey-color: #6e6e6e;
+    --main-grey-color: #bbbbbb;
+    --main-light-grey-color: #dddddd;
+    --main-very-light-grey-color: #f3f3f3;
+    --main-blue-color: #0CD9AFFF;
+    --main-green-color: #25D77CFF;
+    --main-gradient: linear-gradient(90deg, #0CD9AFFF 0%, #25D77CFF 100%);
+    --main-gradient-reverse: linear-gradient(90deg, #25D77CFF 0%, #0CD9AFFF 100%);
+    --hover-low-opacity: 0.7;
+}
+
+* {
+    font-family: 'Heebo', sans-serif, 'Rubik', sans-serif, 'Open Sans', sans-serif;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+body  * {
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--main-very-light-grey-color);
+        border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #bbbbbb;
+        border-radius: 20px;
+    }
+}
+
+:global {
+
+    body, html {
+        height: 100vh;
+        min-width: 320px;
+    }
+
+    .swiper-slide-thumb-active {
+        border-radius: 10px;
+        border: 1px solid var(--main-blue-color);
+        overflow: hidden;
+    }
+
+    .cursorPointer {
+        cursor: pointer;
+    }
+
+}
+
+:global .wrapper {
+    min-height: 100%;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+
+.container {
+    padding: 15px 30px;
+    @media screen and (max-width: 1023px) {
+        padding: 10px 15px;
+    }
+    height: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.main {
+    height: 100%;
+    flex: 1 1 auto;
+}

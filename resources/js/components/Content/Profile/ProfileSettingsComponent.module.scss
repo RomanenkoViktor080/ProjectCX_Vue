@@ -1,0 +1,42 @@
+.profileSettings {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+    & .settingsBlock {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+
+        & .settingsBlockTitle {
+            font-weight: bold;
+        }
+
+        & .settingsBlockDescription {
+        }
+
+        & .settingsBlockBody {
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+
+            & .formInput {
+                max-width: 300px;
+            }
+
+            & .formActions {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 10px;
+
+                & .formActionsButton {
+                    max-width: 200px;
+                }
+            }
+        }
+    }
+
+}
+
+

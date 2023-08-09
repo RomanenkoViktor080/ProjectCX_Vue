@@ -1,0 +1,30 @@
+.spoiler {
+
+}
+
+.body {
+    overflow: hidden;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.titleIcon {
+    font-size: 27px;
+    transition: 150ms;
+    transform: rotate(180deg);
+}
+
+.close {
+    & .body {
+        height: 0;
+    }
+
+    & .titleIcon {
+        transform: rotate(0deg);
+    }
+}

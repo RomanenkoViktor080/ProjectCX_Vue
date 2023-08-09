@@ -1,0 +1,28 @@
+.wrapper{
+
+}
+.title{
+}
+.body{
+    word-wrap: anywhere;
+    -webkit-line-clamp: 7;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    &.open{
+        -webkit-line-clamp: unset;
+        overflow: hidden;
+    }
+}
+.button{
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    &:hover{
+        color: rgb(37, 215, 124);
+        text-decoration: underline;
+    }
+    &:active{
+        color: black;
+    }
+}

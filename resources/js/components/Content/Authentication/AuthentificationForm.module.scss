@@ -1,0 +1,25 @@
+.formRow {
+  & + .formRow {
+    margin-top: 10px;
+  }
+
+  & .formRowTitle {
+    cursor: default;
+    color: var(--main-dark-grey-color);
+  }
+
+}
+
+.errorField{
+    font-size: 14px;
+    color: #cb0000;
+}
+
+
+.inputForm, .buttonForm {
+  width: 100%;
+}
+
+.buttonForm {
+  margin-top: 20px;
+}

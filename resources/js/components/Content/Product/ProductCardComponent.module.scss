@@ -1,0 +1,141 @@
+@use "sass:math";
+
+.productCard {
+    height: 100%;
+    padding: 15px 10px 15px 10px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    border: 2px solid var(--main-very-light-grey-color);
+
+    &:hover {
+        box-shadow: 0 0 10px rgb(220, 220, 220);
+    }
+
+    @media screen and (max-width: 1023px) {
+        padding: 5px;
+        &:hover {
+            box-shadow: none;
+        }
+    }
+}
+
+.productPreview {
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    transition: background-color 300ms;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 6px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: white;
+        border: 1px solid var(--main-dark-grey-color);
+    }
+
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+}
+
+.productImage {
+    background-color: var(--main-very-light-grey-color);
+    padding-bottom: 100% * math.div(4 , 3);
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+
+    & img {
+        position: absolute;
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+    }
+
+    &:hover .productPreview {
+        opacity: 1;
+    }
+}
+
+.productCardImageSale {
+    position: absolute;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 1px 5px;
+    border-radius: 9px;
+    background-color: var(--main-blue-color);
+    left: 15px;
+    bottom: 10px;
+}
+
+.productCardBody {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.productHeader {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.productTitle {
+    font-size: 16px;
+    overflow-wrap: anywhere;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.productPrices {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    column-gap: 10px;
+}
+
+.productPriceNew {
+    font-size: 14px;
+}
+
+
+.productPriceOld {
+    font-size: 12px;
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+.productFooter {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+
+    & .actions {
+        display: flex;
+        font-size: 16px;
+        column-gap: 5px;
+        align-items: center;
+    }
+}
+
+.actionIcon {
+    font-size: 22px;
+    display: flex;
+    cursor: pointer;
+}
+
+
+
+.productButton {
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 14px;
+}

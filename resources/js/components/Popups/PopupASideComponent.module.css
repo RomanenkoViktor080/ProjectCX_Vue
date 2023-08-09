@@ -1,0 +1,40 @@
+.popupASide {
+    top: 0;
+    z-index: 10;
+    display: flex;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.25);
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+
+}
+
+.body {
+    overflow-y: auto;
+    position: relative;
+    display: flex;
+    transition: left 0.2s;
+    height: 100%;
+    background-color: #fff;
+    left: -100%;
+    width: 300px;
+}
+
+@media screen and (max-width: 768px) {
+    .body {
+        width: 100vw;
+        min-width: 340px;
+    }
+}
+
+.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popupASide.active .body {
+    left: 0;
+}

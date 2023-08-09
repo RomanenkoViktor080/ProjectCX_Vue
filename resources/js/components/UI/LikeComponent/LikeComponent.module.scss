@@ -1,0 +1,7 @@
+.likeBlock{
+    color: var(--main-blue-color);
+    & .likeItem{
+        cursor: pointer;
+        display: block;
+    }
+}

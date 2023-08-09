@@ -1,0 +1,56 @@
+.spoiler {
+}
+
+.body {
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.titleHeader {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: default;
+    @media screen and (max-width: 1024px){
+        cursor: pointer;
+    }
+    & .titleText{
+    }
+}
+
+.titleIcon {
+    font-size: 22px;
+    cursor: pointer;
+    transition: 150ms;
+    transform: rotate(180deg);
+    display: none;
+    @media screen and (max-width: 1024px) {
+        display: block;
+    }
+
+}
+
+.close {
+    @media screen and (max-width: 1024px) {
+        & .body {
+            height: 0px;
+        }
+    }
+
+    & .titleIcon {
+        transform: rotate(0deg);
+    }
+}
+
+.button {
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    z-index: 1;
+    @media screen and (max-width: 1024px) {
+        display: block;
+    }
+}
