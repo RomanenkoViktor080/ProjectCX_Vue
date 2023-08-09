@@ -6,7 +6,7 @@
                 <div :class="$style.headerNavMenu">
                     <font-awesome-icon :class="$style.burger" icon="fa-solid fa-bars"
                                        @click="changeAuthPopupState(true)"/>
-                    <router-link to="#" :class="$style.headerNavMenuLogo">
+                    <router-link :to="{name: 'home'}" :class="$style.headerNavMenuLogo">
                         <img src="../../../img/logo.png"
                              alt="Логотип"/>
                     </router-link>

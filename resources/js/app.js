@@ -4,9 +4,8 @@ import {createApp} from 'vue'
 import AppVueComponent from './components/App.vue';
 import router from "./router.js";
 import store from "./store";
-import vuex from 'vuex'
 import {library} from "@fortawesome/fontawesome-svg-core";
-import {faPhone, faUser, faBars, faMagnifyingGlass, faUsers, faCartShopping} from "@fortawesome/free-solid-svg-icons";
+import {faBars, faCartShopping, faMagnifyingGlass, faPhone, faUser, faUsers} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 

@@ -1,20 +1,11 @@
-import React from 'react';
-import SwiperHomeComponent from "../components/Sliders/SwiperHomeComponent";
-import SwiperAdvertisementProductsComponent from "../components/Sliders/SwiperAdvertisementProductsComponent";
-import classes from "./HomePageComponent.module.scss"
-
-
-const HomePageComponent = () => {
-    return (
-        <div className={classes.home}>
-            {/*<SwiperHomeComponent/>
-            <SwiperAdvertisementProductsComponent title={"Акции"}/>*/}
-            <h1 className={classes.title}>О проекте:</h1>
-            <h2 className={classes.subTitle}> Функциональные блоки проекта:</h2>
-            <ul className={classes.list}>
+<template>
+    <div :class="$style.home">
+            <h1 :class="$style.title">О проекте:</h1>
+            <h2 :class="$style.subTitle"> Функциональные блоки проекта:</h2>
+            <ul :class="$style.list">
                 <li>
-                    <h3 className={classes.listTitle}>Аутентификация и авторизация:</h3>
-                    <p className={classes.listItemText}>
+                    <h3 :class="$style.listTitle">Аутентификация и авторизация:</h3>
+                    <p :class="$style.listItemText">
                         Для аутентификации и авторизации на стороне сервера используется Sanctum. Данные проходят
                         валидацию на сервере, а информация об ошибках выводится во всплывающем окне, которое
                         используется для аутентификации. Присутствует функция "Запомнить меня". Токен хранится в cookie,
@@ -22,16 +13,16 @@ const HomePageComponent = () => {
                     </p>
                 </li>
                 <li>
-                    <h3 className={classes.listTitle}>Корзина с товарами:</h3>
-                    <p className={classes.listItemText}>Данные корзины хранятся в таблице для авторизованных
+                    <h3 :class="$style.listTitle">Корзина с товарами:</h3>
+                    <p :class="$style.listItemText">Данные корзины хранятся в таблице для авторизованных
                         пользователей, а для неавторизованных пользователей данные хранятся в localStorage для
                         сохранения после завершения сессии. Корзина предоставляет возможность добавления, изменения
                         количества и удаления товаров для авторизированных и неавторизированных пользователей.
                     </p>
                 </li>
                 <li>
-                    <h3 className={classes.listTitle}>Фильтрация и сортировка товаров</h3>
-                    <p className={classes.listItemText}>
+                    <h3 :class="$style.listTitle">Фильтрация и сортировка товаров</h3>
+                    <p :class="$style.listItemText">
                         Для каждой категории загружаются данные фильтра для соответствующей категории и ее дочерних
                         категорий, также формируется атрибут для фильтрации товаров по цене (с сервера приходит
                         информация о максимальной и минимальной цене товаров, при выбранных опциях фильтра). Возле
@@ -48,31 +39,35 @@ const HomePageComponent = () => {
                     </p>
                 </li>
                 <li>
-                    <h3 className={classes.listTitle}>Каталог</h3>
-                    <p className={classes.listItemText}>
+                    <h3 :class="$style.listTitle">Каталог</h3>
+                    <p :class="$style.listItemText">
                         С сервера загружаются категории с глубиной вложенности от 0 до 2. Категории передаются во
                         всплывающее окно (popup) для отображения категорий с учетом их уровня вложенности.
                     </p>
                 </li>
                 <li>
-                    <h3 className={classes.listTitle}>Предосмотр товара</h3>
-                    <p className={classes.listItemText}>
+                    <h3 :class="$style.listTitle">Предосмотр товара</h3>
+                    <p :class="$style.listItemText">
                         У каждой карточки товара есть кнопка "Подробнее", которая при нажатии открывает всплывающее окно
                         (popup) с более подробной информацией о товаре, включая все изображения, товары из группы (в
                         планах), цену и другие детали.
                     </p>
                 </li>
             </ul>
-            <h2 className={classes.subTitle}>Прочее:</h2>
-            <p className={classes.listItemText}>У меня есть верстка страницы товара, включающая различные компоненты,
+            <h2 :class="$style.subTitle">Прочее:</h2>
+            <p :class="$style.listItemText">У меня есть верстка страницы товара, включающая различные компоненты,
                 такие как комментарии, рейтинг и другие. Однако, пока отсутствует реализация серверной логики. На
                 странице также присутствует компонент в футере, который при ширине экрана 1024 пикселей или меньше
                 преобразуется в спойлер.</p>
-        </div>
-    );
-};
+    </div>
+</template>
 
-export default HomePageComponent;
+<script>
+export default {
+    name: "HomePageComponent"
+}
+</script>
 
-
-
+<style module>
+@import "HomePageComponent.module.scss";
+</style>

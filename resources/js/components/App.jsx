@@ -4,7 +4,7 @@ import FooterComponent from "./Footer/FooterComponent";
 import classes from "./App.module.scss";
 import {Route, Routes} from "react-router";
 import NotFoundPageComponent from "../Pages/NotFoundPageComponent";
-import HomePageComponent from "../Pages/HomePageComponent";
+import HomePageComponent from "../Pages/HomePageComponent.vue";
 import ProductPageComponent from "../Pages/ProductPageComponent";
 import CatalogPageComponent from "../Pages/CatalogPageComponent";
 import ProfilePageComponent from "../Pages/ProfilePageComponent";
