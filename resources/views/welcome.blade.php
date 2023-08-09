@@ -6,8 +6,8 @@
         <title>ProjectCX Vue</title>
     </head>
     @vite('resources/js/app.js')
-    <body class="antialiased">
-    <div id="app">
+    <body>
+    <div class="wrapper">
        <app></app>
     </div>
     </body>

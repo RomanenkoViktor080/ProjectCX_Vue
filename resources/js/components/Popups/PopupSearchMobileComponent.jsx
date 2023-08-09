@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import classes from "./PopupSearchMobileComponent.module.scss";
-import InputHeaderSearchComponent from "../UI/Inputs/InputHeaderSearchComponent";
+import InputHeaderSearchComponent from "../UI/Inputs/InputHeaderSearchComponent.vue";
 
 
 const PopupSearchMobileComponent = ({classWrapper = null, setActive, active}) => {

@@ -1,23 +1,25 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
+    <HeaderComponent/>
+        <div :class="$style.main">
+            <div :class="$style.container">
+                <router-view></router-view>
             </div>
         </div>
-    </div>
+<!--        <MobileNavigationComponent/>
+        {productPreviewPopupState && <ProductPreviewPopupComponent/>}
+        <FooterComponent/>-->
 </template>
 
 <script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
-    }
+import HeaderComponent from "./Header/HeaderComponent.vue";
+import {defineComponent} from "vue";
+
+export default defineComponent({
+    components: {HeaderComponent}
+})
+
 </script>
+
+<style module>
+@import "App.module.scss";
+</style>
