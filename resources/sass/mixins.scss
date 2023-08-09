@@ -1,0 +1,13 @@
+@mixin adaptiveValue($property, $startSise, $minSize, $maxWidth, $minWidth) {
+    $addSize: $startSise - $minSize;
+    @media screen and (max-width: #{$minWidth + px}) {
+        #{$property}: calc(#{$minSize + px});
+    }
+    @media screen and (max-width: #{$maxWidth + px}) and (min-width: #{$minWidth + px}) {
+        #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - #{$minWidth + px}) / #{$maxWidth - $minWidth}));
+    }
+    @media screen and (min-width: #{$maxWidth + px}) {
+        #{$property}: calc(#{$startSise + px});
+    }
+}
+
