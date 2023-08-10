@@ -1,22 +1,19 @@
 const state = {
-    popupState: false,
+    userPopupState: false,
     isAuth: false,
 };
 
-const getters = {
-    popupState: state => state.popupState,
-    isAuth: state => state.isAuth,
-};
+const getters = {};
 
 const actions = {
     changeAuthPopupState({commit}, state) {
-        commit('setPopupState', state);
+        commit('setUserPopupState', state);
     }
 };
 
 const mutations = {
-    setPopupState(state, payload) {
-        state.popupState = payload
+    setUserPopupState(state, payload) {
+        state.userPopupState = payload
     },
     setIsAuth(state, payload) {
         state.isAuth = payload

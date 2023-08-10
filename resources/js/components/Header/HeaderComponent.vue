@@ -5,7 +5,7 @@
             <div :class="$style.bodyHeader">
                 <div :class="$style.headerNavMenu">
                     <font-awesome-icon :class="$style.burger" icon="fa-solid fa-bars"
-                                       @click="changeAuthPopupState(true)"/>
+                                       @click="changeCatalogPopupState(true)"/>
                     <router-link :to="{name: 'home'}" :class="$style.headerNavMenuLogo">
                         <img src="../../../img/logo.png"
                              alt="Логотип"/>
@@ -23,7 +23,7 @@
                             :class="$style.headerActionItemText">Кабинет
                         </div>
                     </router-link>
-                    <div v-else :class="$style.headerActionItem" @click="changeSearchPopupState(true)">
+                    <div v-else :class="$style.headerActionItem" @click="changeAuthPopupState(true)">
                         <font-awesome-icon icon="fa-solid fa-user" :class="$style.headerActionItemIcon"/>
                         <div :class="$style.headerActionItemText">Войти</div>
                     </div>
@@ -43,8 +43,8 @@
                 </div>
             </div>
         </div>
-        <!--        <PopupCatalogComponent/>
-                {!isAuth && <PopupAuthenticationComponent/>}
+        <PopupCatalogComponent/>
+        <!--        {!isAuth && <PopupAuthenticationComponent/>}
                 <PopupSearchMobileComponent active={searchPopupState} setActive={setSearchPopupState}/>-->
     </header>
 </template>
@@ -54,10 +54,11 @@
 
 import {mapState} from "vuex";
 import InputHeaderSearchComponent from "../UI/Inputs/InputHeaderSearchComponent.vue";
+import PopupCatalogComponent from "../Popups/PopupCatalogComponent.vue";
 
 export default {
     name: "HeaderComponent",
-    components: {InputHeaderSearchComponent},
+    components: {PopupCatalogComponent, InputHeaderSearchComponent},
     data() {
         return {
             searchPopupState: false
@@ -76,7 +77,10 @@ export default {
         },
         changeSearchPopupState(state) {
             this.searchPopupState = state;
-        }
+        },
+        changeCatalogPopupState(state) {
+            this.$store.dispatch('changeCatalogPopupState', state);
+        },
     }
 }
 </script>

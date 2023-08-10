@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from "./FooterComponent.module.scss";
-import SpoilerConvertComponent from "../UI/Spoiler/SpoilerConvertComponent";
+import SpoilerConvertComponent from "../UI/Spoiler/SpoilerConvertComponent.vue";
 
 const FooterComponent = () => {
     return (
