@@ -12,8 +12,9 @@
             <!--            <FilterComponent classProp={catalogFilterClasses.join(" ")}
                         CatalogMobileActive={catalogMobileActive}
                         setCatalogMobileActive={setCatalogMobileActive}
-                        />
-                        <CatalogMainComponent setCatalogMobileActive={setCatalogMobileActive}/>-->
+                        />-->
+            <CatalogMainComponent/>
+<!--            <CatalogMainComponent setCatalogMobileActive={setCatalogMobileActive}/>-->
         </div>
     </div>
 </template>
@@ -21,6 +22,7 @@
 
 import {computed} from "vue";
 import {useRoute} from "vue-router";
+import CatalogMainComponent from "../components/Content/CatalogComponents/CatalogMainComponent.vue";
 
 const route = useRoute()
 const category = computed(() => route.params.category);
