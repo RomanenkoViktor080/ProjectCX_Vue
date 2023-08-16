@@ -11,8 +11,8 @@
                         {{ category.title }}
                         </span>
                         <font-awesome-icon icon="fa-solid fa-angle-down" :class="$style.categoryMenuItemIcon"/>
-                        <!--TODO Маршрут на страницу категории-->
-                        <router-link to="#" :class="$style.categoryMenuItemDesktopLink"
+                        <router-link :to="{name: 'category', params: {'category': category.slug}}" :class="$style.categoryMenuItemDesktopLink"
+                                     @click="changeCatalogPopupState(false)"
                                      @mouseenter="changeCatalogMenuState(index)"/>
                     </div>
                 </template>
@@ -21,12 +21,20 @@
                 <div :class="$style.mobileBackButton" @click="changeCatalogMenuState(null)">Назад</div>
                 <div v-for="CatalogCategoryColumn in CatalogCategoryColumns" :class="$style.categoryContentColumn">
                     <template v-for="CatalogCategoryBlock in CatalogCategoryColumn">
-                        <!--TODO Сформировать ссылки!-->
-                        <SpoilerConvertComponent :title="CatalogCategoryBlock.title">
+                        <SpoilerConvertComponent>
+                            <template v-slot:title>
+                                <router-link :to="{name: 'category', params: {'category': CatalogCategoryBlock.slug}}"
+                                             :class="$style.categoryContentBlockTitle"
+                                             @click="changeCatalogPopupState(false)"
+                                >{{ CatalogCategoryBlock.title }}</router-link>
+                            </template>
                             <ShowMoreOrLessComponentLinks
+                                quantity-to-show="5"
+                                v-slot="body"
                                 :items="CatalogCategoryBlock.childrenCategories"
                                 :link-class="$style.categoryContentBlockItemTitle"
-                                show-more-fn="true"/>
+                                show-more-fn="true"
+                            />
                         </SpoilerConvertComponent>
                     </template>
                 </div>
@@ -42,7 +50,7 @@ import ShowMoreOrLessComponentLinks from "../UI/ShowMoreOrLess/ShowMoreOrLessLin
 
 export default {
     name: "PopupCatalogComponent",
-    components: {ShowMoreOrLessComponentLinks, ShowMoreOrLessComponent, SpoilerConvertComponent},
+    components: {ShowMoreOrLessComponentLinks, SpoilerConvertComponent},
     data() {
         return {
             categories: [],
@@ -102,9 +110,6 @@ export default {
             this.$store.dispatch('changeCatalogMenuState', state);
         },
     },
-    updated() {
-        console.log(this.CatalogCategoryBlocks);
-    }
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
     <div :class="classesWrapper">
         <div :class="$style.titleHeader">
-            {{ title }}
+            <slot name="title"></slot>
             <div :class="$style.button" @click="changeSpoilerState"></div>
             <font-awesome-icon icon="fa-solid fa-angle-down" :class="$style.titleIcon"/>
         </div>
@@ -14,7 +14,11 @@
 <script>
 export default {
     name: "SpoilerConvertComponent",
-    props: ['classWrapper', 'classBody', 'title', 'startState'],
+    props: {
+        classWrapper: String,
+        classBody: String,
+        startState: Boolean
+    },
     data() {
         return {
             spoilerState: this.startState

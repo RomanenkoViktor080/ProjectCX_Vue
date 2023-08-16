@@ -1,16 +1,17 @@
 <template>
     <div :class="classBody">
         <template v-for="item in itemsToShow">
-                <router-link to="to" :class="linkClass">
-                    {{item.title}}
-                </router-link>
+            <router-link :to="{name: 'category', params: {category: item.slug} }"
+                         :class="linkClass"
+                         @click="changeCatalogPopupState(false)"
+            >
+                {{ item.title }}
+            </router-link>
         </template>
     </div>
-    <!--    {items.length > quantityToShow && showMoreFn
-        ?
-        <div style="cursor: pointer"
-        @click="changeStatusShow">{statusShow ? "Свернуть" : "Развернуть"}</div> : null
-        }-->
+    <div v-if="items.length > quantityToShow && showMoreFn" style="cursor: pointer" @click="changeStatusShow">
+        Развернуть
+    </div>
 </template>
 
 <script>
@@ -24,10 +25,13 @@ export default {
     },
     computed: {
         itemsToShow() {
-            return this.items.slice(this.quantityToShow > this.items.length || this.showStatus === true ? items.length : this.quantityToShow)
+            return this.items.slice(0, this.quantityToShow > this.items.length || this.showStatus === true ? this.items.length : this.quantityToShow)
         }
     },
     methods: {
+        changeCatalogPopupState(state) {
+            this.$store.dispatch('changeCatalogPopupState', state);
+        },
         changeStatusShow() {
             this.showStatus = !this.showStatus;
         }
@@ -35,26 +39,3 @@ export default {
 
 }
 </script>
-
-<style module>
-@import "ShowMoreOrLessComponent.module.scss";
-</style><!--
-import React, {useState} from 'react';
-
-const ShowMoreOrLessComponent = ({
-items = [], quantityToShow = 5,
-showMoreFn = true,
-classBody
-}) => {
-
-const [statusShow, setStatusShow] = useState(false);
-
-return (
-<>
-
-</>
-);
-};
-
-export default ShowMoreOrLessComponent;
--->

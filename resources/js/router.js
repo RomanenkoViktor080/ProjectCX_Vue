@@ -9,6 +9,11 @@ const router = createRouter({
             name: 'home'
         },
         {
+            path: '/catalog/:category',
+            component: () => import('./Pages/CategoryPageComponent.vue'),
+            name: 'category'
+        },
+        {
             path: '/:catchAll(.*)',
             component: () => import('./Pages/NotFoundPageComponent.vue'),
             name: '404'
