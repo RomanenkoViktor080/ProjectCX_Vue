@@ -1,6 +1,6 @@
 import React from 'react';
 import {Swiper, SwiperSlide} from "swiper/react";
-import ProductCardComponent from "../Content/Product/ProductCardComponent";
+import ProductCardComponent from "../Content/Product/ProductCardComponent.vue";
 import classes from "./SwiperAdvertisementProductsComponent.module.scss";
 import {Link} from "react-router-dom";
 import SwiperNextSlideButton from "./SwiperNextSlideButton";
