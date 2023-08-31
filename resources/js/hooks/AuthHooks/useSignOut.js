@@ -1,27 +1,21 @@
-import React from 'react';
-import {Cookies} from "react-cookie";
-import {changeAuthEmailState, changeAuthStatusState} from "../../store/reducers/userReducer";
-import {changeBasketProductReload, loadBasket} from "../../store/reducers/basketReducer";
-import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router";
+import {useStore} from "vuex";
+import axios from "axios";
 
 const useSignOut = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const store = useStore();
 
     async function signOut() {
         try {
-            const cookie = new Cookies();
-            await axios.post('/api/logout')
-            cookie.remove('auth_token', {
+            await axios.get('/sanctum/csrf-cookie')
+            const response = await axios.post('/api/logout')
+            await Cookies.remove('auth_token', {
                 path: '/'
             });
-            navigate("/");
-            const reloadedBasket = await loadBasket();
-            dispatch(changeBasketProductReload(reloadedBasket));
-            dispatch(changeAuthStatusState(false));
-            dispatch(changeAuthEmailState(false));
+            await store.dispatch('changeAuthState', false);
         } catch (error) {
+            await Cookies.remove('auth_token', {
+                path: '/'
+            });
             console.log(error);
         }
     }

@@ -1,6 +1,6 @@
 const state = {
     userPopupState: false,
-    isAuth: false,
+    isAuth: !!Cookies.get('auth_token'),
 };
 
 const getters = {};
@@ -8,7 +8,10 @@ const getters = {};
 const actions = {
     changeAuthPopupState({commit}, state) {
         commit('setUserPopupState', state);
-    }
+    },
+    changeAuthState({commit}, state) {
+        commit('setIsAuth', state);
+    },
 };
 
 const mutations = {

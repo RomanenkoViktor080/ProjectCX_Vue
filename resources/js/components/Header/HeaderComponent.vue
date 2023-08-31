@@ -18,7 +18,7 @@
                 <InputHeaderSearchComponent placeholder="Поиск" :containerPropClass="$style.headerSearch"/>
                 <div :class="$style.headerActions">
                     <router-link v-if="isAuth" :class="$style.headerActionItem" to="#">
-                        <font-awesome-icon icon="fa-solid fa-cart-shopping" :class="$style.headerActionItemIcon"/>
+                        <font-awesome-icon icon="fa-solid fa-user" :class="$style.headerActionItemIcon"/>
                         <div
                             :class="$style.headerActionItemText">Кабинет
                         </div>
@@ -44,6 +44,7 @@
             </div>
         </div>
         <PopupCatalogComponent/>
+        <PopupAuthenticationComponent/>
         <!--        {!isAuth && <PopupAuthenticationComponent/>}
                 <PopupSearchMobileComponent active={searchPopupState} setActive={setSearchPopupState}/>-->
     </header>
@@ -55,10 +56,11 @@
 import {mapState} from "vuex";
 import InputHeaderSearchComponent from "../UI/Inputs/InputHeaderSearchComponent.vue";
 import PopupCatalogComponent from "../Popups/PopupCatalogComponent.vue";
+import PopupAuthenticationComponent from "../Popups/PopupAuthenticationComponent.vue";
 
 export default {
     name: "HeaderComponent",
-    components: {PopupCatalogComponent, InputHeaderSearchComponent},
+    components: {PopupAuthenticationComponent, PopupCatalogComponent, InputHeaderSearchComponent},
     data() {
         return {
             searchPopupState: false

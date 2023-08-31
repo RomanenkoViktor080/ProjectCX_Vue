@@ -1,23 +1,33 @@
 <template>
     <HeaderComponent/>
-        <div :class="$style.main">
-            <div :class="$style.container">
-                <router-view></router-view>
-            </div>
+    <div :class="$style.main">
+        <div :class="$style.container">
+            <router-view></router-view>
         </div>
-<!--        <MobileNavigationComponent/>
-        {productPreviewPopupState && <ProductPreviewPopupComponent/>}
-        <FooterComponent/>-->
+    </div>
+    <MobileNavigationComponent/>
+    <!--{productPreviewPopupState && <ProductPreviewPopupComponent/>}
+    <FooterComponent/>-->
 </template>
 
-<script>
+<script setup>
+import {useStore} from "vuex";
+import {onBeforeMount} from "vue";
+import MobileNavigationComponent from "./Content/Mobile/MobileNavigationComponent.vue";
 import HeaderComponent from "./Header/HeaderComponent.vue";
-import {defineComponent} from "vue";
 
-export default defineComponent({
-    components: {HeaderComponent}
+const store = useStore();
+
+onBeforeMount(() => {
+    axios.get('/api/user').then(() => {
+        store.dispatch('changeAuthState', true);
+    }).catch(() => {
+        store.dispatch('changeAuthState', false);
+        Cookies.remove('auth_token', {
+            path: '/'
+        });
+    })
 })
-
 </script>
 
 <style module>

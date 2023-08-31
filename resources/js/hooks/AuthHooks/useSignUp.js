@@ -1,15 +1,11 @@
-import React from 'react';
 import axios from "axios";
-import {Cookies} from "react-cookie";
-import {changeAuthEmailState, changeAuthNPopupState, changeAuthStatusState} from "../../store/reducers/userReducer";
-import {changeBasketProductReload, loadBasket} from "../../store/reducers/basketReducer";
-import {useDispatch} from "react-redux";
+import {useStore} from "vuex";
 
-const useSignUp = (setErrors) => {
-    const dispatch = useDispatch();
+export default function useSignUp(errors) {
+
+    const store = useStore();
 
     async function signUp(data) {
-        console.log(data);
         try {
             await axios.get('/sanctum/csrf-cookie')
             const response = await axios.post('/api/sign-up', {
@@ -18,23 +14,21 @@ const useSignUp = (setErrors) => {
                 password_confirmation: data.password_confirmation,
                 remember: data.remember,
             })
-            const cookie = new Cookies();
-            cookie.set('auth_token', response.data.token, {
-                maxAge: response.data.lifetime,
+            Cookies.set('auth_token', response.data.token, {
+                expires: response.data.lifetime,
                 path: '/'
             })
-            const reloadedBasket = await loadBasket();
-            dispatch(changeBasketProductReload(reloadedBasket));
-            dispatch(changeAuthStatusState(true));
-            dispatch(changeAuthEmailState(response.data.email));
-            dispatch(changeAuthNPopupState(false));
+            await store.dispatch('changeAuthPopupState', false);
+            await store.dispatch('changeAuthState', true)
+            data.email = "";
+            data.password = "";
+            data.remember = false;
+            errors.value = null;
         } catch (error) {
-            setErrors(error.response.data.errors)
-            console.log(error);
+            console.log(error)
+            errors.value = error.response.data.errors;
         }
     }
 
     return signUp;
 };
-
-export default useSignUp;

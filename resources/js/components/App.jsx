@@ -9,7 +9,7 @@ import ProductPageComponent from "../Pages/ProductPageComponent";
 import CatalogPageComponent from "../Pages/CategoryPageComponent.vue";
 import ProfilePageComponent from "../Pages/ProfilePageComponent";
 import BasketPage from "../Pages/BasketPage";
-import MobileNavigationComponent from "./Content/Mobile/MobileNavigationComponent";
+import MobileNavigationComponent from "./Content/Mobile/MobileNavigationComponent.vue";
 import ProductPreviewPopupComponent from "./Content/Product/ProductPreviewPopupComponent";
 import {useSelector} from "react-redux";
 import ButtonComponent from "./UI/Buttons/ButtonComponent.vue";

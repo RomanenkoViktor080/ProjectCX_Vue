@@ -1,12 +1,8 @@
-import React from 'react';
-import axios from "axios";
-import {Cookies} from "react-cookie";
-import {changeAuthEmailState, changeAuthNPopupState, changeAuthStatusState} from "../../store/reducers/userReducer";
-import {changeBasketProductReload, loadBasket} from "../../store/reducers/basketReducer";
-import {useDispatch} from "react-redux";
+import {useStore} from "vuex";
 
-const useSignIn = (setErrors) => {
-    const dispatch = useDispatch();
+export default function useSignIn(errors) {
+
+    const store = useStore();
 
     async function signIn(data) {
         try {
@@ -16,23 +12,22 @@ const useSignIn = (setErrors) => {
                 password: data.password,
                 remember: data.remember
             })
-            const cookie = new Cookies();
-            cookie.set('auth_token', response.data.token, {
-                maxAge: response.data.lifetime,
+            Cookies.set('auth_token', response.data.token, {
+                expires: response.data.lifetime,
                 path: '/'
             })
-            const reloadedBasket = await loadBasket();
-            dispatch(changeBasketProductReload(reloadedBasket));
-            dispatch(changeAuthStatusState(true));
-            dispatch(changeAuthEmailState(response.data.email));
-            dispatch(changeAuthNPopupState(false));
+            await store.dispatch('changeAuthPopupState', false);
+            await store.dispatch('changeAuthState', true);
+            data.email = "";
+            data.password = "";
+            data.remember = false;
+            data.password_confirmation = "";
+            errors.value = null;
         } catch (error) {
-            setErrors(error.response.data.errors);
-            console.log(error.response.data)
+            errors.value = error.response.data.errors;
         }
     }
 
     return signIn;
 };
 
-export default useSignIn;

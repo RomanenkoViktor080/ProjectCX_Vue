@@ -43,24 +43,24 @@ body  * {
     }
 }
 
-:global {
+    :global {
 
-    body, html {
-        height: 100vh;
-        min-width: 320px;
+        body, html {
+            height: 100vh;
+            min-width: 320px;
+        }
+
+        .swiper-slide-thumb-active {
+            border-radius: 10px;
+            border: 1px solid var(--main-blue-color);
+            overflow: hidden;
+        }
+
+        .cursorPointer {
+            cursor: pointer;
+        }
+
     }
-
-    .swiper-slide-thumb-active {
-        border-radius: 10px;
-        border: 1px solid var(--main-blue-color);
-        overflow: hidden;
-    }
-
-    .cursorPointer {
-        cursor: pointer;
-    }
-
-}
 
 :global .wrapper {
     min-height: 100%;

@@ -6,17 +6,19 @@ import 'bootstrap';
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-import axios from 'axios';
+import axios from "axios";
+import Cookies from 'js-cookie';
 
 window.axios = axios;
+window.Cookies = Cookies;
 window.axios.defaults.baseURL = 'http://127.0.0.1:8000';
 window.axios.defaults.headers.common['Accept'] = 'application/json';
 window.axios.defaults.headers.common['Content-Type'] = 'application/json';
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.defaults.withCredentials = true;
-/*axios.interceptors.request.use(
+axios.interceptors.request.use(
     config => {
-        const token = new Cookies().get('auth_token');
+        const token = Cookies.get('auth_token');
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`;
         }
@@ -25,8 +27,7 @@ window.axios.defaults.withCredentials = true;
     error => {
         return Promise.reject(error);
     }
-);*/
-
+);
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

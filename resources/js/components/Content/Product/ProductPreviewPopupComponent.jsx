@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
 import classes from "./ProductPreviewPopupComponent.module.scss";
-import PopupCenterComponent from "../../Popups/PopupCenterComponent";
+import PopupCenterComponent from "../../Popups/PopupCenterComponent.vue";
 import {useDispatch, useSelector} from "react-redux";
 import {changeProductPreviewPopupState} from "../../../store/reducers/productReducer";
 import {Swiper, SwiperSlide} from "swiper/react";
