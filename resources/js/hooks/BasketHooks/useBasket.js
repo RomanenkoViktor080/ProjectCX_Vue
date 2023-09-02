@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import useBasketRemoveItem from "./useBasketDeleteItem";
+import useBasketRemoveItem from "./useBasketDeleteProduct.js";
 import useBasketAddItem from "./useBasketAddItem";
 import useBasketChangeQuantity from "./useBasketChangeQuantity";
 

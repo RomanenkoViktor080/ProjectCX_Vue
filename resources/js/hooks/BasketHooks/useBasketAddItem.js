@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {changeBasketAddItem} from "../../store/reducers/basketReducer";
+import {changeBasketAddItem} from "../../store/reducers/basket";
 
 const useBasketAddItem = () => {
     const dispatch = useDispatch();

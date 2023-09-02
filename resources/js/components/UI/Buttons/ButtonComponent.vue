@@ -1,5 +1,5 @@
 <template>
-    <button :class="[$style.button, classWrapper]" @click="onClick"><slot/></button>
+    <button :class="[$style.button, classWrapper]" @click="onClick" v-bind="$attrs"><slot/></button>
 </template>
 
 <script>

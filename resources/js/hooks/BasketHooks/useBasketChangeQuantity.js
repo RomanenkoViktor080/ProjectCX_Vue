@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {changeBasketProductQuality} from "../../store/reducers/basketReducer";
+import {changeBasketProductQuality} from "../../store/reducers/basket";
 import {debounce} from "lodash";
 
 const useBasketChangeQuantity = () => {

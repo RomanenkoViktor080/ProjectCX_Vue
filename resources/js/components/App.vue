@@ -27,6 +27,22 @@ onBeforeMount(() => {
             path: '/'
         });
     })
+    axios.post('/api/basket-data').then((response) => {
+        store.dispatch('changeBasketProductReload', response.data)
+    }).catch(() => {
+
+    })
+    /*export async function loadBasket() {
+        try {
+            const response = await ,
+                {products: JSON.parse(localStorage.getItem('basket'))?.basketItems})
+            return response.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }*/
+
+
 })
 </script>
 

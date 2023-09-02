@@ -44,7 +44,7 @@ import {changeCategoryPopupState} from "../../../store/reducers/catalogReducer";
 import {changeAuthNPopupState} from "../../../store/reducers/userReducer";
 
 const MobileNavigationComponent = () => {
-    const [isAuth, basketQuantity] = useSelector((state) => [state.userReducer.isAuth, state.basketReducer.basketProductQuantity]);
+    const [isAuth, basketQuantity] = useSelector((state) => [state.userReducer.isAuth, state.basket.basketProductQuantity]);
     const dispatch = useDispatch();
     const categoryPopupState = useSelector(state => state.catalogReducer.popupState);
     const authNPopupState = useSelector(state => state.userReducer.popupState);

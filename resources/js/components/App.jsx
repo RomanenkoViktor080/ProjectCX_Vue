@@ -8,7 +8,7 @@ import HomePageComponent from "../Pages/HomePageComponent.vue";
 import ProductPageComponent from "../Pages/ProductPageComponent";
 import CatalogPageComponent from "../Pages/CategoryPageComponent.vue";
 import ProfilePageComponent from "../Pages/ProfilePageComponent";
-import BasketPage from "../Pages/BasketPage";
+import BasketPage from "../Pages/BasketPage.vue";
 import MobileNavigationComponent from "./Content/Mobile/MobileNavigationComponent.vue";
 import ProductPreviewPopupComponent from "./Content/Product/ProductPreviewPopupComponent";
 import {useSelector} from "react-redux";
@@ -18,16 +18,15 @@ import ButtonComponent from "./UI/Buttons/ButtonComponent.vue";
 const App = () => {
     const productPreviewPopupState = useSelector(state => state.productReducer.popupState)
     const isAuth = useSelector(state => state.userReducer.isAuth);
-    const AuthProtected = ({ children}) => {
+    const AuthProtected = ({children}) => {
 
         if (isAuth) {
             return (
-                    <>
-                        {children}
-                    </>
+                <>
+                    {children}
+                </>
             );
-        }
-        else{
+        } else {
             return (
                 <>
                     <ButtonComponent>Назад</ButtonComponent>
