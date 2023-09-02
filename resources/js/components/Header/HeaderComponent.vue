@@ -31,7 +31,7 @@
                     <router-link :to="{name: 'basket'}" :class="$style.headerActionItem">
                         <div :class="$style.basketIconContainer">
                             <font-awesome-icon icon="fa-solid fa-cart-shopping" :class="$style.headerActionItemIcon"/>
-                                <span v-if="basketQuantity" :class="$style.basketQuantity">{{ basketQuantity }}</span>
+                            <span v-if="basketQuantity" :class="$style.basketQuantity">{{ basketQuantity }}</span>
                         </div>
                         <span :class="$style.headerActionItemText">Корзина</span>
                     </router-link>
@@ -62,9 +62,11 @@ const basketQuantity = computed(() => store.getters.basketProductQuantity)
 function changeAuthPopupState(state) {
     store.dispatch('changeAuthPopupState', state);
 }
+
 function changeSearchPopupState(state) {
     searchPopupState.value = state;
 }
+
 function changeCatalogPopupState(state) {
     store.dispatch('changeCatalogPopupState', state);
 }

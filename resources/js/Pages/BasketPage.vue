@@ -31,7 +31,7 @@
                                                    @click="basketDeleteProduct(product.id)"/>
                             </div>
                             <div :class="$style.basketItemActionsLeft">
-                                <!--<CounterComponent product={product} initialQuantity={product.quantity}/>-->
+                                <CounterComponent :product="product" :initial-quantity="product.quantity"/>
                             </div>
                         </div>
                     </div>
@@ -56,6 +56,7 @@ import ButtonComponent from "../components/UI/Buttons/ButtonComponent.vue";
 import {useStore} from "vuex";
 import {computed} from "vue";
 import useBasketDeleteProduct from "../hooks/BasketHooks/useBasketDeleteProduct.js";
+import CounterComponent from "../components/UI/Counter/CounterComponent.vue";
 
 const store = useStore();
 const basketProducts = computed(() => store.state.basket.basketProducts);

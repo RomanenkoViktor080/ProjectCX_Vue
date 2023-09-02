@@ -1,33 +1,31 @@
-import React, {useMemo} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {changeBasketProductQuality} from "../../store/reducers/basket";
+import {useStore} from "vuex";
 import {debounce} from "lodash";
 
-const useBasketChangeQuantity = () => {
-    const dispatch = useDispatch();
-    const isAuth = useSelector(state => state.userReducer.isAuth)
+export default function useBasketChangeQuantity() {
+    const store = useStore();
+    const isAuth = store.state.user.isAuth;
 
     function updateProductQuantityRequest(id, quantity) {
-        if (isAuth) {
-            axios.patch(`/api/basket/${id}/quantity`, {quantity: quantity})
-                .then(response => {
-                    dispatch(changeBasketProductQuality(response.data))
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        }
+        axios.patch(`/api/basket/${id}/quantity`, {quantity: quantity})
+            .then(response => {
+                store.dispatch('changeBasketProductQuality', response.data)
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
-    const debouncedUpdateProductQuantityRequest = useMemo(() => debounce(updateProductQuantityRequest, 400), [isAuth]);
+    const debouncedUpdateProductQuantityRequest = debounce(updateProductQuantityRequest, 400);
 
     function updateProductQuantity(product, quantity) {
-        dispatch(changeBasketProductQuality({...product, quantity: quantity}));
-        debouncedUpdateProductQuantityRequest(product.id, quantity);
+        store.dispatch('changeBasketProductQuality', {...product, quantity: quantity})
+        if (isAuth) {
+            debouncedUpdateProductQuantityRequest(product.id, quantity);
+        }
     }
 
 
     return updateProductQuantity;
 
-};
-export default useBasketChangeQuantity;
+}
+;

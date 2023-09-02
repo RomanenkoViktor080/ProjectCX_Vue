@@ -8,7 +8,7 @@
 import ProductCardComponent from "../Product/ProductCardComponent.vue";
 import {computed, onMounted, ref, watch} from "vue";
 import {useRoute} from "vue-router";
-import useScroll from "../../../vueHooks/useScroll.js";
+import useScroll from "../../../hooks/useScroll.js";
 
 const route = useRoute();
 const category = computed(() => route.params.category)

@@ -21,13 +21,15 @@ import {
     faRightFromBracket,
     faXmark,
     faCirclePlus,
-    faTrash
+    faTrash,
+    faMinus,
+    faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import {faEyeSlash, faEye} from "@fortawesome/free-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 
-library.add(faPhone, faUser, faBars, faMagnifyingGlass, faUsers, faCartShopping, faAngleDown, faSliders, faHouse, faBorderAll, faXmark, faCirclePlus, faHome, faListCheck, faRightFromBracket, faEyeSlash, faEye, faTrash);
+library.add(faPhone, faUser, faBars, faMagnifyingGlass, faUsers, faCartShopping, faAngleDown, faSliders, faHouse, faBorderAll, faXmark, faCirclePlus, faHome, faListCheck, faRightFromBracket, faEyeSlash, faEye, faTrash, faMinus, faPlus);
 const Vue = createApp(AppVueComponent);
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(router);
