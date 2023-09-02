@@ -28,15 +28,10 @@
                         <div :class="$style.headerActionItemText">Войти</div>
                     </div>
 
-                    <router-link to="#" :class="$style.headerActionItem">
+                    <router-link :to="{name: 'basket'}" :class="$style.headerActionItem">
                         <div :class="$style.basketIconContainer">
                             <font-awesome-icon icon="fa-solid fa-cart-shopping" :class="$style.headerActionItemIcon"/>
-                            <!--//TODO Отображение количества товара в корзине-->
-                            <!--
-                                basketQuantity
-                                ? <span :class="$style.basketQuantity">{basketQuantity}</span>
-                                : null
-                                }-->
+                                <span v-if="basketQuantity" :class="$style.basketQuantity">{{ basketQuantity }}</span>
                         </div>
                         <span :class="$style.headerActionItemText">Корзина</span>
                     </router-link>
@@ -45,45 +40,33 @@
         </div>
         <PopupCatalogComponent/>
         <PopupAuthenticationComponent/>
-        <!--        {!isAuth && <PopupAuthenticationComponent/>}
-                <PopupSearchMobileComponent active={searchPopupState} setActive={setSearchPopupState}/>-->
+        <!--<PopupSearchMobileComponent active={searchPopupState} setActive={setSearchPopupState}/>-->
     </header>
 </template>
 
 
-<script>
+<script setup>
 
-import {mapState} from "vuex";
 import InputHeaderSearchComponent from "../UI/Inputs/InputHeaderSearchComponent.vue";
 import PopupCatalogComponent from "../Popups/PopupCatalogComponent.vue";
 import PopupAuthenticationComponent from "../Popups/PopupAuthenticationComponent.vue";
+import {useStore} from "vuex";
+import {computed, ref} from "vue";
 
-export default {
-    name: "HeaderComponent",
-    components: {PopupAuthenticationComponent, PopupCatalogComponent, InputHeaderSearchComponent},
-    data() {
-        return {
-            searchPopupState: false
-        }
-    },
-    computed: {
-        ...mapState({
-            isAuth: state => state.user.isAuth,
-            popupState: state => state.user.popupState,
-        })
-    },
+const store = useStore();
+const searchPopupState = ref(false)
+const isAuth = computed(() => store.state.user.isAuth)
+const basketQuantity = computed(() => store.getters.basketProductQuantity)
 
-    methods: {
-        changeAuthPopupState(state) {
-            this.$store.dispatch('changeAuthPopupState', state);
-        },
-        changeSearchPopupState(state) {
-            this.searchPopupState = state;
-        },
-        changeCatalogPopupState(state) {
-            this.$store.dispatch('changeCatalogPopupState', state);
-        },
-    }
+
+function changeAuthPopupState(state) {
+    store.dispatch('changeAuthPopupState', state);
+}
+function changeSearchPopupState(state) {
+    searchPopupState.value = state;
+}
+function changeCatalogPopupState(state) {
+    store.dispatch('changeCatalogPopupState', state);
 }
 </script>
 
