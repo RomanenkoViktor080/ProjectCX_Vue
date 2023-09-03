@@ -6,7 +6,7 @@ import {Route, Routes} from "react-router";
 import NotFoundPageComponent from "../Pages/NotFoundPageComponent.vue";
 import HomePageComponent from "../Pages/HomePageComponent.vue";
 import ProductPageComponent from "../Pages/ProductPageComponent";
-import CatalogPageComponent from "../Pages/CategoryPageComponent.vue";
+import CatalogPageComponent from "../Pages/CatalogPageComponent.vue";
 import ProfilePageComponent from "../Pages/ProfilePageComponent";
 import BasketPage from "../Pages/BasketPage.vue";
 import MobileNavigationComponent from "./Content/Mobile/MobileNavigationComponent.vue";

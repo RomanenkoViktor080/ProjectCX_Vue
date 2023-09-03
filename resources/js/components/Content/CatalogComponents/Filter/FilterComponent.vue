@@ -1,3 +1,68 @@
+<template>
+    <div :class="$style.filter" v-bind="$attrs">
+        <!--    {
+            FilterBlocksList
+            }
+            {
+            !isEmpty(filters) && <ButtonComponent
+            classWrapper={classes.closeMobileCatalogButton}
+            onClick={applyFilter}>Применить</ButtonComponent>
+            }-->
+
+    </div>
+</template>
+
+<script setup>
+import {computed, onMounted, ref, watch} from "vue";
+import {useRoute, useRouter} from "vue-router";
+
+const props = defineProps({
+    catalogMobileActive: {
+        required: true
+    },
+    setCatalogMobileActive: {
+        required: true
+    }
+})
+
+const route = useRoute();
+const router = useRouter();
+const filters = ref([]);
+const category = computed(() => route.params.category);
+const localSearchParams = computed(() => route.query)
+watch(localSearchParams, (searchParams) => {
+    getFilterData(searchParams)
+}, {immediate: true})
+
+onMounted(() => {
+
+});
+
+function getFilterData(searchParams) {
+    axios.get(`/api/catalog/filter-data/${category.value}${getSearchParams(searchParams)}`)
+        .then(response => {
+            filters.value = response.data;
+        })
+}
+function getSearchParams(searchParams) {
+    const paramsString = new URLSearchParams(searchParams).toString();
+    if (paramsString === "") {
+        return paramsString
+    }
+    return `?${paramsString}`;
+}
+
+function applyFilter() {
+    props.setCatalogMobileActive(false)
+    // router.push({query: localSearchParams})
+}
+
+</script>
+
+<style module>
+@import "FilterComponent.module.scss";
+</style>
+<!--
 import React, {memo, useCallback, useEffect, useMemo, useState} from 'react';
 import classes from "./FilterComponent.module.scss";
 import FilterChooseBlock from "./FilterChooseBlock";
@@ -8,11 +73,6 @@ import axios from "axios";
 import {debounce, isEmpty} from "lodash";
 
 const FilterComponent = ({classProp, setCatalogMobileActive, CatalogMobileActive}) => {
-    const classWrapper = [classes.filter, classProp];
-    const {category} = useParams();
-    const [filters, setFilters] = useState([]);
-    const [searchParams, setSearchParams] = useSearchParams();
-    const localSearchParams = useMemo(() => new URLSearchParams(searchParams), [category, searchParams]);
     const getFilterDataDebounce = useMemo(() => debounce(getFilterData, 150), [category]);
     const FilterBlocksList = useMemo(() => {
         return (
@@ -30,32 +90,6 @@ const FilterComponent = ({classProp, setCatalogMobileActive, CatalogMobileActive
     }, [filters, localSearchParams, searchParams])
 
     useEffect(() => {
-        getFilterData(searchParams)
-    }, [category, searchParams])
-
-    function getFilterData(searchParams) {
-        axios.get(`/api/catalog/filter-data/${category}${getSearchParams(searchParams)}`)
-            .then(response => {
-                setFilters(response.data);
-            })
-    }
-
-    function applyFilter() {
-        setCatalogMobileActive(false)
-        setSearchParams(localSearchParams)
-    }
-
-
-    function getSearchParams(searchParams) {
-        const paramsString = searchParams.toString();
-        if (paramsString === "") {
-            return paramsString
-        }
-        return `?${paramsString}`;
-    }
-
-
-    useEffect(() => {
         if (CatalogMobileActive) {
             document.body.style.overflow = "hidden";
         } else {
@@ -65,19 +99,10 @@ const FilterComponent = ({classProp, setCatalogMobileActive, CatalogMobileActive
     }, [CatalogMobileActive])
 
     return (
-        <div className={classWrapper.join(" ")}>
-            {
-                FilterBlocksList
-            }
-            {
-                !isEmpty(filters) && <ButtonComponent
-                    classWrapper={classes.closeMobileCatalogButton}
-                    onClick={applyFilter}>Применить</ButtonComponent>
-            }
 
-        </div>
 
     );
 };
 
 export default FilterComponent;
+-->

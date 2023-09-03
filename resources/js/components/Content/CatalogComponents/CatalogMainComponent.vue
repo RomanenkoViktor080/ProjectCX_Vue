@@ -1,15 +1,21 @@
 <template>
     <div :class="$style.catalogMain">
-<!--        <CatalogSorterBlockComponent setCatalogMobileActive={setCatalogMobileActive}/>-->
-        <CatalogSorterBlockComponent/>
-<!--            <CatalogProductsListComponent/>-->
+        <CatalogSorterBlockComponent :set-catalog-mobile-active="setCatalogMobileActive"/>
     <CatalogProductsListComponent/>
     </div>
 </template>
-<style module>
-@import "CatalogMainComponent.module.scss";
-</style>
+
 <script setup>
 import CatalogSorterBlockComponent from "../../UI/Selects/CatalogSorterBlockComponent.vue";
 import CatalogProductsListComponent from "./CatalogProductsListComponent.vue";
+
+const props = defineProps({
+    setCatalogMobileActive: {
+        required: true
+    }
+})
 </script>
+
+<style module>
+@import "CatalogMainComponent.module.scss";
+</style>

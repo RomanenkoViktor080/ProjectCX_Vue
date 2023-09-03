@@ -1,41 +1,43 @@
 <template>
-    <div :class="$style.catalogSorter" v-if="isLoaded">
-        <select v-model="sortCurrValue" @change="changeSort" :class="$style.catalogSelect">
-            <option hidden value="">Сортировка</option>
-            <option v-for="[key, item] in sorterData"
-                    :value="key"
-                    :key="key"
+    <div :class="$style.catalogSorter" v-if="sorterData.length">
+        <select v-model="selected" @change="changeSort" :class="$style.catalogSelect">
+            <option hidden value="default">Сортировка</option>
+            <option v-for="[value, title] in sorterData"
+                    :value="value"
+                    :key="value"
             >
-                {{ item }}
+                {{ title }}
             </option>
         </select>
-        <font-awesome-icon icon="fa-solid fa-sliders" :class="$style.catalogBurgerMobile"/>
-        <!--        <GoSettings :class="$style.catalogBurgerMobile" onClick={() => setCatalogMobileActive(true)}/>-->
+        <font-awesome-icon icon="fa-solid fa-sliders" :class="$style.catalogBurgerMobile"
+                           @click="setCatalogMobileActive(true)"/>
     </div>
 </template>
 <script setup>
 import {computed, onMounted, ref} from "vue";
 import {useRoute, useRouter} from "vue-router";
 
-const isLoaded = ref(false);
-const sorterData = ref([]);
-const sortCurrValue = ref("");
+const props = defineProps({
+    setCatalogMobileActive: {
+        required: true
+    }
+})
 const route = useRoute();
 const router = useRouter();
+const sorterData = ref([]);
+const selected = ref("default");
 const queryParams = computed(() => route.query);
 
 const changeSort = (e) => {
-    let resultQueryParams = {...queryParams.value, sort: e.target.value};
-    router.push({query: resultQueryParams});
+    router.push({query: {...queryParams.value, sort: e.target.value}});
 }
 
 onMounted(() => {
     axios.get('/api/sorter-data').then(response => {
         sorterData.value = Object.entries(response.data);
         if (sorterData.value.some(([i, k]) => i === route.query.sort)) {
-            sortCurrValue.value = route.query.sort;
+            selected.value = route.query.sort;
         }
-        isLoaded.value = true;
     })
         .catch(error => {
             console.log(error);

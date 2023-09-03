@@ -26,7 +26,7 @@
                         </div>
                         <div :class="$style.basketItemActions">
                             <div :class="$style.basketItemActionsRight">
-                                <!--<LikeComponent propClass={classes.basketItemActionIcon}/>-->
+                                <LikeComponent :prop-class="$style.basketItemActionIcon"/>
                                 <font-awesome-icon icon="fa-solid fa-trash" :class="$style.basketItemActionIcon"
                                                    @click="basketDeleteProduct(product.id)"/>
                             </div>
@@ -57,6 +57,7 @@ import {useStore} from "vuex";
 import {computed} from "vue";
 import useBasketDeleteProduct from "../hooks/BasketHooks/useBasketDeleteProduct.js";
 import CounterComponent from "../components/UI/Counter/CounterComponent.vue";
+import LikeComponent from "../components/UI/LikeComponent/LikeComponent.vue";
 
 const store = useStore();
 const basketProducts = computed(() => store.state.basket.basketProducts);

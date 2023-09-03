@@ -9,9 +9,6 @@
 <!--                    onClick={()=> openProductPreviewPopup()}-->
                 Подробнее
             </button>
-            <!--            <button :class="$style.productPreview"
-                    onClick={()=> openProductPreviewPopup()}>Подробнее
-            </button>-->
         </div>
 
         <div :class="$style.productCardBody">
@@ -29,7 +26,7 @@
                     <!--                        {
                                             BasketProductControls
                                             }-->
-                    <!--                        <LikeComponent propClass={classes.actionIcon}/>-->
+                                            <LikeComponent :prop-class="$style.actionIcon"/>
 
                 </div>
             </div>
@@ -37,6 +34,8 @@
     </div>
 </template>
 <script setup>
+import LikeComponent from "../../UI/LikeComponent/LikeComponent.vue";
+
 const props = defineProps({
     product: {
         type: Object,

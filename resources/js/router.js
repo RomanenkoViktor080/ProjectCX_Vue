@@ -10,7 +10,7 @@ const router = createRouter({
         },
         {
             path: '/catalog/:category',
-            component: () => import('./Pages/CategoryPageComponent.vue'),
+            component: () => import('./Pages/CatalogPageComponent.vue'),
             name: 'category'
         },
         {
