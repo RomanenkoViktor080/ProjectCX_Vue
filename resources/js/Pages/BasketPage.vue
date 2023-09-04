@@ -55,7 +55,7 @@
 import ButtonComponent from "../components/UI/Buttons/ButtonComponent.vue";
 import {useStore} from "vuex";
 import {computed} from "vue";
-import useBasketDeleteProduct from "../hooks/BasketHooks/useBasketDeleteProduct.js";
+import useBasketRemoveProduct from "../hooks/BasketHooks/useBasketRemoveProduct.js";
 import CounterComponent from "../components/UI/Counter/CounterComponent.vue";
 import LikeComponent from "../components/UI/LikeComponent/LikeComponent.vue";
 
@@ -63,7 +63,7 @@ const store = useStore();
 const basketProducts = computed(() => store.state.basket.basketProducts);
 const basketFullPrice = computed(() => store.getters.basketFullPrice);
 const basketProductQuantity = computed(() => store.getters.basketProductQuantity);
-const basketDeleteProduct = useBasketDeleteProduct();
+const basketDeleteProduct = useBasketRemoveProduct();
 
 axios.post('/api/basket-data').then((response) => {
     store.dispatch('changeBasketProductReload', response.data)

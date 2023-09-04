@@ -29,7 +29,7 @@ const actions = {
 
 const mutations = {
     setBasketAddProduct(state, payload) {
-        state.basketProducts = [...state.basketProducts, ...payload];
+        state.basketProducts = [...state.basketProducts, payload];
 
     },
     setBasketProductReload(state, payload) {
