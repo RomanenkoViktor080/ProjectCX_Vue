@@ -2,11 +2,14 @@
     <div :class="$style.filter" v-bind="$attrs">
         <template v-if="filters">
             <template v-for="filter in filters">
-                <!--                <FilterRangeComponent v-if="filter.type === 2" :search-params="localQueryParams"
-                                                      :get-filter-data="getFilterDataDebounce"
-                                                      :min-total="filter.values.min" :max-total="filter.values.max"
-                                                      :title="filter.title"
-                                                      :name="filter.slug" :key="filter.slug"/>-->
+                <FilterRangeComponent v-if="filter.type === 2"
+                                      :title="filter.title"
+                                      :search-params="localQueryParams.params"
+                                      :min-total="filter.values.min" :max-total="filter.values.max"
+                                      :name="filter.slug"
+                                      :key="filter.slug"
+                                      :get-filter-data="getFilterDataDebounce"
+                />
                 <!--                <FilterChooseBlock v-else queryParams={localQueryParams} getFilterData={getFilterDataDebounce}
                                                      type={item.type} name={item.slug} title={item.title} values={item.values}
                                                      key={item.slug}-->
@@ -20,6 +23,8 @@
 import {computed, reactive, ref, watch} from "vue";
 import {useRoute, useRouter} from "vue-router";
 import ButtonComponent from "../../../UI/Buttons/ButtonComponent.vue";
+import FilterRangeComponent from "./FilterRangeComponent.vue";
+import {debounce} from "lodash";
 
 const props = defineProps({
     catalogMobileActive: {
@@ -40,7 +45,7 @@ const localQueryParams = reactive({params: new URLSearchParams})
 
 watch([queryParams, category], ([newQueryParams, newCategory]) => {
     if (newCategory) {
-        getFilterData(newQueryParams)
+        getFilterData(new URLSearchParams(newQueryParams))
         localQueryParams.params = new URLSearchParams(newQueryParams);
     }
 }, {immediate: true})
@@ -52,8 +57,10 @@ function getFilterData(queryParams) {
         })
 }
 
+const getFilterDataDebounce = debounce(getFilterData, 150);
+
 function getSearchParams(queryParams) {
-    const paramsString = new URLSearchParams(queryParams).toString();
+    const paramsString = queryParams.toString();
     if (paramsString === "") {
         return paramsString
     }

@@ -41,8 +41,10 @@ class ProductFilter extends AbstractFilter
     private function applyRangeFilter($query, $param): void
     {
         $range = explode('ZZ', $param['values']);
-        if ($param['attribute'] == 'price') {
-            $query->whereBetween('price', [$range[0], $range[1]]);
+        if(count($range) > 1 && $range[0] < $range[1]){
+            if ($param['attribute'] == 'price') {
+                $query->whereBetween('price', [$range[0], $range[1]]);
+            }
         }
     }
 }

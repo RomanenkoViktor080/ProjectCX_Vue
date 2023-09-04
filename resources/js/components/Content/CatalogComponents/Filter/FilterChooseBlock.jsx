@@ -1,6 +1,6 @@
 import React, {memo, useEffect, useMemo, useState} from 'react';
 import classes from './FilterChooseBlock.module.scss'
-import SpoilerComponent from "../../../UI/Spoiler/SpoilerComponent";
+import SpoilerComponent from "../../../UI/Spoiler/SpoilerComponent.vue";
 import RadioComponent from "../../../UI/Radio/RadioComponent";
 import CheckboxComponent from "../../../UI/Checkboxes/CheckboxComponent";
 import {isEmpty} from "lodash";
