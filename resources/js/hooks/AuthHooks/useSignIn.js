@@ -18,6 +18,8 @@ export default function useSignIn(errors) {
             })
             await store.dispatch('changeAuthPopupState', false);
             await store.dispatch('changeAuthState', true);
+            const basketDataReloaded = await axios.post('/api/basket-data');
+            store.dispatch('changeBasketProductReload', basketDataReloaded.data)
             data.email = "";
             data.password = "";
             data.remember = false;

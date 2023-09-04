@@ -12,6 +12,8 @@ const useSignOut = () => {
                 path: '/'
             });
             await store.dispatch('changeAuthState', false);
+            const basketDataReloaded = await axios.post('/api/basket-data');
+            store.dispatch('changeBasketProductReload', basketDataReloaded.data)
         } catch (error) {
             await Cookies.remove('auth_token', {
                 path: '/'

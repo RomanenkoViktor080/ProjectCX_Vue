@@ -13,14 +13,14 @@ const getters = {
 
 
 const actions = {
-    changeBasketAddItem({commit}, state) {
-        commit('setBasketAddItem', state)
+    changeBasketAddProduct({commit}, state) {
+        commit('setBasketAddProduct', state)
     },
     changeBasketProductReload({commit}, state) {
         commit('setBasketProductReload', state)
     },
     changeBasketRemoveProduct({commit}, state) {
-        commit('setBasketProductDelete', state)
+        commit('setBasketRemoveProduct', state)
     },
     changeBasketProductQuality({commit}, state) {
         commit('setBasketProductQuality', state)
@@ -28,14 +28,14 @@ const actions = {
 };
 
 const mutations = {
-    setBasketAddItem(state, payload) {
+    setBasketAddProduct(state, payload) {
         state.basketProducts = [...state.basketProducts, ...payload];
 
     },
     setBasketProductReload(state, payload) {
         state.basketProducts = payload;
     },
-    setBasketProductDelete(state, payload) {
+    setBasketRemoveProduct(state, payload) {
         state.basketProducts = state.basketProducts.filter(product => Number(product.id) !== Number(payload));
     },
     setBasketProductQuality(state, payload) {
