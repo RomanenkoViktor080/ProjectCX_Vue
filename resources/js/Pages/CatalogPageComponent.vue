@@ -10,8 +10,8 @@
         </div>
         <div :class="$style.catalogBody">
             <FilterComponent :class="catalogFilterClasses"
-                             :set-catalog-mobile-active="catalogMobileActive"
-                             :catalog-mobile-active="setCatalogMobileActive"/>
+                             :set-catalog-mobile-active="setCatalogMobileActive"
+                             :catalog-mobile-active="catalogMobileActive"/>
             <CatalogMainComponent :set-catalog-mobile-active="setCatalogMobileActive"/>
         </div>
     </div>
@@ -34,8 +34,8 @@ const catalogFilterClasses = computed(() => {
     return [style.catalogFilter];
 })
 
-function setCatalogMobileActive() {
-    catalogMobileActive.value = !catalogMobileActive.value
+function setCatalogMobileActive(status) {
+    catalogMobileActive.value = status;
 }
 </script>
 <style module>

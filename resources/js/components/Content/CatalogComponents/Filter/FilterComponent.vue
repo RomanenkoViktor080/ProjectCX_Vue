@@ -1,51 +1,59 @@
 <template>
     <div :class="$style.filter" v-bind="$attrs">
-        <!--    {
-            FilterBlocksList
-            }
-            {
-            !isEmpty(filters) && <ButtonComponent
-            classWrapper={classes.closeMobileCatalogButton}
-            onClick={applyFilter}>Применить</ButtonComponent>
-            }-->
-
+        <template v-if="filters">
+            <template v-for="filter in filters">
+                <!--                <FilterRangeComponent v-if="filter.type === 2" :search-params="localQueryParams"
+                                                      :get-filter-data="getFilterDataDebounce"
+                                                      :min-total="filter.values.min" :max-total="filter.values.max"
+                                                      :title="filter.title"
+                                                      :name="filter.slug" :key="filter.slug"/>-->
+                <!--                <FilterChooseBlock v-else queryParams={localQueryParams} getFilterData={getFilterDataDebounce}
+                                                     type={item.type} name={item.slug} title={item.title} values={item.values}
+                                                     key={item.slug}-->
+            </template>
+            <ButtonComponent :class="$style.closeMobileCatalogButton" @click="applyFilter">Применить</ButtonComponent>
+        </template>
     </div>
 </template>
 
 <script setup>
-import {computed, onMounted, ref, watch} from "vue";
+import {computed, reactive, ref, watch} from "vue";
 import {useRoute, useRouter} from "vue-router";
+import ButtonComponent from "../../../UI/Buttons/ButtonComponent.vue";
 
 const props = defineProps({
     catalogMobileActive: {
         required: true
     },
     setCatalogMobileActive: {
+        type: Function,
         required: true
     }
 })
 
 const route = useRoute();
 const router = useRouter();
-const filters = ref([]);
+const filters = ref();
 const category = computed(() => route.params.category);
-const localSearchParams = computed(() => route.query)
-watch(localSearchParams, (searchParams) => {
-    getFilterData(searchParams)
+const queryParams = computed(() => route.query)
+const localQueryParams = reactive({params: new URLSearchParams})
+
+watch([queryParams, category], ([newQueryParams, newCategory]) => {
+    if (newCategory) {
+        getFilterData(newQueryParams)
+        localQueryParams.params = new URLSearchParams(newQueryParams);
+    }
 }, {immediate: true})
 
-onMounted(() => {
-
-});
-
-function getFilterData(searchParams) {
-    axios.get(`/api/catalog/filter-data/${category.value}${getSearchParams(searchParams)}`)
+function getFilterData(queryParams) {
+    axios.get(`/api/catalog/filter-data/${category.value}${getSearchParams(queryParams)}`)
         .then(response => {
             filters.value = response.data;
         })
 }
-function getSearchParams(searchParams) {
-    const paramsString = new URLSearchParams(searchParams).toString();
+
+function getSearchParams(queryParams) {
+    const paramsString = new URLSearchParams(queryParams).toString();
     if (paramsString === "") {
         return paramsString
     }
@@ -54,7 +62,7 @@ function getSearchParams(searchParams) {
 
 function applyFilter() {
     props.setCatalogMobileActive(false)
-    // router.push({query: localSearchParams})
+    router.push({query: Object.fromEntries(localQueryParams.params.entries())})
 }
 
 </script>
@@ -75,19 +83,10 @@ import {debounce, isEmpty} from "lodash";
 const FilterComponent = ({classProp, setCatalogMobileActive, CatalogMobileActive}) => {
     const getFilterDataDebounce = useMemo(() => debounce(getFilterData, 150), [category]);
     const FilterBlocksList = useMemo(() => {
-        return (
-            filters.map(item =>
-                item.type === 2 ?
-                    <FilterRangeComponent searchParams={localSearchParams} getFilterData={getFilterDataDebounce}
-                                          minTotal={item.values.min} maxTotal={item.values.max} title={item.title}
-                                          name={item.slug} key={item.slug}/>
-                    : <FilterChooseBlock searchParams={localSearchParams} getFilterData={getFilterDataDebounce}
-                                         type={item.type} name={item.slug} title={item.title} values={item.values}
-                                         key={item.slug}
-                    />
-            )
+        return
+
         )
-    }, [filters, localSearchParams, searchParams])
+    }, [filters, localQueryParams, queryParams])
 
     useEffect(() => {
         if (CatalogMobileActive) {

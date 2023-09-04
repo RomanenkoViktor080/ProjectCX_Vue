@@ -25,19 +25,21 @@ onMounted(() => {
 })
 
 watch([category, queryParams], async ([newCategory, newQueryParams]) => {
-    isRequesting.value = true;
-    axios.get(`/api/catalog/${newCategory + getInitQueryParams(newQueryParams)}`).then((response) => {
-        products.value = response.data;
-        page.value = 2;
-        firstProductLoaded.value = true;
-        fullProductLoaded.value = false;
-    })
-        .catch((response) => {
-            console.log(response);
+    if (newCategory) {
+        isRequesting.value = true;
+        axios.get(`/api/catalog/${newCategory + getInitQueryParams(newQueryParams)}`).then((response) => {
+            products.value = response.data;
+            page.value = 2;
+            firstProductLoaded.value = true;
+            fullProductLoaded.value = false;
         })
-        .finally(() => {
-            isRequesting.value = false;
-        })
+            .catch((response) => {
+                console.log(response);
+            })
+            .finally(() => {
+                isRequesting.value = false;
+            })
+    }
 }, {immediate: true})
 
 function getProducts() {
