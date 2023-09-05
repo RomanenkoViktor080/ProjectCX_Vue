@@ -4,15 +4,21 @@
             <template v-for="filter in filters">
                 <FilterRangeComponent v-if="filter.type === 2"
                                       :title="filter.title"
-                                      :search-params="localQueryParams.params"
+                                      :query-params="localQueryParams.params"
                                       :min-total="filter.values.min" :max-total="filter.values.max"
                                       :name="filter.slug"
-                                      :key="filter.slug"
                                       :get-filter-data="getFilterDataDebounce"
+                                      :key="filter.slug"
                 />
-                <!--                <FilterChooseBlock v-else queryParams={localQueryParams} getFilterData={getFilterDataDebounce}
-                                                     type={item.type} name={item.slug} title={item.title} values={item.values}
-                                                     key={item.slug}-->
+                <FilterChooseBlock v-else
+                                   :title="filter.title"
+                                   :query-params="localQueryParams.params"
+                                   :values="filter.values"
+                                   :get-filter-data="getFilterDataDebounce"
+                                   :type="filter.type"
+                                   :name="filter.slug"
+                                   :key="filter.slug"
+                />
             </template>
             <ButtonComponent :class="$style.closeMobileCatalogButton" @click="applyFilter">Применить</ButtonComponent>
         </template>
@@ -25,6 +31,7 @@ import {useRoute, useRouter} from "vue-router";
 import ButtonComponent from "../../../UI/Buttons/ButtonComponent.vue";
 import FilterRangeComponent from "./FilterRangeComponent.vue";
 import {debounce} from "lodash";
+import FilterChooseBlock from "./FilterChooseBlock.vue";
 
 const props = defineProps({
     catalogMobileActive: {
@@ -41,12 +48,11 @@ const router = useRouter();
 const filters = ref();
 const category = computed(() => route.params.category);
 const queryParams = computed(() => route.query)
-const localQueryParams = reactive({params: new URLSearchParams})
+const localQueryParams = reactive({params: new URLSearchParams(queryParams.value)})
 
 watch([queryParams, category], ([newQueryParams, newCategory]) => {
     if (newCategory) {
         getFilterData(new URLSearchParams(newQueryParams))
-        localQueryParams.params = new URLSearchParams(newQueryParams);
     }
 }, {immediate: true})
 
@@ -77,38 +83,3 @@ function applyFilter() {
 <style module>
 @import "FilterComponent.module.scss";
 </style>
-<!--
-import React, {memo, useCallback, useEffect, useMemo, useState} from 'react';
-import classes from "./FilterComponent.module.scss";
-import FilterChooseBlock from "./FilterChooseBlock";
-import FilterRangeComponent from "./FilterRangeComponent";
-import ButtonComponent from "../../../UI/Buttons/ButtonComponent.vue";
-import {useParams, useSearchParams} from "react-router-dom";
-import axios from "axios";
-import {debounce, isEmpty} from "lodash";
-
-const FilterComponent = ({classProp, setCatalogMobileActive, CatalogMobileActive}) => {
-    const getFilterDataDebounce = useMemo(() => debounce(getFilterData, 150), [category]);
-    const FilterBlocksList = useMemo(() => {
-        return
-
-        )
-    }, [filters, localQueryParams, queryParams])
-
-    useEffect(() => {
-        if (CatalogMobileActive) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "auto";
-        }
-        return () => document.body.style.overflow = "auto";
-    }, [CatalogMobileActive])
-
-    return (
-
-
-    );
-};
-
-export default FilterComponent;
--->

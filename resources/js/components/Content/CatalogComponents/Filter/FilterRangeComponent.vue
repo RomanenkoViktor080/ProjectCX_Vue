@@ -25,14 +25,13 @@
 
 <script setup>
 import SpoilerComponent from "../../../UI/Spoiler/SpoilerComponent.vue";
-import {computed, ref, watch} from "vue";
-import {isEmpty} from "lodash";
+import {computed, ref} from "vue";
 
 const props = defineProps({
     title: {
         default: 'Ошибка'
     },
-    searchParams: {
+    queryParams: {
         required: true,
         type: URLSearchParams
     },
@@ -50,7 +49,7 @@ const props = defineProps({
     }
 });
 
-const range = computed(() => props.searchParams.get(props.name) ? props.searchParams.get(props.name).toString().split("ZZ") : []);
+const range = computed(() => props.queryParams.get(props.name) ? props.queryParams.get(props.name).toString().split("ZZ") : []);
 const check = computed(() => range.value.length > 1 && Number(range.value[0].replace(/[^0-9]/g, "")) < Number(range.value[1].replace(/[^0-9]/g, "")))
 const inputMin = ref(check.value ? range.value[0].replace(/[^0-9]/g, "") : props.minTotal);
 const inputMax = ref(check.value ? range.value[1].replace(/[^0-9]/g, "") : props.maxTotal);
@@ -82,8 +81,8 @@ function saveLocalSearchMaxParams(maxValue) {
 }
 
 function setSearchParamsFn(minTotal, maxTotal) {
-    props.searchParams.set(props.name, minTotal + 'ZZ' + maxTotal)
-    props.getFilterData(props.searchParams)
+    props.queryParams.set(props.name, minTotal + 'ZZ' + maxTotal)
+    props.getFilterData(props.queryParams)
 }
 
 function resetParam(event) {
@@ -92,8 +91,8 @@ function resetParam(event) {
 }
 
 function deleteSearchParamFn() {
-    props.searchParams.delete(props.name)
-    props.getFilterData(props.searchParams)
+    props.queryParams.delete(props.name)
+    props.getFilterData(props.queryParams)
 }
 
 </script>
