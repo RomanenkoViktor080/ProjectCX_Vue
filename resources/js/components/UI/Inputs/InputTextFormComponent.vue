@@ -1,5 +1,5 @@
 <template>
-    <input type="text" :value="modelValue" @input="updateValue" v-bind="$attrs" :class="$style.input"/>
+    <input type="text" :value="modelValue" @input="updateValue" :class="$style.input" v-bind="$attrs"/>
 </template>
 
 <script setup>

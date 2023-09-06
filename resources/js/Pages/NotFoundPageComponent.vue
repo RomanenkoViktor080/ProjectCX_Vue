@@ -7,25 +7,21 @@
                 <router-link :to="{name: 'home'}">
                     <ButtonComponent>На главную</ButtonComponent>
                 </router-link>
-<!--                //TODO При редиректе назад перезагружается страница-->
-                    <ButtonComponent :on-click="goBack">Назад</ButtonComponent>
+                <ButtonComponent @click="goBack">Назад</ButtonComponent>
             </div>
         </div>
         <!--    <SwiperAdvertisementProductsComponent title={"Недавно просмотренные"}/>-->
     </div>
 </template>
 
-<script>
+<script setup>
 import ButtonComponent from "../components/UI/Buttons/ButtonComponent.vue";
+import {useRouter} from "vue-router";
 
-export default {
-    name: "NotFoundPageComponent",
-    components: {ButtonComponent},
-    methods: {
-        goBack() {
-            this.$router.go(-1)
-        }
-    }
+const router = useRouter();
+
+function goBack() {
+    router.go(-1);
 }
 </script>
 

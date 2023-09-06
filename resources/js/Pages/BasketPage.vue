@@ -40,7 +40,7 @@
         </div>
         <div :class="$style.basketASideContainer">
             <div :class="$style.basketASide">
-                <ButtonComponent :class-wrapper="$style.orderButton">Оформить заказ</ButtonComponent>
+                <ButtonComponent :class="$style.orderButton">Оформить заказ</ButtonComponent>
                 <div :class="$style.basketASideInfo">
                     <div :class="$style.mainCalculateBlock"><span>Итого</span><span>{{ basketFullPrice }} ₽</span></div>
                     <div :class="$style.defaultCalculateBlock"><span>Товары </span><span>100000 ₽</span></div>

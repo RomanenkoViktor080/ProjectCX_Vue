@@ -1,3 +1,22 @@
+<template>
+    <slot/>
+</template>
+
+<script setup>
+import {onMounted, onUnmounted} from "vue";
+
+const props = defineProps({
+    setProfileState: {require: true}
+})
+
+onMounted(() => {
+    props.setProfileState(true);
+})
+onUnmounted(() => {
+    props.setProfileState(false)
+})
+</script>
+<!--
 import React, {useEffect} from 'react';
 
 const ProfileWrapperComponent = ({children, setProfileState}) => {
@@ -13,3 +32,4 @@ const ProfileWrapperComponent = ({children, setProfileState}) => {
 };
 
 export default ProfileWrapperComponent;
+-->

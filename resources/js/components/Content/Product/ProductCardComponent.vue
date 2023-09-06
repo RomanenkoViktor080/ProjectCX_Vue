@@ -29,7 +29,7 @@
                                            @click="removeFromBasket(product.id)"
                         />
                     </template>
-                    <ButtonComponent v-else :class-wrapper="$style.productButton"
+                    <ButtonComponent v-else :class="$style.productButton"
                                      @click="() => addToBasket(product.id)">
                         В корзину
                     </ButtonComponent>

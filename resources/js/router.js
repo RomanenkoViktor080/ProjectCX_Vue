@@ -1,4 +1,7 @@
 import {createRouter, createWebHistory} from 'vue-router';
+const User = {
+    template: `<div>User {{ $route.params.id }}</div>`,
+}
 
 const router = createRouter({
     history: createWebHistory(),
@@ -17,6 +20,23 @@ const router = createRouter({
             path: '/basket',
             component: () => import('./Pages/BasketPage.vue'),
             name: 'basket'
+        },
+        {
+            path: '/profile',
+            component: () => import('./Pages/ProfilePageComponent.vue'),
+            name: 'profile',
+            children: [
+                {
+                    path: '',
+                    component: () => import('./components/Content/Profile/ProfileDesktopHomeComponent.vue'),
+                    name: 'profile-home'
+                },
+                {
+                    path: 'settings',
+                    component: () => import('./components/Content/Profile/ProfileSettingsComponent.vue'),
+                    name: 'settings'
+                }
+            ]
         },
         {
             path: '/:catchAll(.*)',

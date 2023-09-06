@@ -17,7 +17,7 @@
                 </div>
                 <InputHeaderSearchComponent placeholder="Поиск" :containerPropClass="$style.headerSearch"/>
                 <div :class="$style.headerActions">
-                    <router-link v-if="isAuth" :class="$style.headerActionItem" to="#">
+                    <router-link :to="{name: 'profile-home'}" v-if="isAuth" :class="$style.headerActionItem" >
                         <font-awesome-icon icon="fa-solid fa-user" :class="$style.headerActionItemIcon"/>
                         <div
                             :class="$style.headerActionItemText">Кабинет

@@ -12,7 +12,7 @@
              :class="[$style.navLink, categoryPopupState ? $style.navLinkActive : null]">
             <font-awesome-icon icon="fa-solid fa-border-all" :class="$style.navLinkIcon"/>
         </div>
-        <router-link to="#" :class="$style.navLink" :active-class="!categoryPopupState ? $style.navLinkActive : null">
+        <router-link :to="{name: 'profile-home'}" :class="$style.navLink" :active-class="!categoryPopupState ? $style.navLinkActive : null">
             <font-awesome-icon icon="fa-solid fa-user" :class="$style.navLinkIcon"/>
         </router-link>
     </div>
