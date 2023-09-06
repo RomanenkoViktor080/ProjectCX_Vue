@@ -1,5 +1,5 @@
 <template>
-    <SpoilerComponent :class="$style.filterChooseBlock">
+    <SpoilerComponent :class="$style.filterChooseBlock" v-bind="$attrs">
         <template v-slot:title>
             <div :class="$style.titleBlock">
                 <span :class="$style.titleText">{{ title }}</span>
@@ -8,51 +8,36 @@
         </template>
         <template v-slot:body>
             <div :class="$style.content">
-                <CheckboxComponent v-if="type === 0" v-for="value in values"
-                                   @change="setQueryParams"
-                                   :id="name + value.id"
-                                   :name="name"
-                                   :value="value.id"
-                                   v-model="localChooseBlockParams"
-                                   :key="name + value.id">
+                <template
+                    v-for="value in values.slice(0, (quantityToDisplay > values.length || showStatus === true) ? values.length : quantityToDisplay)">
+                    <CheckboxComponent v-if="type === 0"
+                                       @change="setQueryParams"
+                                       :id="value.id   + value.id"
+                                       :name="name"
+                                       :value="value.id"
+                                       v-model="localChooseBlockParams"
+                                       :key="name + value.id">
 
-                    <span :class="$style.titleItemText">{{ value.value }}</span>
-                    <span :class="$style.titleItemCount">{{ value.productCount }}</span>
-                </CheckboxComponent>
-                <!--
-
-                                                   title={<TitleItem count={value.productCount} value={value.value}-->
-
-
-                <!--
-                                values ? values.slice(0, (quantityToDisplay > values.length || showStatus === true) ? values.length : quantityToDisplay).map((value) =>
-                                Number(type) === 0 ?
-                                <CheckboxComponent checked={checkBoxIsChecked(value.id)} id={name + value.id}
-                                                   value={value.id}
-                                                   title={<TitleItem count={value.productCount} value={value.value}/>}
-                                    name={name}
-                                    onChange={changeCheckBox}
-                                    key={value.id}
-                                    /> :
-                                    Number(type) === 1 ?
-                                    <RadioComponent checked={radioIsChecked(value.id)} id={name + value.id} value={value.id}
-                                                    title={<TitleItem count={value.productCount} value={value.value}/>}
-                                        name={name}
-                                        onChange={changeRadio}
-                                        key={value.id}
-                                        /> :
-                                        <div>Error</div>
-                                        )
-                                        : <div>Error</div>
-                                        -->
+                        <span :class="$style.titleItemText">{{ value.value }}</span>
+                        <span :class="$style.titleItemCount">{{ value.productCount }}</span>
+                    </CheckboxComponent>
+                    <RadioComponent v-else-if="type === 1"
+                                    @change="setQueryParams"
+                                    :id="value.id   + value.id"
+                                    :name="name"
+                                    :value="value.id"
+                                    :checked="isRadioChecked(value.id)"
+                                    v-model="localChooseBlockParams"
+                                    :key="name + value.id">
+                        <span :class="$style.titleItemText">{{ value.value }}</span>
+                        <span :class="$style.titleItemCount">{{ value.productCount }}</span>
+                    </RadioComponent>
+                </template>
             </div>
-            <!--{
-            values && values.length > quantityToDisplay ?
-            <div :class="$style.moreLessText"
-                 onClick={() => setShowStatus(!showStatus)}>{showStatus ? "Свернуть" : "Развернуть"}
-            </div>
-            : null
-            }-->
+            <span v-if="!showStatus && values?.length > quantityToDisplay" :class="$style.moreLessText"
+                  @click="showStatus = !showStatus">
+                Развернуть
+            </span>
         </template>
     </SpoilerComponent>
 </template>
@@ -61,7 +46,8 @@
 import SpoilerComponent from "../../../UI/Spoiler/SpoilerComponent.vue";
 import {ref} from "vue";
 import CheckboxComponent from "../../../UI/Checkboxes/CheckboxComponent.vue";
-import {isEmpty} from "lodash";
+import {isArray, isEmpty} from "lodash";
+import RadioComponent from "../../../UI/Radio/RadioComponent.vue";
 
 const props = defineProps({
     title: {
@@ -90,25 +76,19 @@ const props = defineProps({
 
 
 const localChooseBlockParams = ref(props.queryParams.get(props.name)?.split("ZZ") ?? [])
+const showStatus = ref(false);
 
-/*
-function changeRadio(event) {
-    let value = event.target.value;
-    let isChecked = event.target.checked
-    if (isChecked) {
-        setQueryParams(value)
-    } else {
-        deleteSearchParam()
-    }
+function isRadioChecked(value) {
+    return localChooseBlockParams.value == value
 }
-*/
+
 function setQueryParams() {
     let paramValues = localChooseBlockParams.value
-    if(isEmpty(paramValues)){
+    if (isEmpty(paramValues)) {
         deleteSearchParam();
         return;
     }
-    props.queryParams.set(props.name, paramValues.join("ZZ"))
+    props.queryParams.set(props.name, isArray(paramValues) ? paramValues.join("ZZ") : paramValues)
     props.getFilterData(props.queryParams)
 }
 

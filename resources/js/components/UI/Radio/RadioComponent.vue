@@ -1,7 +1,6 @@
 <template>
-    <div :class="$style.FilterCheckBox">
-        <input :class="$style.input" v-model="model" :value="value" :id="id" type="checkbox"
-               v-bind="$attrs"/>
+    <div :class="$style.filterRadio">
+        <input :class="$style.input" type="radio" @change="updateValue" :value="value" :id="id" v-bind="$attrs"/>
         <label :class="$style.label" :for="id">
             <slot/>
         </label>
@@ -9,26 +8,23 @@
 </template>
 
 <script setup>
+
 import {computed} from "vue";
 
 const props = defineProps({
     id: {required: true},
     value: {default: undefined},
     modelValue: [Boolean, String, Object, Array, Number]
-});
+})
 
 const emit = defineEmits(['update:modelValue'])
 
-const model = computed({
-    get() {
-        return props.modelValue;
-    },
-    set(value) {
-        emit("update:modelValue", value);
-    },
-});
+const updateValue = (event) => {
+    emit('update:modelValue', event.target.value)
+}
 
 </script>
+
 <style module>
-@import "CheckboxComponent.module.scss";
+@import "RadioComponent.module.scss";
 </style>

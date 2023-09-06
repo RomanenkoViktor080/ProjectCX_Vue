@@ -41,6 +41,9 @@
 
 .moreLessText {
     cursor: pointer;
+    &:hover{
+        color: var(--main-blue-color);
+    }
 }
 
 
