@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import classes from "./ProductPageComponent.module.scss";
 import {Link, useParams} from "react-router-dom";
-import StarsRatingComponent from "../components/UI/Raiting/StarsRatingComponent";
+import StarsRatingComponent from "../components/UI/Raiting/StarsRatingComponent.vue";
 import ShowMoreOrLessProductDescriptionComponent
     from "../components/UI/ShowMoreOrLess/ShowMoreOrLessProductDescriptionComponent";
 import ShowMoreOrLessProductCharacteristicsComponent

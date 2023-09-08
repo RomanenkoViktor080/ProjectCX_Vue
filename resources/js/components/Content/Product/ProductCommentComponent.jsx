@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from "./ProductCommentComponent.module.scss";
 import {Link} from "react-router-dom";
-import StarsRatingComponent from "../../UI/Raiting/StarsRatingComponent";
+import StarsRatingComponent from "../../UI/Raiting/StarsRatingComponent.vue";
 import {AiOutlineDislike, AiOutlineLike} from "react-icons/ai";
 
 const ProductCommentComponent = () => {

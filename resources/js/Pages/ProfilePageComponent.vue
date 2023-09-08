@@ -11,7 +11,8 @@
                     Профиль
                 </div>
                 <div :class="$style.blockMenuList">
-                    <router-link :to="{name: 'profile-home'}" :class="[$style.link, $style.menuItem, $style.hiddenOnMobile]"
+                    <router-link :to="{name: 'profile-home'}"
+                                 :class="[$style.link, $style.menuItem, $style.hiddenOnMobile]"
                                  :exact-active-class="$style.active">
                     <span :class="$style.text">
                         Главная
@@ -38,7 +39,8 @@
             <div v-if="profileState" :class="$style.showOnMobile" @click="router.go(-1)">
                 Назад
             </div>
-            <router-view :set-profile-state="setProfileState"/> <!--todo разобратся как отображать конкретные представления дочерних маршрутов-->
+            <router-view :set-profile-state="setProfileState"/>
+            <!--todo разобратся как отображать конкретные представления дочерних маршрутов-->
         </div>
     </div>
 </template>

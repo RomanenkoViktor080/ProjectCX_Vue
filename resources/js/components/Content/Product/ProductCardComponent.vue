@@ -21,6 +21,7 @@
                 </div>
             </div>
             <div :class="$style.productFooter">
+                <StarsRatingComponent/>
                 <!--                <StarsRatingComponent readOnly={true}/>-->
                 <div :class="$style.actions">
                     <template v-if="inBasket">
@@ -48,6 +49,7 @@ import CounterComponent from "../../UI/Counter/CounterComponent.vue";
 import ButtonComponent from "../../UI/Buttons/ButtonComponent.vue";
 import useBasketAddItem from "../../../hooks/BasketHooks/useBasketAddItem.js";
 import useBasketRemoveProduct from "../../../hooks/BasketHooks/useBasketRemoveProduct.js";
+import StarsRatingComponent from "../../UI/Raiting/StarsRatingComponent.vue";
 
 const props = defineProps({
     product: {

@@ -25,12 +25,18 @@ import {
     faMinus,
     faPlus,
     faHeart,
+    faStar
 } from "@fortawesome/free-solid-svg-icons";
-import {faEyeSlash, faEye, faHeart as faHeartRegular} from "@fortawesome/free-regular-svg-icons";
+import {
+    faEyeSlash,
+    faEye,
+    faHeart as faHeartRegular,
+    faStar as faStarRegular
+} from "@fortawesome/free-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 
-library.add(faPhone, faUser, faBars, faMagnifyingGlass, faUsers, faCartShopping, faAngleDown, faSliders, faHouse, faBorderAll, faXmark, faCirclePlus, faHome, faListCheck, faRightFromBracket, faEyeSlash, faEye, faTrash, faMinus, faPlus, faHeart, faHeartRegular);
+library.add(faPhone, faUser, faBars, faMagnifyingGlass, faUsers, faCartShopping, faAngleDown, faSliders, faHouse, faBorderAll, faXmark, faCirclePlus, faHome, faListCheck, faRightFromBracket, faEyeSlash, faEye, faTrash, faMinus, faPlus, faHeart, faHeartRegular, faStar, faStarRegular);
 const Vue = createApp(AppVueComponent);
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(router);

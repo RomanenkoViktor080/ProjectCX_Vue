@@ -6,7 +6,7 @@ import {changeProductPreviewPopupState} from "../../../store/reducers/productRed
 import {Swiper, SwiperSlide} from "swiper/react";
 import {IoIosArrowDown} from "react-icons/io";
 import {Link} from "react-router-dom";
-import StarsRatingComponent from "../../UI/Raiting/StarsRatingComponent";
+import StarsRatingComponent from "../../UI/Raiting/StarsRatingComponent.vue";
 import {Navigation, Thumbs} from "swiper";
 
 
