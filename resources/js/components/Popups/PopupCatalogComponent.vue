@@ -11,7 +11,8 @@
                         {{ category.title }}
                         </span>
                         <font-awesome-icon icon="fa-solid fa-angle-down" :class="$style.categoryMenuItemIcon"/>
-                        <router-link :to="{name: 'category', params: {'category': category.slug}}" :class="$style.categoryMenuItemDesktopLink"
+                        <router-link :to="{name: 'category', params: {'category': category.slug}}"
+                                     :class="$style.categoryMenuItemDesktopLink"
                                      @click="changeCatalogPopupState(false)"
                                      @mouseenter="changeCatalogMenuState(index)"/>
                     </div>
@@ -26,15 +27,18 @@
                                 <router-link :to="{name: 'category', params: {'category': CatalogCategoryBlock.slug}}"
                                              :class="$style.categoryContentBlockTitle"
                                              @click="changeCatalogPopupState(false)"
-                                >{{ CatalogCategoryBlock.title }}</router-link>
+                                >{{ CatalogCategoryBlock.title }}
+                                </router-link>
                             </template>
-                            <ShowMoreOrLessComponentLinks
-                                quantity-to-show="5"
-                                v-slot="body"
-                                :items="CatalogCategoryBlock.childrenCategories"
-                                :link-class="$style.categoryContentBlockItemTitle"
-                                show-more-fn="true"
-                            />
+                            <template v-slot:body>
+                                <ShowMoreOrLessComponentLinks
+                                    quantity-to-show="5"
+                                    v-slot="body"
+                                    :items="CatalogCategoryBlock.childrenCategories"
+                                    :link-class="$style.categoryContentBlockItemTitle"
+                                    show-more-fn="true"
+                                />
+                            </template>
                         </SpoilerConvertComponent>
                     </template>
                 </div>

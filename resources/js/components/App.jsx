@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderComponent from "./Header/HeaderComponent.vue";
-import FooterComponent from "./Footer/FooterComponent";
+import FooterComponent from "./Footer/FooterComponent.vue";
 import classes from "./App.module.scss";
 import {Route, Routes} from "react-router";
 import NotFoundPageComponent from "../Pages/NotFoundPageComponent.vue";

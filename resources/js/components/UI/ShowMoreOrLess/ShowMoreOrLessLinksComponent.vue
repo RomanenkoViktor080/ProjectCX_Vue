@@ -10,7 +10,7 @@
         </template>
     </div>
     <div v-if="items.length > quantityToShow && showMoreFn" style="cursor: pointer" @click="changeStatusShow">
-        Развернуть
+        {{showStatus ? 'Свернуть': 'Развернуть' }}
     </div>
 </template>
 

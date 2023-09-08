@@ -9,7 +9,7 @@
 
 .container {
     padding: 15px 30px;
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 768px) {
         padding: 10px 15px;
     }
     display: flex;
@@ -22,7 +22,7 @@
 
 .footerNavigate {
     & .navigateSpoiler {
-        @media screen and (max-width: 1024px) {
+        @media screen and (max-width: 768px) {
             padding: 5px 0px;
             border-bottom: 1px solid var(--main-light-grey-color);
         }
@@ -33,7 +33,7 @@
     flex-direction: row;
     justify-content: space-between;
     gap: 10px;
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 768px) {
         flex-direction: column;
     }
 }

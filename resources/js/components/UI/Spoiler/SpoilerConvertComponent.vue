@@ -1,43 +1,37 @@
 <template>
-    <div :class="classesWrapper">
+    <div :class="classesWrapper" v-bind="$attrs">
         <div :class="$style.titleHeader">
             <slot name="title"></slot>
             <div :class="$style.button" @click="changeSpoilerState"></div>
             <font-awesome-icon icon="fa-solid fa-angle-down" :class="$style.titleIcon"/>
         </div>
         <div :class="[$style.body, classBody]">
-            <slot/>
+            <slot name="body"/>
         </div>
     </div>
 </template>
 
-<script>
-export default {
-    name: "SpoilerConvertComponent",
-    props: {
-        classWrapper: String,
-        classBody: String,
-        startState: Boolean
-    },
-    data() {
-        return {
-            spoilerState: this.startState
-        }
-    },
-    computed: {
-        classesWrapper() {
-            if (this.spoilerState) {
-                return [this.$style.spoiler, this.classWrapper]
-            }
-            return [this.$style.spoiler, this.classWrapper, this.$style.close]
-        }
+<script setup>
+
+import {computed, ref, useCssModule} from "vue";
+
+const props = defineProps({
+    classBody: String,
+    startState: Boolean
+});
+
+const style = useCssModule();
+
+const spoilerState = ref(props.startState);
+const classesWrapper = computed(() => {
+    if (spoilerState.value) {
+        return [style.spoiler]
     }
-    ,
-    methods: {
-        changeSpoilerState(){
-            this.spoilerState = !this.spoilerState;
-        }
-    }
+    return [style.spoiler, style.close]
+})
+
+function changeSpoilerState() {
+    spoilerState.value = !spoilerState.value;
 }
 
 </script>
@@ -45,34 +39,3 @@ export default {
 <style module>
 @import "SpoilerConvertComponent.module.scss";
 </style>
-import React, {useEffect, useMemo, useState} from 'react';
-import classes from "./SpoilerConvertComponent.module.scss";
-import {IoIosArrowDown} from "react-icons/io";
-import {retry} from "@reduxjs/toolkit/query";
-
-const SpoilerConvertComponent = ({
-classWrapper = null,
-classBody = null,
-title = null,
-startState = false,
-children
-}) => {
-
-const [stateSpoiler, setStateSpoiler] = useState(startState);
-const classesWrapper = useMemo(() => {
-if (stateSpoiler) {
-return [classes.spoiler, classWrapper]
-}
-return [classes.spoiler, classWrapper, classes.close]
-}, [stateSpoiler]);
-
-function openOrClose() {
-setStateSpoiler(state => !state)
-}
-
-return (
-
-);
-};
-
-export default SpoilerConvertComponent;

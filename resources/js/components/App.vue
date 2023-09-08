@@ -6,8 +6,8 @@
         </div>
     </div>
     <MobileNavigationComponent/>
-    <!--{productPreviewPopupState && <ProductPreviewPopupComponent/>}
-    <FooterComponent/>-->
+    <!--{productPreviewPopupState && <ProductPreviewPopupComponent/>}-->
+    <FooterComponent/>
 </template>
 
 <script setup>
@@ -15,6 +15,7 @@ import {useStore} from "vuex";
 import {onBeforeMount} from "vue";
 import MobileNavigationComponent from "./Content/Mobile/MobileNavigationComponent.vue";
 import HeaderComponent from "./Header/HeaderComponent.vue";
+import FooterComponent from "./Footer/FooterComponent.vue";
 
 const store = useStore();
 
