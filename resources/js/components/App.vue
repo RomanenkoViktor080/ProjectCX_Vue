@@ -12,39 +12,25 @@
 
 <script setup>
 import {useStore} from "vuex";
-import {onBeforeMount} from "vue";
 import MobileNavigationComponent from "./Content/Mobile/MobileNavigationComponent.vue";
 import HeaderComponent from "./Header/HeaderComponent.vue";
 import FooterComponent from "./Footer/FooterComponent.vue";
+import useBasketProductReload from "../hooks/BasketHooks/useBasketProductReload.js";
 
 const store = useStore();
+const reloadBasket = useBasketProductReload();
 
-onBeforeMount(() => {
-    axios.get('/api/user').then(() => {
-        store.dispatch('changeAuthState', true);
-    }).catch(() => {
-        store.dispatch('changeAuthState', false);
-        Cookies.remove('auth_token', {
-            path: '/'
-        });
-    })
-    axios.post('/api/basket-data').then((response) => {
-        store.dispatch('changeBasketProductReload', response.data)
-    }).catch(() => {
+axios.get('/api/user').then(() => {
+    store.dispatch('changeAuthState', true);
+}).catch(() => {
+    store.dispatch('changeAuthState', false);
+    Cookies.remove('auth_token', {
+        path: '/'
+    });
+}).finally(() => {
+    reloadBasket();
+});
 
-    })
-    /*export async function loadBasket() {
-        try {
-            const response = await ,
-                {products: JSON.parse(localStorage.getItem('basket'))?.basketItems})
-            return response.data;
-        } catch (error) {
-            console.log(error);
-        }
-    }*/
-
-
-})
 </script>
 
 <style module>

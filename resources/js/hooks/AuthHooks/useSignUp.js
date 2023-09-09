@@ -20,10 +20,10 @@ export default function useSignUp(errors) {
             })
             await store.dispatch('changeAuthPopupState', false);
             await store.dispatch('changeAuthState', true)
-            const basketDataReloaded = await axios.post('/api/basket-data');
-            store.dispatch('changeBasketProductReload', basketDataReloaded.data)
+            store.dispatch('changeBasketProductReload', [])
             data.email = "";
             data.password = "";
+            data.password_confirmation = "";
             data.remember = false;
             errors.value = null;
         } catch (error) {

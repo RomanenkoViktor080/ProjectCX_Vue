@@ -1,8 +1,10 @@
 import {useStore} from "vuex";
+import useBasketProductReload from "../BasketHooks/useBasketProductReload.js";
 
 export default function useSignIn(errors) {
 
     const store = useStore();
+    const reloadBasket = useBasketProductReload();
 
     async function signIn(data) {
         try {
@@ -18,12 +20,10 @@ export default function useSignIn(errors) {
             })
             await store.dispatch('changeAuthPopupState', false);
             await store.dispatch('changeAuthState', true);
-            const basketDataReloaded = await axios.post('/api/basket-data');
-            store.dispatch('changeBasketProductReload', basketDataReloaded.data)
+            await reloadBasket();
             data.email = "";
             data.password = "";
             data.remember = false;
-            data.password_confirmation = "";
             errors.value = null;
         } catch (error) {
             errors.value = error.response.data.errors;

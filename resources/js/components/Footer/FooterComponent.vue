@@ -52,14 +52,14 @@
                         <div>text3</div>
                     </template>
                 </SpoilerConvertComponent>
-        </div>
-        <div :class="$style.footerBottomInfo">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci at atque, culpa laborum obcaecati
-            odit perferendis quas suscipit. A, assumenda cum debitis eos error exercitationem ipsa maxime
-            molestiae nemo nihil nobis pariatur qui quis quisquam rerum sed sequi similique tempore temporibus
-            unde vel vero voluptatem voluptatibus. Cupiditate laborum porro reiciendis.
-        </div>
-        <div :class="$style.copyrightBlock">© ProjectCX | -_- |</div>
+            </div>
+            <div :class="$style.footerBottomInfo">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci at atque, culpa laborum obcaecati
+                odit perferendis quas suscipit. A, assumenda cum debitis eos error exercitationem ipsa maxime
+                molestiae nemo nihil nobis pariatur qui quis quisquam rerum sed sequi similique tempore temporibus
+                unde vel vero voluptatem voluptatibus. Cupiditate laborum porro reiciendis.
+            </div>
+            <div :class="$style.copyrightBlock">© ProjectCX | -_- |</div>
         </div>
     </footer>
 </template>

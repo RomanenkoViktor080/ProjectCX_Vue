@@ -1,9 +1,10 @@
 import {useStore} from "vuex";
 import axios from "axios";
+import useBasketProductReload from "../BasketHooks/useBasketProductReload.js";
 
 const useSignOut = () => {
     const store = useStore();
-
+    const reloadBasket = useBasketProductReload();
     async function signOut() {
         try {
             await axios.get('/sanctum/csrf-cookie')
@@ -12,8 +13,7 @@ const useSignOut = () => {
                 path: '/'
             });
             await store.dispatch('changeAuthState', false);
-            const basketDataReloaded = await axios.post('/api/basket-data');
-            store.dispatch('changeBasketProductReload', basketDataReloaded.data)
+            await reloadBasket();
         } catch (error) {
             await Cookies.remove('auth_token', {
                 path: '/'
