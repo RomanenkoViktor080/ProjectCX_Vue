@@ -58,16 +58,15 @@ import {computed} from "vue";
 import useBasketRemoveProduct from "../hooks/BasketHooks/useBasketRemoveProduct.js";
 import CounterComponent from "../components/UI/Counter/CounterComponent.vue";
 import LikeComponent from "../components/UI/LikeComponent/LikeComponent.vue";
+import useBasketProductReload from "../hooks/BasketHooks/useBasketProductReload.js";
 
 const store = useStore();
 const basketProducts = computed(() => store.state.basket.basketProducts);
 const basketFullPrice = computed(() => store.getters.basketFullPrice);
 const basketProductQuantity = computed(() => store.getters.basketProductQuantity);
 const basketDeleteProduct = useBasketRemoveProduct();
-
-axios.post('/api/basket-data').then((response) => {
-    store.dispatch('changeBasketProductReload', response.data)
-});
+const reloadBasket = useBasketProductReload();
+reloadBasket();
 
 </script>
 
