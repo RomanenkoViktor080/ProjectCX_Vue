@@ -2,13 +2,12 @@
     cursor: pointer;
     transition: 150ms;
     opacity: 0;
-    font-size: 35px;
     padding: 5px;
     background: var(--main-dark-grey-color);
-    z-index: 2;
     border-radius: 50%;
     color: var(--main-grey-color);
-    &:hover{
+
+    &:hover {
         background-color: black;
     }
 }

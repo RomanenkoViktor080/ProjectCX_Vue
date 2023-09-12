@@ -6,7 +6,7 @@
         </div>
     </div>
     <MobileNavigationComponent/>
-    <!--{productPreviewPopupState && <ProductPreviewPopupComponent/>}-->
+    <ProductPreviewPopupComponent v-if="productPreviewPopupState"/>
     <FooterComponent/>
 </template>
 
@@ -16,8 +16,11 @@ import MobileNavigationComponent from "./Content/Mobile/MobileNavigationComponen
 import HeaderComponent from "./Header/HeaderComponent.vue";
 import FooterComponent from "./Footer/FooterComponent.vue";
 import useBasketProductReload from "../hooks/BasketHooks/useBasketProductReload.js";
+import {computed} from "vue";
+import ProductPreviewPopupComponent from "./Content/Product/ProductPreviewPopupComponent.vue";
 
 const store = useStore();
+const productPreviewPopupState = computed(() => store.state.productPreview.productPreviewPopupState)
 const reloadBasket = useBasketProductReload();
 
 axios.get('/api/user').then(() => {

@@ -3,8 +3,8 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import ProductCardComponent from "../Content/Product/ProductCardComponent.vue";
 import classes from "./SwiperAdvertisementProductsComponent.module.scss";
 import {Link} from "react-router-dom";
-import SwiperNextSlideButton from "./SwiperNextSlideButton";
-import SwiperPrevSlideButton from "./SwiperPrevSlideButton";
+import SwiperNextSlideButton from "./SwiperNextSlideButton.vue";
+import SwiperPrevSlideButton from "./SwiperPrevSlideButton.vue";
 
 const SwiperAdvertisementProductsComponent = ({title = null, products = [1, 2, 3 , 4, 6, 8, 2, 3 , 4, 5, 9], slideClass = null, sliderClass = null}) => {
     return (

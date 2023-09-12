@@ -5,8 +5,8 @@
                 <img :src="product?.frontImage" loading="lazy" alt="Товар">
                 <span :class="$style.productCardImageSale">-40%</span>
             </router-link>
-            <button :class="$style.productPreview">
-                <!--                    onClick={()=> openProductPreviewPopup()}-->
+            <button :class="$style.productPreview"
+                    @click="openProductPreviewPopup(product.id)">
                 Подробнее
             </button>
         </div>
@@ -22,7 +22,6 @@
             </div>
             <div :class="$style.productFooter">
                 <StarsRatingComponent/>
-                <!--                <StarsRatingComponent readOnly={true}/>-->
                 <div :class="$style.actions">
                     <template v-if="inBasket">
                         <CounterComponent :initial-quantity="inBasket.quantity" :product="inBasket"/>
@@ -62,6 +61,16 @@ const basketProduct = computed(() => store.state.basket.basketProducts);
 const inBasket = computed(() => basketProduct.value.find(basketItem => Number(basketItem.id) === Number(props.product.id)));
 const addToBasket = useBasketAddItem();
 const removeFromBasket = useBasketRemoveProduct();
+
+async function openProductPreviewPopup(id) {
+    try {
+        const response = await axios.get(`/api/productPreview/${id}`)
+        store.commit('setProductPreviewData', response.data)
+        store.commit('setProductPreviewPopupState', true)
+    } catch (error) {
+        console.log(error)
+    }
+}
 </script>
 <style module>
 @import "ProductCardComponent.module.scss";

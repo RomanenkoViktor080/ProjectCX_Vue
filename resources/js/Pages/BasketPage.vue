@@ -66,7 +66,7 @@ const basketFullPrice = computed(() => store.getters.basketFullPrice);
 const basketProductQuantity = computed(() => store.getters.basketProductQuantity);
 const basketDeleteProduct = useBasketRemoveProduct();
 const reloadBasket = useBasketProductReload();
-reloadBasket();
+reloadBasket(); //Удалить? Она и так загружается при загрузке страницы.
 
 </script>
 

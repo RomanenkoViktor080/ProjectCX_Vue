@@ -1,5 +1,5 @@
 <template>
-    <div :class="popupState" @click="setActive(false)">
+    <div :class="popupState" @click="setActive(false)" v-bind="$attrs">
         <div :class="[$style.body, classBody]" @click.stop>
             <font-awesome-icon icon="fa-solid fa-xmark" @click="setActive(false)" :class="$style.closeButton"/>
             <slot/>
@@ -17,9 +17,6 @@ const props = defineProps({
     setActive: {
         required: true,
     },
-    classWrapper: {
-        default: null,
-    },
     classBody: {
         default: null,
     }
@@ -29,9 +26,9 @@ const style = useCssModule();
 
 const popupState = computed(() => {
     if (props.active) {
-        return [style.popupCenter, props.classWrapper, style.active]
+        return [style.popupCenter, style.active]
     }
-    return [style.popupCenter, props.classWrapper]
+    return style.popupCenter
 })
 </script>
 
