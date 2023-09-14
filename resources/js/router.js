@@ -1,4 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router';
+
 const User = {
     template: `<div>User {{ $route.params.id }}</div>`,
 }
@@ -15,6 +16,11 @@ const router = createRouter({
             path: '/catalog/:category',
             component: () => import('./Pages/CatalogPageComponent.vue'),
             name: 'category'
+        },
+        {
+            path: '/product/:productId',
+            component: () => import('./Pages/ProductPageComponent.vue'),
+            name: 'product'
         },
         {
             path: '/basket',

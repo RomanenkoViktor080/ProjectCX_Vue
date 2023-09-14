@@ -5,7 +5,7 @@ import classes from "./App.module.scss";
 import {Route, Routes} from "react-router";
 import NotFoundPageComponent from "../Pages/NotFoundPageComponent.vue";
 import HomePageComponent from "../Pages/HomePageComponent.vue";
-import ProductPageComponent from "../Pages/ProductPageComponent";
+import ProductPageComponent from "../Pages/ProductPageComponent.vue";
 import CatalogPageComponent from "../Pages/CatalogPageComponent.vue";
 import ProfilePageComponent from "../Pages/ProfilePageComponent.vue";
 import BasketPage from "../Pages/BasketPage.vue";

@@ -1,7 +1,7 @@
 <template>
     <div :class="$style.productCard">
         <div :class="$style.productImage">
-            <router-link to="#">
+            <router-link :to="{name: 'product', params: {productId: product.id}}">
                 <img :src="product?.frontImage" loading="lazy" alt="Товар">
                 <span :class="$style.productCardImageSale">-40%</span>
             </router-link>

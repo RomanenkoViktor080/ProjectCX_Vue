@@ -11,7 +11,7 @@
 .productHeader {
     grid-area: title;
 
-    & .productTitle {
+     .productTitle {
         font-size: 28px;
         font-weight: bold;
         @media screen and (max-width: 1300px) {
@@ -25,15 +25,15 @@
         }
     }
 
-    & .productActions {
-        & .list {
+     .productActions {
+         .list {
             display: flex;
             column-gap: 10px;
             list-style: none;
             padding: 0;
 
-            & .item {
-                & .link {
+             .item {
+                 .link {
                     transition: 150ms;
                     color: black;
                     text-decoration: none;
@@ -122,7 +122,7 @@
     height: 100%;
     grid-area: aside;
 
-    & .productASide {
+     .productASide {
         border: 1px solid #bbbbbb;
         border-radius: 10px;
         max-width: 300px;
@@ -134,7 +134,7 @@
         padding: 20px;
         justify-self: left;
 
-        & .productPrices {
+         .productPrices {
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
@@ -149,13 +149,13 @@
             display: none;
         }
 
-        & .productPriceLower {
+         .productPriceLower {
             font-weight: bold;
             font-size: 16px;
         }
 
 
-        & .productPriceOld {
+         .productPriceOld {
             font-size: 14px;
             opacity: 0.75;
             text-decoration: line-through;
@@ -208,12 +208,12 @@
             align-items: flex-end;
             column-gap: 10px;
 
-            & .productPriceLower {
+             .productPriceLower {
                 font-weight: bold;
                 font-size: 16px;
             }
 
-            & .productPriceOld {
+             .productPriceOld {
                 font-size: 14px;
                 opacity: 0.75;
                 text-decoration: line-through;
@@ -221,7 +221,7 @@
         }
     }
 
-    & .button {
+     .button {
         white-space: nowrap;
         width: 100%;
         max-width: 300px;
@@ -236,6 +236,7 @@
     display: flex;
     justify-content: space-between;
     aspect-ratio: 15/16;
+    overflow: hidden;
     @media screen and (max-width: 768px) {
         aspect-ratio: 9/4;
     }
@@ -247,7 +248,7 @@
         display: none;
     }
 
-    & .slide {
+     .slide {
         aspect-ratio: 3/4;
         width: 100%;
         position: relative;
@@ -272,7 +273,7 @@
     border-radius: 10px;
     overflow: hidden;
 
-    & .slide {
+     .slide {
         aspect-ratio: 3/4;
 
         & img {
@@ -330,13 +331,13 @@
     .userActivityBlock {
         width: 100%;
 
-        & .userActivityHeader {
+         .userActivityHeader {
             display: flex;
             align-items: center;
             flex-direction: row;
             margin-bottom: 20px;
 
-            & .headerTitle {
+             .headerTitle {
                 font-size: 20px;
                 position: relative;
                 padding: 0 10px;
@@ -373,7 +374,7 @@
 
         }
 
-        & .userActivityBody {
+         .userActivityBody {
             display: flex;
             flex-direction: column;
             row-gap: 20px;
@@ -381,14 +382,13 @@
         }
 
     }
+}
 
-    & .rating {
-        max-width: 320px;
-        @media screen and (max-width: 768px) {
-            max-width: 100%;
-        }
+.rating {
+    max-width: 320px;
+    @media screen and (max-width: 768px) {
+        max-width: 100%;
     }
-
 }
 
 

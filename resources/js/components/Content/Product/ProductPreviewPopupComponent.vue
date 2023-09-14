@@ -31,7 +31,8 @@
             </Swiper>
 
             <div :class="$style.productContent">
-                <router-link to="#" @click="setProductPreviewPopupState(false)" :class="$style.title">
+                <router-link :to="{name: 'product', params: {productId: product.id}}"
+                             @click="setProductPreviewPopupState(false)" :class="$style.title">
                     {{ product.title }}
                 </router-link>
                 <StarsRatingComponent/>
@@ -59,6 +60,7 @@ import ButtonComponent from "../../UI/Buttons/ButtonComponent.vue";
 import LikeComponent from "../../UI/LikeComponent/LikeComponent.vue";
 import SwiperPrevSlideButton from "../../Sliders/SwiperPrevSlideButton.vue";
 import SwiperNextSlideButton from "../../Sliders/SwiperNextSlideButton.vue";
+import 'swiper/css';
 
 const store = useStore();
 const productPreviewPopupState = computed(() => store.state.productPreview.productPreviewPopupState)
