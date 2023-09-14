@@ -4,7 +4,7 @@
         <div :class="bodyClasses">
             <slot/>
         </div>
-        <a @click="link ? null : openOrClose()" :class="[$style.button, buttonClass]">
+        <a @click="link ? linkScrollTo() : openOrClose()" :class="[$style.button, buttonClass]">
             {{ link ? "Подробнее" : state ? "Свернуть" : "Развернуть" }}</a>
     </div>
 </template>
@@ -33,6 +33,13 @@ const bodyClasses = computed(() => {
 function openOrClose() {
     state.value = !state.value;
 }
+function linkScrollTo(){
+    const element = document.getElementById(props.link);
+    if (element){
+        element.scrollIntoView({behavior: 'smooth', block: 'center'})
+    }
+}
+
 </script>
 
 <style module>

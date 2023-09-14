@@ -13,10 +13,6 @@ class UserController extends Controller
 
     public function __invoke(): JsonResponse
     {
-        if (auth('sanctum')->check()) {
-            $user = auth('sanctum')->user();
-            return $this->success(new UserResource($user));
-        }
-        return $this->error(null, "Пользователь не авторизирован", 401);
+        return $this->success(auth('sanctum')->check());
     }
 }

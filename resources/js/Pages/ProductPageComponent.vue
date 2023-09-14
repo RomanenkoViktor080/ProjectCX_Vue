@@ -21,15 +21,15 @@
                                             :class-nav-wrapper="$style.navSlider"/>
             </div>
             <div :class="$style.productShortInfo">
-                                <ShowMoreOrLessProductDescriptionComponent :title-class="$style.descriptionShortTitle"
-                                                                           title="Описание"
-                                                                           :class="$style.descriptionShort" :link="true">
-                                    {{ product.description }}
-                                </ShowMoreOrLessProductDescriptionComponent>
+                <ShowMoreOrLessProductDescriptionComponent :title-class="$style.descriptionShortTitle"
+                                                           title="Описание"
+                                                           :class="$style.descriptionShort" link="description">
+                    {{ product.description }}
+                </ShowMoreOrLessProductDescriptionComponent>
                 <ShowMoreOrLessProductCharacteristicsComponent :title-class="$style.characteristicsShortTitle"
                                                                title="Характеристики"
                                                                :wrapper-class="$style.characteristicsShort"
-                                                               :link="true"/>
+                                                               link="characteristic"/>
             </div>
             <div :class="$style.aSideBlock">
                 <div :class="$style.productASide">
@@ -48,14 +48,14 @@
         </div>
         <div :class="$style.productMain">
             <div :class="$style.productInfo">
-                <ShowMoreOrLessProductCharacteristicsComponent title="Характеристики"
+                <ShowMoreOrLessProductCharacteristicsComponent id="characteristic" title="Характеристики"
                                                                :title-class="$style.characteristicsTitle"/>
-                                    <div>
-                                        <ShowMoreOrLessProductDescriptionComponent title="Описание"
-                                                                                   :title-class="$style.descriptionTitle">
-                                            {{ product.description }}
-                                        </ShowMoreOrLessProductDescriptionComponent>
-                                    </div>
+                <div>
+                    <ShowMoreOrLessProductDescriptionComponent id="description" title="Описание"
+                                                               :title-class="$style.descriptionTitle">
+                        {{ product.description }}
+                    </ShowMoreOrLessProductDescriptionComponent>
+                </div>
             </div>
         </div>
         <div :class="$style.mobileOrderBlock">

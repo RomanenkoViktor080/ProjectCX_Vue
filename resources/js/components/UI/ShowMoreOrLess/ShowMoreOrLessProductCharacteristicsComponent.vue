@@ -9,8 +9,9 @@
         <dd :class="$style.characteristicsItemValue">{{ item.value }}</dd>
         </dl>
     </div>
-    <a @click="link ? null : setShowStatus()"
-        :class="$style.button">{{ link ? "Подробнее" : showStatus ? "Свернуть" : "Развернуть" }}</a>
+    <a @click="link ? linkScrollTo() : setShowStatus()" :class="$style.button">
+        {{ link ? "Подробнее" : showStatus ? "Свернуть" : "Развернуть" }}
+    </a>
     </div>
 </template>
 
@@ -24,7 +25,7 @@ const props = defineProps({
     wrapperClass: {required: false},
     titleClass: {required: false},
     bodyClass: {required: false},
-    link: {default: false, required: false}
+    link: {default: false, required: false},
 })
 
 const items = [{title: "Модель", value: "51095YQE"}, {
@@ -41,6 +42,13 @@ const showStatus = ref(false)
 function setShowStatus(){
     showStatus.value = !showStatus.value;
 }
+function linkScrollTo(){
+    const element = document.getElementById(props.link)
+    if (element){
+        element.scrollIntoView({behavior: 'smooth', block: 'center'})
+    }
+}
+
 </script>
 
 <style module>

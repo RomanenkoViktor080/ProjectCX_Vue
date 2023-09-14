@@ -23,8 +23,14 @@ const store = useStore();
 const productPreviewPopupState = computed(() => store.state.productPreview.productPreviewPopupState)
 const reloadBasket = useBasketProductReload();
 
-axios.get('/api/user').then(() => {
-    store.dispatch('changeAuthState', true);
+
+axios.get('/api/user').then((response) => {
+    if (!response.data) {
+        Cookies.remove('auth_token', {
+            path: '/'
+        });
+    }
+    store.dispatch('changeAuthState', response.data);
 }).catch(() => {
     store.dispatch('changeAuthState', false);
     Cookies.remove('auth_token', {
