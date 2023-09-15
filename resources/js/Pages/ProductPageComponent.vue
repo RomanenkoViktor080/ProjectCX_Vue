@@ -41,8 +41,7 @@
                             {{ product.price }} ₽
                         </div>
                     </div>
-                    <ButtonComponent :class="$style.button" @click="addItemToBasket(productId)">В корзину
-                    </ButtonComponent>
+                    <ProductBasketActionsComponent :product="product"/>
                 </div>
             </div>
         </div>
@@ -63,7 +62,7 @@
                 <div :class="$style.productPriceLower">{{ product.price }} ₽</div>
                 <div :class="$style.productPriceOld">{{ product.price }} ₽</div>
             </div>
-            <ButtonComponent :class="$style.button" @click="addItemToBasket(productId)">В корзину</ButtonComponent>
+            <ProductBasketActionsComponent :product="product"/>
         </div>
         <div :class="$style.userActivityAndRating">
             <div :class="$style.userActivityBlock">
@@ -95,9 +94,7 @@
 
 import {computed, ref, watchEffect} from "vue";
 import {useRoute} from "vue-router";
-import useBasketAddItem from "../hooks/BasketHooks/useBasketAddItem.js";
 import StarsRatingComponent from "../components/UI/Raiting/StarsRatingComponent.vue";
-import ButtonComponent from "../components/UI/Buttons/ButtonComponent.vue";
 import ProductRatingComponent from "../components/Content/Product/ProductRatingComponent.vue";
 import ProductCommentComponent from "../components/Content/Product/ProductCommentComponent.vue";
 import SwiperProductPageComponent from "../components/Sliders/SwiperProductPageComponent.vue";
@@ -105,11 +102,11 @@ import ShowMoreOrLessProductCharacteristicsComponent
     from "../components/UI/ShowMoreOrLess/ShowMoreOrLessProductCharacteristicsComponent.vue";
 import ShowMoreOrLessProductDescriptionComponent
     from "../components/UI/ShowMoreOrLess/ShowMoreOrLessProductDescriptionComponent.vue";
+import ProductBasketActionsComponent from "../components/Content/Product/ProductBasketActionsComponent.vue";
 
 const route = useRoute();
 const productId = computed(() => route.params.productId);
 const product = ref();
-const addItemToBasket = useBasketAddItem();
 const userActivityContent = ref(true);
 
 

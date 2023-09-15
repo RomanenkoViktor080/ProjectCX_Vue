@@ -18,16 +18,12 @@ import {useStore} from "vuex";
 import useBasketChangeQuantity from "../../../hooks/BasketHooks/useBasketChangeQuantity.js";
 
 const props = defineProps({
-    initialQuantity: {
-        type: Number,
-        required: true
-    },
     product: {
         required: true
     }
 });
 
-const inputValue = ref(props.initialQuantity);
+const inputValue = ref(props.product.quantity ?? 1);
 const store = useStore();
 const changeQuantity = useBasketChangeQuantity();
 

@@ -23,16 +23,7 @@
             <div :class="$style.productFooter">
                 <StarsRatingComponent/>
                 <div :class="$style.actions">
-                    <template v-if="inBasket">
-                        <CounterComponent :initial-quantity="inBasket.quantity" :product="inBasket"/>
-                        <font-awesome-icon icon="fa-solid fa-trash" :class="$style.actionIcon"
-                                           @click="removeFromBasket(product.id)"
-                        />
-                    </template>
-                    <ButtonComponent v-else :class="$style.productButton"
-                                     @click="() => addToBasket(product.id)">
-                        В корзину
-                    </ButtonComponent>
+                    <ProductBasketActionsComponent :product="product"/>
                     <LikeComponent :prop-class="$style.actionIcon"/>
 
                 </div>
@@ -49,6 +40,7 @@ import ButtonComponent from "../../UI/Buttons/ButtonComponent.vue";
 import useBasketAddItem from "../../../hooks/BasketHooks/useBasketAddItem.js";
 import useBasketRemoveProduct from "../../../hooks/BasketHooks/useBasketRemoveProduct.js";
 import StarsRatingComponent from "../../UI/Raiting/StarsRatingComponent.vue";
+import ProductBasketActionsComponent from "./ProductBasketActionsComponent.vue";
 
 const props = defineProps({
     product: {
@@ -57,10 +49,6 @@ const props = defineProps({
     }
 });
 const store = useStore();
-const basketProduct = computed(() => store.state.basket.basketProducts);
-const inBasket = computed(() => basketProduct.value.find(basketItem => Number(basketItem.id) === Number(props.product.id)));
-const addToBasket = useBasketAddItem();
-const removeFromBasket = useBasketRemoveProduct();
 
 async function openProductPreviewPopup(id) {
     try {

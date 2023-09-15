@@ -31,7 +31,7 @@
                                                    @click="basketDeleteProduct(product.id)"/>
                             </div>
                             <div :class="$style.basketItemActionsLeft">
-                                <CounterComponent :product="product" :initial-quantity="product.quantity"/>
+                                <CounterComponent :product="product"/>
                             </div>
                         </div>
                     </div>
