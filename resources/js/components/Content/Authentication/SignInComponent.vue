@@ -1,22 +1,24 @@
 <template>
-    <div :class="$style.formRow">
-        <span :class="$style.formRowTitle">Введите email</span>
-        <InputTextFormComponent v-model="signInData.email" :class="$style.inputForm"/>
-        <div v-if="errors?.email" :class="$style.errorField">{{ errors.email[0] }}</div>
-    </div>
-    <div :class="$style.formRow">
-        <span :class="$style.formRowTitle">Введите пароль</span>
-        <InputPasswordFormComponent v-model="signInData.password" :class="$style.inputForm"/>
-        <div v-if="errors?.password" :class="$style.errorField">{{ errors.password[0] }}</div>
-    </div>
-    <div :class="$style.formRow">
-        <CheckboxBoolComponent v-model="signInData.remember" id="remember_me" :value="true">
-            Запомнить меня
-        </CheckboxBoolComponent>
-    </div>
-    <ButtonComponent :class="$style.buttonForm" @click="signIn(signInData)">
-        Войти
-    </ButtonComponent>
+    <form @submit.prevent="signIn(signInData)">
+        <div :class="$style.formRow">
+            <span :class="$style.formRowTitle">Введите email</span>
+            <InputTextFormComponent v-model="signInData.email" :class="$style.inputForm"/>
+            <div v-if="errors?.email" :class="$style.errorField">{{ errors.email[0] }}</div>
+        </div>
+        <div :class="$style.formRow">
+            <span :class="$style.formRowTitle">Введите пароль</span>
+            <InputPasswordFormComponent v-model="signInData.password" :class="$style.inputForm"/>
+            <div v-if="errors?.password" :class="$style.errorField">{{ errors.password[0] }}</div>
+        </div>
+        <div :class="$style.formRow">
+            <CheckboxBoolComponent v-model="signInData.remember" id="remember_me" :value="true">
+                Запомнить меня
+            </CheckboxBoolComponent>
+        </div>
+        <ButtonComponent :class="$style.buttonForm">
+            Войти
+        </ButtonComponent>
+    </form>
 </template>
 
 <script setup>

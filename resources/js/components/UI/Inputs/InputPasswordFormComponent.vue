@@ -1,7 +1,7 @@
 <template>
     <div :class="$style.inputPasswordContainer">
         <input :type="inputType ? 'text' : 'password'" v-bind="$attrs" :value="modelValue" @input="updateValue" :class="$style.input"/>
-        <button :class="$style.button" @click="setInputType">
+        <button type="button" :class="$style.button" @click="setInputType">
             <font-awesome-icon icon="fa-regular fa-eye" v-if="inputType" :class="$style.buttonIcon"/>
             <font-awesome-icon icon="fa-regular fa-eye-slash" v-else :class="$style.buttonIcon"/>
         </button>

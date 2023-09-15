@@ -1,27 +1,28 @@
 <template>
-    <div :class="$style.formRow">
-        <span :class="$style.formRowTitle">Введите email</span>
-        <InputTextFormComponent v-model="signUpData.email" :class="$style.inputForm"/>
-        <div v-if="errors?.email" :class="$style.errorField">{{ errors.email[0] }}</div>
-    </div>
-    <div :class="$style.formRow">
-        <span :class="$style.formRowTitle">Введите пароль</span>
-        <InputPasswordFormComponent v-model="signUpData.password" :class="$style.inputForm"/>
-        <div v-if="errors?.password" :class="$style.errorField">{{ errors.password[0] }}</div>
-    </div>
-    <div :class="$style.formRow">
-        <span :class="$style.formRowTitle">Повторите пароль</span>
-        <InputPasswordFormComponent v-model="signUpData.password_confirmation" :class="$style.inputForm"/>
-    </div>
-    <div :class="$style.formRow">
-        <CheckboxBoolComponent id="remember_me" v-model="signUpData.remember" :value="true">
-            Запомнить меня
-        </CheckboxBoolComponent>
-    </div>
-    <ButtonComponent
-        @click="signUp(signUpData)"
-        :class="$style.buttonForm">Зарегистрироватся
-    </ButtonComponent>
+    <form @submit.prevent="signUp(signUpData)">
+        <div :class="$style.formRow">
+            <span :class="$style.formRowTitle">Введите email</span>
+            <InputTextFormComponent v-model="signUpData.email" :class="$style.inputForm"/>
+            <div v-if="errors?.email" :class="$style.errorField">{{ errors.email[0] }}</div>
+        </div>
+        <div :class="$style.formRow">
+            <span :class="$style.formRowTitle">Введите пароль</span>
+            <InputPasswordFormComponent v-model="signUpData.password" :class="$style.inputForm"/>
+            <div v-if="errors?.password" :class="$style.errorField">{{ errors.password[0] }}</div>
+        </div>
+        <div :class="$style.formRow">
+            <span :class="$style.formRowTitle">Повторите пароль</span>
+            <InputPasswordFormComponent v-model="signUpData.password_confirmation" :class="$style.inputForm"/>
+        </div>
+        <div :class="$style.formRow">
+            <CheckboxBoolComponent id="remember_me" v-model="signUpData.remember" :value="true">
+                Запомнить меня
+            </CheckboxBoolComponent>
+        </div>
+        <ButtonComponent :class="$style.buttonForm">
+            Зарегистрироватся
+        </ButtonComponent>
+    </form>
 </template>
 
 <script setup>
