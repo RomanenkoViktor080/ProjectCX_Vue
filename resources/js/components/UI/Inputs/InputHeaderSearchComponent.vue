@@ -1,5 +1,5 @@
 <template>
-    <form :class="[$style.headerSearchContainer, containerPropClass]">
+    <form :class="$style.headerSearchContainer" v-bind="$attrs">
         <input :class="$style.searchInput" type="text" name="#" :placeholder="placeholder"/>
         <button :class="$style.button" @click.prevent>
             <font-awesome-icon :class="$style.buttonIcon" icon="fa-solid fa-magnifying-glass"/>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    props:['placeholder', 'containerPropClass']
+    props:['placeholder']
 }
 </script>
 

@@ -15,7 +15,7 @@
                                            @click="changeSearchPopupState(true)"/>
                     </div>
                 </div>
-                <InputHeaderSearchComponent placeholder="Поиск" :containerPropClass="$style.headerSearch"/>
+                <InputHeaderSearchComponent placeholder="Поиск" :class="$style.headerSearch"/>
                 <div :class="$style.headerActions">
                     <router-link :to="{name: 'profile-home'}" v-if="isAuth" :class="$style.headerActionItem" >
                         <font-awesome-icon icon="fa-solid fa-user" :class="$style.headerActionItemIcon"/>
@@ -40,7 +40,7 @@
         </div>
         <PopupCatalogComponent/>
         <PopupAuthenticationComponent/>
-        <!--<PopupSearchMobileComponent active={searchPopupState} setActive={setSearchPopupState}/>-->
+        <PopupSearchMobileComponent :active="searchPopupState" :set-active="changeSearchPopupState"/>
     </header>
 </template>
 
@@ -52,6 +52,7 @@ import PopupCatalogComponent from "../Popups/PopupCatalogComponent.vue";
 import PopupAuthenticationComponent from "../Popups/PopupAuthenticationComponent.vue";
 import {useStore} from "vuex";
 import {computed, ref} from "vue";
+import PopupSearchMobileComponent from "../Popups/PopupSearchMobileComponent.vue";
 
 const store = useStore();
 const searchPopupState = ref(false)

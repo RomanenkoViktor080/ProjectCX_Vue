@@ -8,7 +8,7 @@
                                       :min-total="filter.values.min" :max-total="filter.values.max"
                                       :name="filter.slug"
                                       :get-filter-data="getFilterDataDebounce"
-                                      :key="filter.slug"
+                                      :key="localQueryParams.params.getAll(filter.slug).join('')"
                 />
                 <FilterChooseBlock v-else
                                    :title="filter.title"
@@ -17,7 +17,7 @@
                                    :get-filter-data="getFilterDataDebounce"
                                    :type="filter.type"
                                    :name="filter.slug"
-                                   :key="filter.slug"
+                                   :key="filter.slug + filter.values.length"
                 />
             </template>
             <ButtonComponent :class="$style.closeMobileCatalogButton" @click="applyFilter">Применить</ButtonComponent>
