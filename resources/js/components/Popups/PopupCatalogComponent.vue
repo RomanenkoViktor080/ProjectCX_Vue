@@ -5,7 +5,7 @@
                 <div :class="$style.mobileBackButton" @click="changeCatalogPopupState(false)">Закрыть</div>
                 <template v-for="(category, index) in categories">
                     <div :class="[$style.categoryMenuItem,
-                        (this.catalogMenuState === index || (this.catalogMenuState === null && index === 0)) && $style.menuItemActive]"
+                        (catalogMenuState === index || (catalogMenuState === null && index === 0)) && $style.menuItemActive]"
                          @click="changeCatalogMenuState(index)">
                         <span :class="$style.categoryMenuItemText">
                         {{ category.title }}
