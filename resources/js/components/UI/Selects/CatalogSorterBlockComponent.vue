@@ -25,23 +25,25 @@ const props = defineProps({
 const route = useRoute();
 const router = useRouter();
 const sorterData = ref([]);
-const selected = ref("default");
+const selected = computed(() => {
+    if (sorterData.value.some(([i, k]) => i === route.query.sort)) {
+        return route.query.sort;
+    }
+    return "default"
+})
 const queryParams = computed(() => route.query);
 
 const changeSort = (e) => {
     router.push({query: {...queryParams.value, sort: e.target.value}});
 }
 
-onMounted(() => {
-    axios.get('/api/sorter-data').then(response => {
+onMounted(async () => {
+    try {
+        const response = await axios.get('/api/sorter-data');
         sorterData.value = Object.entries(response.data);
-        if (sorterData.value.some(([i, k]) => i === route.query.sort)) {
-            selected.value = route.query.sort;
-        }
-    })
-        .catch(error => {
-            console.log(error);
-        })
+    } catch (errors) {
+        console.log(errors);
+    }
 })
 </script>
 

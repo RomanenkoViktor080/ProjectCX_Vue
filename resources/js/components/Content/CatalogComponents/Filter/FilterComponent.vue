@@ -8,7 +8,7 @@
                                       :min-total="filter.values.min" :max-total="filter.values.max"
                                       :name="filter.slug"
                                       :get-filter-data="getFilterDataDebounce"
-                                      :key="localQueryParams.params.getAll(filter.slug).join('')"
+                                      :key="localQueryParams.params.get(filter.slug)"
                 />
                 <FilterChooseBlock v-else
                                    :title="filter.title"
@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import {computed, reactive, ref, watch} from "vue";
+import {computed, reactive, ref, watch, watchEffect} from "vue";
 import {useRoute, useRouter} from "vue-router";
 import ButtonComponent from "../../../UI/Buttons/ButtonComponent.vue";
 import FilterRangeComponent from "./FilterRangeComponent.vue";
@@ -50,11 +50,13 @@ const category = computed(() => route.params.category);
 const queryParams = computed(() => route.query)
 const localQueryParams = reactive({params: new URLSearchParams(queryParams.value)})
 
-watch([queryParams, category], ([newQueryParams, newCategory]) => {
-    if (newCategory) {
-        getFilterData(new URLSearchParams(newQueryParams))
+
+watchEffect(() => {
+    if (category.value) {
+        localQueryParams.params = new URLSearchParams(queryParams.value)
+        getFilterData(new URLSearchParams(queryParams.value))
     }
-}, {immediate: true})
+})
 
 function getFilterData(queryParams) {
     axios.get(`/api/catalog/filter-data/${category.value}${getSearchParams(queryParams)}`)
