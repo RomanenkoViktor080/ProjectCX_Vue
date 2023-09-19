@@ -1,6 +1,6 @@
 <template>
     <div :class="$style.catalogSorter" v-if="sorterData.length">
-        <select v-model="selected" @change="changeSort" :class="$style.catalogSelect">
+        <select :value="selected" @change="changeSort" :class="$style.catalogSelect">
             <option hidden value="default">Сортировка</option>
             <option v-for="[value, title] in sorterData"
                     :value="value"

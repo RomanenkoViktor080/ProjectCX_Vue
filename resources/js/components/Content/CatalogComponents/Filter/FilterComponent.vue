@@ -17,7 +17,7 @@
                                    :get-filter-data="getFilterDataDebounce"
                                    :type="filter.type"
                                    :name="filter.slug"
-                                   :key="filter.slug + filter.values.length"
+                                   :key="localQueryParams.params.get('sort') + filter.slug + filter.values.length"
                 />
             </template>
             <ButtonComponent :class="$style.closeMobileCatalogButton" @click="applyFilter">Применить</ButtonComponent>
