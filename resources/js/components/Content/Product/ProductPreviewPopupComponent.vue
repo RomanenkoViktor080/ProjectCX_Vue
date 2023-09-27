@@ -41,7 +41,7 @@
                     <span :class="$style.productPriceOld">{{ product.price }} ₽</span>
                 </div>
                 <div :class="$style.actions">
-                    <ButtonComponent>В корзину</ButtonComponent>
+                    <ProductBasketActionsComponent :product="product"/>
                     <LikeComponent :prop-class="$style.like"/>
                 </div>
             </div>
@@ -61,6 +61,7 @@ import LikeComponent from "../../UI/LikeComponent/LikeComponent.vue";
 import SwiperPrevSlideButton from "../../Sliders/SwiperPrevSlideButton.vue";
 import SwiperNextSlideButton from "../../Sliders/SwiperNextSlideButton.vue";
 import 'swiper/css';
+import ProductBasketActionsComponent from "./ProductBasketActionsComponent.vue";
 
 const store = useStore();
 const productPreviewPopupState = computed(() => store.state.productPreview.productPreviewPopupState)
