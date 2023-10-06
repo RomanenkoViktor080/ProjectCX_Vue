@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('price')->default(0);
             $table->text('description');
             $table->foreignId('category_id')
-                ->index('category_id-idx')
+                ->index('products_category_id-idx')
                 ->references('id')->on('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,14 +25,13 @@ class AuthenticationController extends Controller
             'email' => $data['email']
         ], [
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => bcrypt($data['password']),
         ]);
-        Auth::login($user, $data['remember']);
         $token = $user->createToken('AuthToken')->plainTextToken;
 //        event(new Registered($user));
         return $this->success([
             'email' => $user->email,
-            'lifetime' => $data['remember'] ? 60 * 60 * 24 * 30 : null,
+            'lifetime' => isset($data['remember']) && $data['remember'] ? 60 * 60 * 24 * 30 : null,
             'token' => $token,
         ]);
     }
@@ -39,20 +39,20 @@ class AuthenticationController extends Controller
     public function login(UserLoginRequest $request): JsonResponse
     {
         $data = $request->validated();
-        if (!Auth::attempt($request->only(['email', 'password']), true)) {
-            return response()->json(['errors' => ['email' => ['Email или пароль введены неправильно!']]], 422);
+        if (!auth()->attempt($request->only(['email', 'password']))) {
+            return response()->json(['errors' => ['email' => ['Email или пароль введены неправильно!']]], 401);
         }
         $user = User::query()->where('email', $data['email'])->first();
         $token = $user->createToken('AuthToken')->plainTextToken;
         return $this->success([
             'email' => $user->email,
-            'lifetime' => $data['remember'] ? 60 * 60 * 24 * 30 : null,
+            'lifetime' => isset($data['remember']) && $data['remember'] ? 60 * 60 * 24 * 30 : null,
             'token' => $token,
         ]);
     }
 
 
-    public function logout(Request $request)
+    public function logout(Request $request): Response
     {
         auth("sanctum")->user()->currentAccessToken()->delete();
         return response()->noContent();

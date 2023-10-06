@@ -4,9 +4,9 @@
             <div :class="$style.catalogTitleText">
                 {{ category }}
             </div>
-            <div :class="$style.catalogProductCount">
-                0 товаров
-            </div>
+            <!--            <div :class="$style.catalogProductCount">
+                            0 товаров
+                        </div>-->
         </div>
         <div :class="$style.catalogBody">
             <FilterComponent :class="catalogFilterClasses"

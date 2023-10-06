@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
             $table->string('title')->unique();
-            $table->string('slug')->index('slug-idx');
+            $table->string('slug')
+                ->index('attributes_slug-idx');
         });
     }
 

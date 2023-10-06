@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')
-                ->index('slug-idx');
+                ->index('categories_slug-idx');
             $table->foreignId('category_id')->nullable()
-                ->index('category_id-idx')
+                ->index('categories_category_id-idx')
                 ->references('id')->on('categories');
             $table->unsignedBigInteger('depth')->default(0);
         });

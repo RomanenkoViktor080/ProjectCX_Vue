@@ -17,9 +17,9 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'email' => 'test@gmail.com',
+            'email' => $this->faker->email,
             'email_verified_at' => now(),
-            'password' => bcrypt('testps'), // password
+            'password' => bcrypt($this->faker->password), // password
             'remember_token' => Str::random(10),
         ];
     }

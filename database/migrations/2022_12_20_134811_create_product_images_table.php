@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->unsignedInteger("position")->default(1);
 
             $table->foreignId('product_id')
-                ->index('product_id-idx')
+                ->index('product_images_product_id-idx')
                 ->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
 
         });

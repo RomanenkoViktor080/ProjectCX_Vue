@@ -13,18 +13,18 @@ return new class extends Migration {
         Schema::create('category_attribute_values', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_attribute_id')
-                ->index('category_attribute_id-idx')
+                ->index('category_attribute_values_category_attribute_id-idx')
                 ->references('id')->on('category_attributes')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('attribute_value_id')
-                ->index('attribute_value_id-idx')
+                ->index('category_attribute_values_attribute_value_id-idx')
                 ->references('id')->on('attribute_values')->cascadeOnDelete()->cascadeOnUpdate();
 
             //для поиска всех значений атрибута для нескольких категорий (возможно вынести в отдельную таблицу)
                 $table->foreignId('category_id')
-                ->index('category_id-idx')
+                ->index('category_attribute_values_category_id-idx')
                 ->references('id')->on('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('attribute_id')
-                ->index('attribute_id-idx')
+                ->index('category_attribute_values_attribute_id-idx')
                 ->references('id')->on('attributes')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }

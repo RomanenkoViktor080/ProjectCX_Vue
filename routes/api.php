@@ -68,7 +68,7 @@ Route::patch('/basket/{product}/quantity', BasketProductChangeQuantityController
 
 // Маршруты только для аутентифицированных пользователей
 Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::post('/logout', [AuthenticationController::class, 'logout']);
+        Route::post('/logout', [AuthenticationController::class, 'logout']);
 });
 
 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('attribute_types', function (Blueprint $table) {
             $table->id();
             $table->foreignId('attribute_id')
-                ->index('attribute_id-idx')
+                ->index('attribute_types_attribute_id-idx')
                 ->references('id')->on('attributes')->cascadeOnDelete()->cascadeOnUpdate();
             $table->unsignedInteger('type');
         });

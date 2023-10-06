@@ -89,13 +89,15 @@ class DatabaseSeeder extends Seeder
          * @var User $user
          */
 
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'email' => 'test@gmail.com',
+            'password' => bcrypt('testps')
+        ]);
         //Заполнение таблицы корзины для пользователя
         $user->basketProducts()
             ->attach($basketProducts->map(function ($basketProduct) {
                 return ['product_id' => $basketProduct->id, 'quantity' => rand(1, 10)];
             }));
-
     }
 }
 

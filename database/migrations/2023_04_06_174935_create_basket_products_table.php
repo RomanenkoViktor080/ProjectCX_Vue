@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('quantity')->default(1);
             $table->foreignId('product_id')
-                ->index('product_id-idx')
+                ->index('basket_products_product_id-idx')
                 ->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('user_id')
-                ->index('user_id-idx')
+                ->index('basket_products_user_id-idx')
                 ->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }

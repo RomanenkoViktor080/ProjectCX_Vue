@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('category_attributes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')
-                ->index('category_id-idx')
+                ->index('category_attributes_category_id-idx')
                 ->references('id')->on('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('attribute_id')
-                ->index('attribute_id-idx')
+                ->index('category_attributes_attribute_id-idx')
                 ->references('id')->on('attributes')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }

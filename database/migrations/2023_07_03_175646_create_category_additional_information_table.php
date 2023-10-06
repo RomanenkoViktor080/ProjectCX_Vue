@@ -12,7 +12,8 @@ return new class extends Migration {
     {
         Schema::create('category_additional_information', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->index('category_id-idx')->references('id')->on('categories');
+            $table->foreignId('category_id')
+                ->index('category_additional_information_category_id-idx')->references('id')->on('categories');
             $table->string('image');
             $table->string('icon');
         });
