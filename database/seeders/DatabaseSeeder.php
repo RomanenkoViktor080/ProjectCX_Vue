@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
             });
         }
 
-        $basketProducts = ProductModel::all()->shuffle()->take(60);
+        $basketProducts = ProductModel::all()->random(60);
         /**
          * @var User $user
          */
@@ -95,9 +95,7 @@ class DatabaseSeeder extends Seeder
         ]);
         //Заполнение таблицы корзины для пользователя
         $user->basketProducts()
-            ->attach($basketProducts->map(function ($basketProduct) {
-                return ['product_id' => $basketProduct->id, 'quantity' => rand(1, 10)];
-            }));
+            ->attach($basketProducts->map(fn ($basketProduct) => ['product_id' => $basketProduct->id, 'quantity' => rand(1, 10)]));
     }
 }
 

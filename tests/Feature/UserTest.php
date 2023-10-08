@@ -118,13 +118,24 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function sign_out_authorized_user_wrong_test(): void
+    public function sign_out_authorized_user_test(): void
     {
         Sanctum::actingAs(
             User::factory()->create(),
             ['*']
         );
+        $this->assertAuthenticated('sanctum');
         $response = $this->post('/api/logout');
         $response->assertNoContent();
+    }
+
+    /**
+     * @test
+     */
+    public function sign_out_unauthorized_user_test(): void
+    {
+        $this->assertGuest('sanctum');
+        $response = $this->post('/api/logout');
+        $response->assertUnauthorized();
     }
 }
