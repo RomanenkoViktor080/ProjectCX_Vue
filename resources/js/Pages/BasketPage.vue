@@ -6,13 +6,13 @@
             </div>
             <div :class="$style.basketBody">
                 <div v-for="product in basketProducts" :class="$style.basketItem" :key="product.id">
-                    <div :class="$style.basketItemImage">
+                    <router-link :to="{name: 'product', params: {productId: product.id}}" :class="$style.basketItemImage">
                         <img :src="product?.frontImage" loading="lazy" alt="Товар">
-                    </div>
+                    </router-link>
                     <div :class="$style.basketItemMainBlock">
                         <div :class="$style.basketItemInfo">
-                            <div :class="$style.basketItemTitle">
-                                {{ product.title }}
+                            <div :class="$style.basketItemTitleContainer">
+                                <router-link :to="{name: 'product', params: {productId: product.id}}" :class="$style.basketItemTitle">{{ product.title }}</router-link>
 
                             </div>
                             <div :class="$style.basketItemPrices">

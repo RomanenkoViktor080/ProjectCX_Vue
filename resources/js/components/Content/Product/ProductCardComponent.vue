@@ -52,7 +52,7 @@ const store = useStore();
 
 async function openProductPreviewPopup(id) {
     try {
-        const response = await axios.get(`/api/productPreview/${id}`)
+        const response = await axios.get(`/api/product-preview/${id}`)
         store.commit('setProductPreviewData', response.data)
         store.commit('setProductPreviewPopupState', true)
     } catch (error) {

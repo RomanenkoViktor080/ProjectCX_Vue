@@ -15,7 +15,7 @@ return new class extends Migration {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->unsignedBigInteger('price')->default(0);
+            $table->unsignedBigInteger('price');
             $table->text('description');
             $table->foreignId('category_id')
                 ->index('products_category_id-idx')

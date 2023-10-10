@@ -10,7 +10,7 @@ class ProductAllController extends BaseController
 {
     public function getCardProducts(): JsonResponse
     {
-        $products = ProductModel::all();
+        $products = ProductModel::query()->with('frontImage')->get();
         return $this->success(ProductCardsResource::collection($products));
     }
 }

@@ -35,6 +35,8 @@
                     position: relative;
                     flex: 0 0 100px;
                     aspect-ratio: 3 / 4;
+                    overflow: hidden;
+                    border-radius: var(--main-radius);
 
                     & img {
                         position: absolute;
@@ -61,20 +63,27 @@
                             flex-direction: column-reverse;
                         }
 
-                        & .basketItemTitle {
+                        & .basketItemTitleContainer {
                             min-width: 50%;
                             width: auto;
-                            overflow-wrap: anywhere;
-                            -webkit-line-clamp: 2;
-                            display: -webkit-box;
-                            -webkit-box-orient: vertical;
-                            overflow: hidden;
                             @media screen and (max-width: 1024px) {
                                 width: 100%;
+                            }
+
+                            & .basketItemTitle {
+                                max-width: 100%;
+                                overflow-wrap: anywhere;
+                                -webkit-line-clamp: 2;
+                                display: -webkit-box;
+                                -webkit-box-orient: vertical;
+                                overflow: hidden;
+                                text-decoration: none;
+                                color: black;
                             }
                         }
 
                         & .basketItemPrices {
+                            width: 100%;
                             overflow: hidden;
                             display: flex;
                             flex-direction: column;
