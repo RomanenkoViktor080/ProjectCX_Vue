@@ -15,7 +15,7 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function user_is_authorized_test(): void
+    public function user_is_authorized(): void
     {
         $user = User::factory()->create();
         $response = $this->actingAs($user)->get('/api/user');
@@ -27,7 +27,7 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function user_is_unauthorized_test(): void
+    public function user_is_unauthorized(): void
     {
         $response = $this->get('/api/user');
 
@@ -38,7 +38,7 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function sign_up_with_valid_data_test(): void
+    public function sign_up_with_valid_data(): void
     {
         $data = [
             'email' => 'test@gmail.com',
@@ -53,7 +53,7 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function sign_up_with_invalid_data_test(): void
+    public function sign_up_with_invalid_data(): void
     {
         $data = [
             'email' => 'asd',
@@ -69,7 +69,7 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function sign_in_with_valid_data_test(): void
+    public function sign_in_with_valid_data(): void
     {
         $user = User::factory()->create([
             'password' => bcrypt('testps')
@@ -85,7 +85,7 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function sign_in_with_invalid_data_test(): void
+    public function sign_in_with_invalid_data(): void
     {
         $user = User::factory()->create([
             'password' => bcrypt('testps')
@@ -102,7 +102,7 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function sign_in_with_wrong_data_test(): void
+    public function sign_in_with_wrong_data(): void
     {
         $user = User::factory()->create([
             'password' => bcrypt('testps')
@@ -118,7 +118,7 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function sign_out_authorized_user_test(): void
+    public function sign_out_authorized_user(): void
     {
         Sanctum::actingAs(
             User::factory()->create(),
@@ -132,7 +132,7 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function sign_out_unauthorized_user_test(): void
+    public function sign_out_unauthorized_user(): void
     {
         $this->assertGuest('sanctum');
         $response = $this->post('/api/logout');

@@ -11,14 +11,14 @@ class BasketProductStoreController extends BaseController
 {
     public function __invoke(Request $request): JsonResponse
     {
+        $product = ProductModel::query()->findOrFail($request->productId);
         $user = auth('sanctum')->user();
-        if (auth('sanctum')->check() && !$user->basketProducts->find($request->productId)) {
-            $user->basketProducts()->attach($request->productId);
+        if (auth('sanctum')->check() && !$user->basketProducts->find($product->id)) {
+            $user->basketProducts()->attach($product->id);
             $user->refresh();
-            $product = new ProductBasketResource($user->basketProducts->where('id', $request->productId)->first());
+            $product = new ProductBasketResource($user->basketProducts->where('id', $product->id)->first());
             return $this->success($product);
         }
-        $product = new ProductBasketResource(ProductModel::query()->findOrFail($request->productId));
-        return $this->success($product);
+        return $this->success(new ProductBasketResource($product));
     }
 }

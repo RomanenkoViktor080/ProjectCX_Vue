@@ -60,24 +60,26 @@ Route::post('/basket', BasketProductStoreController::class);
 //Получение данных корзины
 Route::post('/basket-data', BasketProductGetController::class);
 //Маршрут для удаления товара из корзины
-Route::delete('/basket/{productId}', BasketProductDeleteController::class);
+Route::delete('/basket/{product}', BasketProductDeleteController::class)->middleware(['middleware' => 'auth.api']);
 //Маршрут для изменения количеств товара в корзине пользователя
-Route::patch('/basket/{product}/quantity', BasketProductChangeQuantityController::class);
+Route::patch('/basket/{product}/quantity', BasketProductChangeQuantityController::class)->middleware(['middleware' => 'auth.api']);
 //End Работа с корзиной
 
 
 // Маршруты только для аутентифицированных пользователей
 Route::group(['middleware' => 'auth.api'], function () {
-        Route::post('/logout', [AuthenticationController::class, 'logout']);
+    Route::post('/logout', [AuthenticationController::class, 'logout']);
 });
 
 
 // отправка письма полсе аутентивикации или после запроса на смену пароль, также повторноя отпрака письма (!в разработке!)
 
 
-/*Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+/*
+Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
     ->middleware(['signed', 'throttle:6,1'])
-    ->name('verification.verify');*/
+    ->name('verification.verify');
+*/
 
 Route::get('/email/verify/{id}/{hash}', function (Request $request) {
     return 0;
@@ -86,6 +88,8 @@ Route::get('/email/verify/{id}/{hash}', function (Request $request) {
 // Resend link to verify email
 Route::post('/email/verify/resend', function (Request $request) {
     return 0;
-    /*    $request->user()->sendEmailVerificationNotification();
-        return back()->with('message', 'Verification link sent!');*/
+    /*
+    $request->user()->sendEmailVerificationNotification();
+        return back()->with('message', 'Verification link sent!');
+    */
 })->middleware(['auth:api', 'throttle:6,1'])->name('verification.send');

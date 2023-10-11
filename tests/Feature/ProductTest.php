@@ -16,7 +16,7 @@ class ProductTest extends TestCase
     /**
      * @test
      */
-    public function exist_product_get_card_data_test(): void
+    public function exist_product_get_card_data(): void
     {
         $product = ProductModel::factory()
             ->for(CategoryModel::factory(), 'category')
@@ -28,7 +28,7 @@ class ProductTest extends TestCase
     /**
      * @test
      */
-    public function not_exist_product_get_card_data_test(): void
+    public function not_exist_product_get_card_data(): void
     {
         $response = $this->get('/api/product/1');
         $response->assertStatus(404);
@@ -37,7 +37,7 @@ class ProductTest extends TestCase
     /**
      * @test
      */
-    public function exist_product_get_card_preview_data_test(): void
+    public function exist_product_get_card_preview_data(): void
     {
         $product = ProductModel::factory()
             ->for(CategoryModel::factory(), 'category')
@@ -49,7 +49,7 @@ class ProductTest extends TestCase
     /**
      * @test
      */
-    public function not_exist_product_get_card_preview_data_test(): void
+    public function not_exist_product_get_card_preview_data(): void
     {
         $response = $this->get('/api/product-preview/1');
         $response->assertStatus(404);
@@ -58,7 +58,7 @@ class ProductTest extends TestCase
     /**
      * @test
      */
-    public function get_all_product_data_card_test(): void
+    public function get_all_product_data_card(): void
     {
         $productCount = 3;
         ProductModel::factory()

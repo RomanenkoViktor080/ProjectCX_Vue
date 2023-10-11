@@ -9,7 +9,7 @@ export default function useBasketRemoveProduct() {
     function deleteItemFunction(id) {
         if (products.value.some(product => Number(product?.id) === Number(id))) {
             store.dispatch('changeBasketRemoveProduct', id);
-            if (isAuth) {
+            if (isAuth.value) {
                 axios.delete(`/api/basket/${id}`);
             }
         }
