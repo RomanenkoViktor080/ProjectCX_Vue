@@ -22,7 +22,7 @@ class ProductFilterController extends BaseController
                 ->where('slug', $category)
                 ->with('allChildrenCategories')->get();
             if ($categories->isEmpty()) {
-                throw new \Exception("Category not found");
+                throw new \Exception("Category not found", 404);
             }
             $categoriesIds = $categoryIdsAction->handle($categories);
 
@@ -39,7 +39,7 @@ class ProductFilterController extends BaseController
                 ->simplePaginate(20, ['*'], 'page', $request->page ?? 1);
             return $this->success(ProductCardsResource::collection($products));
         } catch (\Exception $exception) {
-            return $this->error(null, $exception->getMessage());
+            return $this->error($exception->getMessage(), '', $exception->getCode());
         }
     }
 }

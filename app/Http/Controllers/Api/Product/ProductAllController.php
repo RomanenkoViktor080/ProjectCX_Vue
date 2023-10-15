@@ -8,7 +8,7 @@ use Illuminate\Http\JsonResponse;
 
 class ProductAllController extends BaseController
 {
-    public function getCardProducts(): JsonResponse
+    public function __invoke(): JsonResponse
     {
         $products = ProductModel::query()->with('frontImage')->get();
         return $this->success(ProductCardsResource::collection($products));

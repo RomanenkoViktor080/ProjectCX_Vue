@@ -43,7 +43,7 @@ Route::get('/product/{product}', ProductGetController::class);
 //Маршрут для получения данных товара (краткая информация в popup)
 Route::get('/product-preview/{product}', ProductGetPreviewController::class);
 //Маршрут для получения всех товаров
-Route::get('/products', [ProductAllController::class, 'getCardProducts']);
+Route::get('/products', ProductAllController::class);
 //Маршрут для получения данных фильтра категории
 Route::get('/catalog/filter-data/{category}', FilterDataController::class);
 //Маршрут для получения отфильтрованных товаров

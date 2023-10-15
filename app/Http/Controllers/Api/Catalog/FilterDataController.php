@@ -22,10 +22,11 @@ class FilterDataController extends BaseController
         $categories = CategoryModel::query()->where('slug', $category)->select('id')->with('allChildrenCategories')->get();
 
         if ($categories->isEmpty()) {
-            return $this->error(null, "Category not found");
+            return $this->error("Category not found", null, 404);
         }
 
         $categoriesIds = $categoryIdsAction->handle($categories);
+
         $allQueryParams = $getQueryParamsAction->handle($categoriesIds, $request);
 
         if ($request->price) {
