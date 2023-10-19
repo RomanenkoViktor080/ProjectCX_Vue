@@ -27,6 +27,11 @@ class CategoryAttributeModel extends Model
         return $this->belongsToMany(AttributeValueModel::class, 'category_attribute_values', 'category_attribute_id', 'attribute_value_id', 'id', 'id');
     }
 
+    public function attributeValuesByAttributeId(): BelongsToMany
+    {
+        return $this->belongsToMany(AttributeValueModel::class, 'category_attribute_values', 'attribute_id', 'attribute_value_id', 'attribute_id', 'id');
+    }
+
     public function categoryAttributeValues(): HasMany
     {
         return $this->hasMany(CategoryAttributeValueModel::class, 'attribute_id', 'attribute_id');

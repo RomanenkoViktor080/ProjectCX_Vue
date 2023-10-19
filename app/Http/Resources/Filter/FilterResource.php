@@ -16,10 +16,10 @@ class FilterResource extends JsonResource
     {
         return isset($this->attribute) ?
             [
-                'id' => $this->attribute->id,
-                'title' => $this->attribute->title,
-                'slug' => $this->attribute->slug,
-                'type' => $this->attribute->attributeType->type,
+                'id' => $this->attribute_id,
+                'title' => $this->title,
+                'slug' => $this->slug,
+                'type' => $this->type,
                 'values' => FilterValueResource::collection($this->filteredCategoryAttributeValues),
             ] :
             [

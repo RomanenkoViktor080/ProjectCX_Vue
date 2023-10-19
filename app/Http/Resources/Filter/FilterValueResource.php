@@ -15,9 +15,9 @@ class FilterValueResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-        'id' => $this->attributeValue->id,
-        'value' => $this->attributeValue->value,
-        'productCount' => $this->attributeValue->products_count,
+        'id' => $this->id,
+        'value' => $this->value,
+        'productCount' => $this->products_count,
         ];
     }
 }

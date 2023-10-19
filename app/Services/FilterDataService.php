@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\CategoryAttributeModel;
+use function Laravel\Prompts\select;
 
 class FilterDataService
 {
@@ -10,9 +11,12 @@ class FilterDataService
     function getFilters($categoriesIds, $allQueryParams, $filterQuery)
     {
         $filters = CategoryAttributeModel::query()
-            ->whereIn('category_id', $categoriesIds)->select('attribute_id')->distinct()
-            ->with(['attribute.attributeType'])
-            ->limit(10)
+            ->whereIn('category_id', $categoriesIds)
+            ->select('category_attributes.attribute_id', 'attribute_types.type', 'title', 'slug')
+            ->distinct()
+            ->join('attributes', 'category_attributes.attribute_id', '=', 'attributes.id')
+            ->join('attribute_types', 'attributes.id', '=', 'attribute_types.attribute_id')
+            ->limit(15)
             ->get()
             ->filter(function ($item) use ($allQueryParams, $categoriesIds, $filterQuery) {
                 $currentAttributeValues = [];
@@ -24,17 +28,14 @@ class FilterDataService
                         }
                     })->values());
 
-                $item = $item->load(['categoryAttributeValues' => function ($query) use ($item, $categoriesIds, $filterQuery, $currentAttributeValues) {
-                    $query->select('attribute_value_id', 'attribute_id')->whereIn('category_id', $categoriesIds)->distinct()
-                        ->with('attributeValue', function ($query) use ($item, $categoriesIds, $filterQuery, $currentAttributeValues) {
-                            $query->withCount(['products' => function ($query) use ($item, $categoriesIds, $filterQuery) {
-                                $query->whereIn('category_id', $categoriesIds)->where('attribute_id', $item->attribute_id)->filter($filterQuery);
-                            }]);
-                        });
+                $item = $item->load(['attributeValuesByAttributeId' => function ($query) use ($item, $categoriesIds, $filterQuery, $currentAttributeValues) {
+                    $query->whereIn('category_id', $categoriesIds)
+                        ->withCount(['products' => function ($query) use ($item, $categoriesIds, $filterQuery) {
+                            $query->whereIn('category_id', $categoriesIds)->where('attribute_id', $item->attribute_id)->filter($filterQuery);
+                        }]);
                 }]);
-                $item->filteredCategoryAttributeValues = $item->categoryAttributeValues->filter(function ($item) use ($currentAttributeValues) {
-
-                    return ($item->attributeValue->products_count || in_array($item->attributeValue->id, $currentAttributeValues));
+                $item->filteredCategoryAttributeValues = $item->attributeValuesByAttributeId->filter(function ($item) use ($currentAttributeValues) {
+                    return ($item->products_count || in_array($item->id, $currentAttributeValues));
                 })->values();
                 return $item->filteredCategoryAttributeValues->isNotEmpty();
             })->values();
