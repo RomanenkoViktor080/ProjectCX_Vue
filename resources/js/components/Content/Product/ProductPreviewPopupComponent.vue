@@ -38,7 +38,7 @@
                 <StarsRatingComponent/>
                 <div :class="$style.productPrices">
                     <span :class="$style.productPriceLower">{{ product.price }} ₽</span>
-                    <span :class="$style.productPriceOld">{{ product.price }} ₽</span>
+<!--                    <span :class="$style.productPriceOld">{{ product.price }} ₽</span>-->
                 </div>
                 <div :class="$style.actions">
                     <ProductBasketActionsComponent :product="product"/>

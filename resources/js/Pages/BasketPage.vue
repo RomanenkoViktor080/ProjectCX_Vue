@@ -17,11 +17,11 @@
                             </div>
                             <div :class="$style.basketItemPrices">
                                 <div :class="$style.basketItemPriceNew">
-                                    {{ product.price * product.quantity }}
+                                    {{ product.price * product.quantity }} ₽
                                 </div>
-                                <div :class="$style.basketItemPriceOld">
-                                    {{ product.price }}
-                                </div>
+<!--                                <div :class="$style.basketItemPriceOld">-->
+<!--                                    {{ product.price }} ₽-->
+<!--                                </div>-->
                             </div>
                         </div>
                         <div :class="$style.basketItemActions">
@@ -43,8 +43,8 @@
                 <ButtonComponent :class="$style.orderButton">Оформить заказ</ButtonComponent>
                 <div :class="$style.basketASideInfo">
                     <div :class="$style.mainCalculateBlock"><span>Итого</span><span>{{ basketFullPrice }} ₽</span></div>
-                    <div :class="$style.defaultCalculateBlock"><span>Товары </span><span>100000 ₽</span></div>
-                    <div :class="$style.discountCalculateBlock"><span>Скидка </span><span>11000 ₽</span></div>
+<!--                    <div :class="$style.defaultCalculateBlock"><span>Товары </span><span>100000 ₽</span></div>
+                    <div :class="$style.discountCalculateBlock"><span>Скидка </span><span>11000 ₽</span></div>-->
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@ const basketFullPrice = computed(() => store.getters.basketFullPrice);
 const basketProductQuantity = computed(() => store.getters.basketProductQuantity);
 const basketDeleteProduct = useBasketRemoveProduct();
 const reloadBasket = useBasketProductReload();
-reloadBasket(); //Удалить? Она и так загружается при загрузке страницы.
+// reloadBasket(); //Удалить? Она и так загружается при загрузке страницы.
 
 </script>
 

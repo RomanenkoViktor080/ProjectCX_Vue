@@ -37,6 +37,7 @@ class FilterDataService
                 $item->filteredCategoryAttributeValues = $item->attributeValuesByAttributeId->filter(function ($item) use ($currentAttributeValues) {
                     return ($item->products_count || in_array($item->id, $currentAttributeValues));
                 })->values();
+                unset($item->attributeValuesByAttributeId);
                 return $item->filteredCategoryAttributeValues->isNotEmpty();
             })->values();
         return $filters;

@@ -16,8 +16,8 @@
                 <div :class="$style.productTitle">{{ product?.title }}</div>
 
                 <div :class="$style.productPrices">
-                    <span :class="$style.productPriceNew">{{ product?.price }}</span>
-                    <span :class="$style.productPriceOld">{{ product?.price }}</span>
+                    <span :class="$style.productPriceNew">{{ product?.price }} ₽</span>
+<!--                    <span :class="$style.productPriceOld">{{ product?.price }} ₽</span>-->
                 </div>
             </div>
             <div :class="$style.productFooter">

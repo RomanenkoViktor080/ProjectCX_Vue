@@ -29,7 +29,7 @@
                 <ShowMoreOrLessProductCharacteristicsComponent :title-class="$style.characteristicsShortTitle"
                                                                title="Характеристики"
                                                                :wrapper-class="$style.characteristicsShort"
-                                                               link="characteristic"/>
+                                                               link="characteristic" :items="product.characteristics"/>
             </div>
             <div :class="$style.aSideBlock">
                 <div :class="$style.productASide">
@@ -37,9 +37,9 @@
                         <div :class="$style.productPriceLower">
                             {{ product.price }} ₽
                         </div>
-                        <div :class="$style.productPriceOld">
+<!--                        <div :class="$style.productPriceOld">
                             {{ product.price }} ₽
-                        </div>
+                        </div>-->
                     </div>
                     <ProductBasketActionsComponent :product="product"/>
                 </div>
@@ -48,7 +48,8 @@
         <div :class="$style.productMain">
             <div :class="$style.productInfo">
                 <ShowMoreOrLessProductCharacteristicsComponent id="characteristic" title="Характеристики"
-                                                               :title-class="$style.characteristicsTitle"/>
+                                                               :title-class="$style.characteristicsTitle"
+                                                               :items="product.characteristics"/>
                 <div>
                     <ShowMoreOrLessProductDescriptionComponent id="description" title="Описание"
                                                                :title-class="$style.descriptionTitle">

@@ -1,17 +1,18 @@
 <template>
     <div :class="[$style.productCharacteristics, wrapperClass]">
-    <div :class="[$style.title, titleClass]">{{ title }}</div>
-    <div>
-        <dl v-for="item in items.slice(0, (quantityToDisplay > items.length || showStatus) ? items.length : quantityToDisplay)" :class="[$style.characteristicsMain, bodyClass]">
-        <dt :class="$style.characteristicsItemTitle">
-            <span :class="$style.text">{{ item.title }}</span>
-        </dt>
-        <dd :class="$style.characteristicsItemValue">{{ item.value }}</dd>
-        </dl>
-    </div>
-    <a @click="link ? linkScrollTo() : setShowStatus()" :class="$style.button">
-        {{ link ? "Подробнее" : showStatus ? "Свернуть" : "Развернуть" }}
-    </a>
+        <div :class="[$style.title, titleClass]">{{ title }}</div>
+        <div>
+            <dl v-for="item in items.slice(0, (quantityToDisplay > items.length || showStatus) ? items.length : quantityToDisplay)"
+                :class="[$style.characteristicsMain, bodyClass]">
+                <dt :class="$style.characteristicsItemTitle">
+                    <span :class="$style.text">{{ item.title }}</span>
+                </dt>
+                <dd :class="$style.characteristicsItemValue">{{ item.value }}</dd>
+            </dl>
+        </div>
+        <a @click="link ? linkScrollTo() : setShowStatus()" :class="$style.button">
+            {{ link ? "Подробнее" : showStatus ? "Свернуть" : "Развернуть" }}
+        </a>
     </div>
 </template>
 
@@ -26,25 +27,19 @@ const props = defineProps({
     titleClass: {required: false},
     bodyClass: {required: false},
     link: {default: false, required: false},
+    items: {required: true}
+
 })
 
-const items = [{title: "Модель", value: "51095YQE"}, {
-    title: "Гарантийный срок",
-    value: "1 год"
-}, {title: "Комплектация", value: "инструкция; смартфон"}, {
-    title: "Страна производства",
-    value: "Китай"
-}, {title: "Модель", value: "51095YQE"}, {title: "Гарантийный срок", value: "1 год"}, {
-    title: "Комплектация",
-    value: "инструкция; смартфон"
-}, {title: "Страна производства", value: "Китай"}];
 const showStatus = ref(false)
-function setShowStatus(){
+
+function setShowStatus() {
     showStatus.value = !showStatus.value;
 }
-function linkScrollTo(){
+
+function linkScrollTo() {
     const element = document.getElementById(props.link)
-    if (element){
+    if (element) {
         element.scrollIntoView({behavior: 'smooth', block: 'center'})
     }
 }
