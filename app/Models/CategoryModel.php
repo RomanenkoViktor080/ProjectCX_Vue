@@ -58,7 +58,7 @@ class CategoryModel extends Model
         return $this->belongsTo(CategoryModel::class, 'category_id', 'id')->with('parentCategories');
     }
 
-    public function attributeTitles(): BelongsToMany
+    public function attributes(): BelongsToMany
     {
         return $this->belongsToMany(AttributeModel::class, 'category_attributes', 'category_id', 'attribute_id');
     }

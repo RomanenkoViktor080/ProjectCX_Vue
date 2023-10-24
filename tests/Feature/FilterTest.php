@@ -28,7 +28,7 @@ class FilterTest extends TestCase
             ->has(ProductImageModel::factory(), 'frontImage')
             ->for(CategoryModel::factory()
                 ->has(AttributeModel::factory()
-                    ->has(AttributeTypeModel::factory(), 'attributeType'), 'attributeTitles')
+                    ->has(AttributeTypeModel::factory(), 'attributeType'), 'attributes')
                 , 'category')
             ->create();
         $attribute = AttributeModel::query()->first();
@@ -41,7 +41,7 @@ class FilterTest extends TestCase
             ->has(ProductImageModel::factory(), 'frontImage')
             ->for(CategoryModel::factory()
                 ->has(AttributeModel::factory()
-                    ->has(AttributeTypeModel::factory(), 'attributeType'), 'attributeTitles')
+                    ->has(AttributeTypeModel::factory(), 'attributeType'), 'attributes')
                 , 'category')
             ->create();
 
@@ -71,7 +71,7 @@ class FilterTest extends TestCase
         $category = CategoryModel::factory()->count(2)
             ->has(ProductModel::factory()->count(10), 'products')
             ->has(AttributeModel::factory()->count($expectedQuantityAttributes)
-                ->has(AttributeTypeModel::factory(), 'attributeType'), 'attributeTitles')
+                ->has(AttributeTypeModel::factory(), 'attributeType'), 'attributes')
             ->create()->first();
         $attributeValues = AttributeValueModel::factory()->count(5)->create();
 

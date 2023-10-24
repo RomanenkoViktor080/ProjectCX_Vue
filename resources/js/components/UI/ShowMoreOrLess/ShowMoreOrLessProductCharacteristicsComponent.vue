@@ -10,7 +10,7 @@
                 <dd :class="$style.characteristicsItemValue">{{ item.value }}</dd>
             </dl>
         </div>
-        <a @click="link ? linkScrollTo() : setShowStatus()" :class="$style.button">
+        <a v-if="items.length > quantityToDisplay" @click="link ? linkScrollTo() : setShowStatus()" :class="$style.button">
             {{ link ? "Подробнее" : showStatus ? "Свернуть" : "Развернуть" }}
         </a>
     </div>
