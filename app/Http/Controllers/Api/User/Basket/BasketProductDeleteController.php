@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Api\Basket;
+namespace App\Http\Controllers\Api\User\Basket;
 
-use App\Models\BasketProductModel;
+use App\Http\Controllers\Controller;
 use App\Models\ProductModel;
+use App\Traits\HttpResponses;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
-class BasketProductDeleteController extends BaseController
+class BasketProductDeleteController extends Controller
 {
+    use HttpResponses;
+
     public function __invoke(ProductModel $product): Response|JsonResponse
     {
         if (auth('sanctum')->user()->basketProducts()->where('product_id', $product->id)->exists()) {

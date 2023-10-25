@@ -1,21 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Api\Catalog;
+namespace App\Http\Controllers\Api\User\Catalog;
 
 use App\Actions\getCategoryTreeIdsAction;
 use App\Actions\getQueryParamsAction;
 use App\Http\Controllers\Api\Product\BaseController;
+use App\Http\Controllers\Controller;
 use App\Http\Filters\ProductFilter;
 use App\Http\Resources\Filter\FilterResource;
 use App\Models\CategoryModel;
 use App\Models\ProductModel;
 use App\Services\FilterDataService;
+use App\Traits\HttpResponses;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class FilterDataController extends BaseController
+class FilterDataController extends Controller
 {
 
+    use HttpResponses;
 
     public function __invoke($category, Request $request, FilterDataService $filterDataService, getCategoryTreeIdsAction $categoryIdsAction, getQueryParamsAction $getQueryParamsAction): JsonResponse
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Catalog;
+namespace App\Http\Controllers\Api\User\Catalog;
 
 use App\Helpers\Constants;
 use App\Http\Controllers\Controller;

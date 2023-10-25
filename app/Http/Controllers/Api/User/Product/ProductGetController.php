@@ -1,13 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Api\Product;
+namespace App\Http\Controllers\Api\User\Product;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\Product\ProductResource;
 use App\Models\ProductModel;
+use App\Traits\HttpResponses;
 use Illuminate\Http\JsonResponse;
 
-class ProductGetController extends BaseController
+class ProductGetController extends Controller
 {
+    use HttpResponses;
+
     public function __invoke(ProductModel $product): JsonResponse
     {
         $product->load(['images', 'productAttributes' => function ($q) {

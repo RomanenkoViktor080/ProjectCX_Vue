@@ -1,20 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Api\Product;
+namespace App\Http\Controllers\Api\User\Product;
 
 use App\Actions\getCategoryTreeIdsAction;
 use App\Actions\getQueryParamsAction;
+use App\Http\Controllers\Controller;
 use App\Http\Filters\ProductFilter;
 use App\Http\Resources\Product\ProductCardsResource;
 use App\Models\CategoryModel;
 use App\Models\ProductModel;
+use App\Traits\HttpResponses;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class ProductFilterController extends BaseController
+class ProductFilterController extends Controller
 {
 
-
+    use HttpResponses;
     public function __invoke($category, Request $request, getCategoryTreeIdsAction $categoryIdsAction, getQueryParamsAction $getQueryParamsAction): JsonResponse
     {
         try {

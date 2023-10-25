@@ -1,14 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Api\Basket;
+namespace App\Http\Controllers\Api\User\Basket;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\Product\ProductBasketResource;
 use App\Models\ProductModel;
+use App\Traits\HttpResponses;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class BasketProductStoreController extends BaseController
+class BasketProductStoreController extends Controller
 {
+    use HttpResponses;
+
     public function __invoke(Request $request): JsonResponse
     {
         $product = ProductModel::query()->findOrFail($request->productId);

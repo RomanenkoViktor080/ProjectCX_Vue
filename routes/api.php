@@ -1,17 +1,17 @@
 <?php
 
-use App\Http\Controllers\Api\AuthenticationController;
-use App\Http\Controllers\Api\Basket\BasketProductChangeQuantityController;
-use App\Http\Controllers\Api\Basket\BasketProductDeleteController;
-use App\Http\Controllers\Api\Basket\BasketProductGetController;
-use App\Http\Controllers\Api\Basket\BasketProductStoreController;
-use App\Http\Controllers\Api\Catalog\CatalogController;
-use App\Http\Controllers\Api\Catalog\FilterDataController;
-use App\Http\Controllers\Api\Catalog\SorterDataController;
-use App\Http\Controllers\Api\Product\ProductAllController;
-use App\Http\Controllers\Api\Product\ProductFilterController;
-use App\Http\Controllers\Api\Product\ProductGetController;
-use App\Http\Controllers\Api\Product\ProductGetPreviewController;
+use App\Http\Controllers\Api\User\AuthenticationController;
+use App\Http\Controllers\Api\User\Basket\BasketProductChangeQuantityController;
+use App\Http\Controllers\Api\User\Basket\BasketProductDeleteController;
+use App\Http\Controllers\Api\User\Basket\BasketProductGetController;
+use App\Http\Controllers\Api\User\Basket\BasketProductStoreController;
+use App\Http\Controllers\Api\User\Catalog\CatalogController;
+use App\Http\Controllers\Api\User\Catalog\FilterDataController;
+use App\Http\Controllers\Api\User\Catalog\SorterDataController;
+use App\Http\Controllers\Api\User\Product\ProductAllController;
+use App\Http\Controllers\Api\User\Product\ProductFilterController;
+use App\Http\Controllers\Api\User\Product\ProductGetController;
+use App\Http\Controllers\Api\User\Product\ProductGetPreviewController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,7 +36,7 @@ Route::post('/sign-in', [AuthenticationController::class, 'login']);
 Route::post('/sign-up', [AuthenticationController::class, 'register']);
 
 //Получения информации о пользователе
-Route::get('/user', UserController::class);
+Route::get('/user', [AuthenticationController::class, 'check']);
 
 //Маршрут для получения данных странички товара
 Route::get('/product/{product}', ProductGetController::class);

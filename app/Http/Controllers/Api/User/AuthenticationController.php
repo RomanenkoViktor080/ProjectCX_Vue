@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserLoginRequest;
@@ -10,8 +10,6 @@ use App\Traits\HttpResponses;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 
 class AuthenticationController extends Controller
@@ -54,8 +52,13 @@ class AuthenticationController extends Controller
 
     public function logout(Request $request): Response
     {
-        auth("sanctum")->user()->currentAccessToken()->delete();
+        $request->user("sanctum")->currentAccessToken()->delete();
         return response()->noContent();
+    }
+
+    public function check(): JsonResponse
+    {
+        return $this->success(auth('sanctum')->check());
     }
 
 }
