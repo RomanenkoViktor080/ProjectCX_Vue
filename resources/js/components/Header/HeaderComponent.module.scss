@@ -91,6 +91,7 @@
 
     & .headerActionsMobile {
         display: none;
+        color: white;
         @media screen and (max-width: 768px) {
             display: flex;
             @include adaptiveValue("column-gap", 30, 5, 768, 320)
@@ -98,7 +99,6 @@
 
         & .actionMobileItem {
             display: flex;
-            color: black;
             opacity: var(--hover-low-opacity);
             text-decoration: none;
 
@@ -118,6 +118,7 @@
 //===================================================================================================
 
 .burger {
+    color: white;
     font-size: 35px;
     opacity: var(--hover-low-opacity);
     cursor: pointer;
@@ -143,6 +144,8 @@
 //===================================================================================================
 
 .headerActions {
+    color: white;
+
     @media screen and (max-width: 768px) {
         display: none;
     }
@@ -152,15 +155,17 @@
 }
 
 .headerActionItem {
+    color: white;
+
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     text-decoration: none;
     cursor: pointer;
-    color: black;
+    opacity: var(--hover-low-opacity);
 
-    &:hover &Text {
+    &:hover {
         opacity: 1;
     }
 
@@ -171,7 +176,6 @@
 
     &Text {
         font-size: 16px;
-        opacity: var(--hover-low-opacity);
 
     }
 

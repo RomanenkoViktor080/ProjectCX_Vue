@@ -23,7 +23,7 @@ const props = defineProps({
     maxStars: {default: 5},
     startRating: {default: 0},
     canEdit: {default: false},
-    starColor: {default: '#0CD9AFFF'}
+    starColor: {default: '#000000'}
 })
 
 const rating = reactive({value: props.startRating, valueHover: null});
