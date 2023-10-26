@@ -69,8 +69,8 @@
 
                 &.menuItemActive {
                     @media screen and (min-width: 768px) {
-                        background-color: rgba(12, 217, 175, 0.1);
-                        border-color: rgba(12, 217, 175, 0.1);
+                        background-color: rgba(0, 0, 0, 0.1);
+                        border-color: rgba(0, 0, 0, 0.2);
                     }
 
                     & .categoryMenuItemIcon {
