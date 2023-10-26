@@ -20,6 +20,6 @@ class BasketProductChangeQuantityController extends Controller
             $updatedProduct = new ProductBasketResource($user->basketProducts->where('id', $product->id)->first());
             return $this->success($updatedProduct);
         }
-        return $this->error('Product not found', '', 404);
+        return $this->error('Product not found', 404);
     }
 }

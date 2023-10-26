@@ -11,12 +11,8 @@ trait HttpResponses
         return response()->json($data, $code);
     }
 
-    protected function error($data = null, $message = null, $code = 500): JsonResponse
+    protected function error($data = null,  $code = 500): JsonResponse
     {
-        return response()->json([
-            'status' => 'Request has occurred',
-            'message' => $message,
-            'data' => $data,
-        ], $code);
+        return response()->json($data, $code);
     }
 }

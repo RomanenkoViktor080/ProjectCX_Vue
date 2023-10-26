@@ -13,7 +13,10 @@
 
         <div :class="$style.productCardBody">
             <div :class="$style.productHeader">
-                <div :class="$style.productTitle">{{ product?.title }}</div>
+                <router-link :to="{name: 'product', params: {productId: product.id}}" style="text-decoration: none">
+                    <div :class="$style.productTitle">{{ product?.title }}</div>
+                </router-link>
+
 
                 <div :class="$style.productPrices">
                     <span :class="$style.productPriceNew">{{ product?.price }} ₽</span>

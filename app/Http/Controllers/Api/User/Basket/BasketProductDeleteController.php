@@ -18,6 +18,6 @@ class BasketProductDeleteController extends Controller
             $product->delete();
             return response()->noContent();
         }
-        return $this->error('Product not found', '', 401);
+        return $this->error('Product not found', 401);
     }
 }

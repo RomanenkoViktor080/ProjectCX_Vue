@@ -12,7 +12,6 @@ use App\Http\Controllers\Api\User\Product\ProductAllController;
 use App\Http\Controllers\Api\User\Product\ProductFilterController;
 use App\Http\Controllers\Api\User\Product\ProductGetController;
 use App\Http\Controllers\Api\User\Product\ProductGetPreviewController;
-use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,9 +26,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});*/
 
 //Маршруты аутентификация и выхода из аккаунта
 Route::post('/sign-in', [AuthenticationController::class, 'login']);

@@ -25,7 +25,7 @@ class FilterDataController extends Controller
         $categories = CategoryModel::query()->where('slug', $category)->select('id')->with('allChildrenCategories')->get();
 
         if ($categories->isEmpty()) {
-            return $this->error("Category not found", null, 404);
+            return $this->error("Category not found", 404);
         }
 
         $categoriesIds = $categoryIdsAction->handle($categories);

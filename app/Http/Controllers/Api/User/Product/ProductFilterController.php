@@ -41,7 +41,7 @@ class ProductFilterController extends Controller
                 ->simplePaginate(20, ['*'], 'page', $request->page ?? 1);
             return $this->success(ProductCardsResource::collection($products));
         } catch (\Exception $exception) {
-            return $this->error($exception->getMessage(), '', $exception->getCode());
+            return $this->error($exception->getMessage(), $exception->getCode());
         }
     }
 }

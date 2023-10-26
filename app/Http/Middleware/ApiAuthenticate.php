@@ -25,6 +25,6 @@ class ApiAuthenticate
             return $next($request);
         }
 
-        return $this->error('Пользователь не авторизирован', '', 401);
+        return $this->error('Пользователь не авторизирован', 401);
     }
 }
