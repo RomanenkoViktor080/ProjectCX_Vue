@@ -20,7 +20,7 @@ function setLiked() {
 
 <style module>
 .likeItem {
-    color: var(--main-blue-color);
+    color: var(--main-first-color);
     cursor: pointer;
     display: block;
 }

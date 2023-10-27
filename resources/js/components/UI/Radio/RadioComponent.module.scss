@@ -10,9 +10,9 @@
     }
 
     &:checked + .label:before {
-        border: 2px solid var(--main-blue-color);
+        border: 2px solid var(--main-first-color);
         @media screen and (min-width: 1980px) {
-            border: 3px solid var(--main-blue-color);
+            border: 3px solid var(--main-first-color);
 
         }
     }
@@ -27,8 +27,8 @@
     &:after {
         transition: 150ms;
         opacity: 0;
-        border: 1px solid var(--main-blue-color);
-        background-color: var(--main-blue-color);
+        border: 1px solid var(--main-first-color);
+        background-color: var(--main-first-color);
         height: 8px;
         width: 8px;
         left: 6px;
@@ -47,7 +47,7 @@
         border-radius: 100%;
 
         &:active {
-            border: 1px solid var(--main-blue-color);
+            border: 1px solid var(--main-first-color);
         }
     }
 
@@ -59,6 +59,6 @@
     }
 
     &:hover:before {
-        border: 1px solid var(--main-blue-color);
+        border: 1px solid var(--main-first-color);
     }
 }

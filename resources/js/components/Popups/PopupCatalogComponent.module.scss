@@ -69,8 +69,7 @@
 
                 &.menuItemActive {
                     @media screen and (min-width: 768px) {
-                        background-color: rgba(0, 0, 0, 0.1);
-                        border-color: rgba(0, 0, 0, 0.2);
+                        border-color: var(--main-first-colorain);
                     }
 
                     & .categoryMenuItemIcon {
@@ -168,7 +167,7 @@
 }
 
 .mobileBackButton {
-    color: var(--main-blue-color);
+    color: var(--main-first-color);
     display: none;
     @media screen and (max-width: 768px) {
         display: block;

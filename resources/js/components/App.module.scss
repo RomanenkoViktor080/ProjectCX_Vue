@@ -11,9 +11,9 @@
     --main-grey-color: #bbbbbb;
     --main-light-grey-color: #dddddd;
     --main-very-light-grey-color: #f3f3f3;
-    --main-blue-color: #000000;
     --main-radius: 10px;
-    --main-green-color: #131313;
+    --main-first-color: #000000;
+    --main-second-color: #131313;
     --main-gradient: linear-gradient(90deg, #000000 0%, #1E1E1E 100%);
     --main-gradient-reverse: linear-gradient(90deg, #131313 0%, #000000 100%);
     --hover-low-opacity: 0.7;
@@ -52,7 +52,7 @@ body  * {
         }
 
         .swiper-slide-thumb-active {
-            border: 1px solid var(--main-blue-color);
+            border: 1px solid var(--main-first-color);
             overflow: hidden;
         }
 

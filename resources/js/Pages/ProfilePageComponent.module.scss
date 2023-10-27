@@ -53,10 +53,13 @@
                 border: 1px solid transparent;
                 cursor: pointer;
             }
+            & .active {
+                border: 1px solid var(--main-first-color);
+                border-radius: 10px;
+            }
 
             & .menuItem:hover {
-                background-color: rgba(12, 217, 175, 0.1);
-                border: 1px solid rgba(12, 217, 175, 0.1);
+                border: 1px solid var(--main-first-color);
                 border-radius: 10px;
             }
 
@@ -72,13 +75,6 @@
     }
 }
 
-
-.active {
-    background-color: rgba(12, 217, 175, 0.1);
-    border: 1px solid rgba(12, 217, 175, 0.1);
-    border-radius: 10px;
-}
-
 .content {
 
 }
@@ -90,7 +86,7 @@
 }
 
 .showOnMobile {
-    color: var(--main-blue-color);
+    color: var(--main-first-color);
     display: none;
     @media screen and (max-width: 768px) {
         display: block;

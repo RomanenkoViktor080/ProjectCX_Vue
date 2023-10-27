@@ -37,7 +37,7 @@
 
                 & .starIcon {
                     font-size: 14px;
-                    color: var(--main-blue-color);
+                    color: var(--main-first-color);
                     display: inline-block;
                 }
             }
@@ -63,7 +63,7 @@
                     border-radius: 10px;
 
                     & .reviewScoreFill {
-                        background-color: var(--main-blue-color);
+                        background-color: var(--main-first-color);
                         height: 100%;
                     }
                 }

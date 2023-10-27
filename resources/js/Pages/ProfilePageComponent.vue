@@ -41,7 +41,6 @@
                     Назад
                 </div>
                 <router-view :set-profile-state="setProfileState"/>
-                <!--todo разобратся как отображать конкретные представления дочерних маршрутов-->
             </div>
         </div>
     </RouteAuthComponent>

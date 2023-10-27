@@ -40,7 +40,7 @@
                     cursor: pointer;
 
                     &:hover {
-                        color: var(--main-blue-color);
+                        color: var(--main-first-color);
                         text-decoration: underline;
                     }
                 }
@@ -350,7 +350,7 @@
                 transition: 150ms;
                 content: " ";
                 position: absolute;
-                background-color: var(--main-blue-color);
+                background-color: var(--main-first-color);
                 left: 50%;
                 transform: translateX(-50%);
                 width: 50%;
